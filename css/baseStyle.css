@@ -1,164 +1,167 @@
-html,
-body {
-    margin: 0;
-    padding: 0;
-    font-family: Oswald;
+/* Estilos para el body y html */
+body, html {
+  margin: 0; /* Elimina el margen por defecto */
+  padding: 0; /* Elimina el padding por defecto */
+  width: 100%; /* Ancho completo */
+  height: 100%; /* Alto completo */
+  background-color: white; /* Fondo blanco */
 }
 
-/* Header */
-header {
-    position: absolute; 
-    top: 0px; 
-    left: 0px; 
-    width: 1440px; 
-    height: 80px; 
-    background: #FFFFFFFF; /* white */
-    border-radius: 4px; /* border-m */
-  }
+* {
+  font-family: 'Lexend', sans-serif;
+}
 
+/* Estilos para el encabezado */
+.header {
+  display: flex; /* Usa flexbox para el diseño */
+  justify-content: space-between; /* Distribuye el espacio entre los elementos */
+  align-items: center; /* Centra los elementos verticalmente */
+  background-color: white; /* Color de fondo */
+  box-sizing: border-box; /* Incluye el padding y el borde en el ancho y alto */
+  z-index: 1000; /* Coloca el encabezado en el frente */
+  top: 0; /* Alinea al borde superior */
+  left: 0; /* Alinea al borde izquierdo */
+  width: 100%; /* Ancho completo */
+  padding: 10px 20px; /* Padding alrededor del contenido */
+}
+
+/* Estilos para el título */
 .header h1 {
-  position: absolute; 
-  top: -10px; 
-  left: -47px; 
-  font-family: Lexend; /* Heading */
-  font-size: 52px; 
-  line-height: 74px; 
-  font-weight: 700; 
-  color: #6D31EDFF; /* primary-500 */
+  margin: 0; /* Elimina el margen por defecto */
+  font-size: 24px; /* Tamaño de fuente */
+  color: #7044bf; /* Color del texto */
 }
 
-  /* Header Menu 1 */
-menu {
-    position: absolute; 
-    top: 18px; 
-    left: 511px; 
-    width: 434px; 
-    height: 44px; 
-    display: flex; 
-    align-items: center; 
-    font-family: Manrope; /* Body */
-    font-size: 16px; 
-    line-height: 26px; 
-    font-weight: 400; 
-    opacity: 1; 
-  }
-  /* Header Menu 1 - Item */
-  .header-menu .header-menu-item {
-    padding: 9px 28px; 
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
-    color: #565D6DFF; /* neutral-600 */
-    background: #000000FF; /* transparent */
-    border-radius: 4px; /* border-m */
-    cursor: pointer; 
-    white-space: nowrap; 
-  }
-  /* Header Menu 1 - Selected item */
-  .header-menu .header-menu-item.selected {
-    position: relative; 
-    font-weight: 700; 
-    color: #6D31EDFF; /* primary-500 */
-    background: #000000FF; /* transparent */
-  }
-  /* Header Menu 1 - Selected item */
-  .header-menu .header-menu-item.selected:hover:active {
-    color: #6D31EDFF; /* primary-500 */
-    background: #000000FF; /* transparent */
-  }
-  /* Header menu item 1 */
-  .header-menu .header-menu-item:nth-child(1) {
-    font-family: Manrope; 
-    font-size: 16px; 
-    line-height: 26px; 
-    font-weight: 700; 
-    color: #6D31EDFF; /* primary-500 */
-  }
-  /* Header menu item 2 */
-  .header-menu .header-menu-item:nth-child(2) {
-    font-family: Manrope; 
-    font-size: 16px; 
-    line-height: 26px; 
-    font-weight: 700; 
-    color: #6D31EDFF; /* primary-500 */
-  }
-  /* Header menu item 3 */
-  .header-menu .header-menu-item:nth-child(3) {
-    font-family: Manrope; 
-    font-size: 16px; 
-    line-height: 26px; 
-    font-weight: 700; 
-    color: #6D31EDFF; /* primary-500 */
-  }
-  /* Header menu item 4 */
-  .header-menu .header-menu-item:nth-child(4) {
-    font-family: Manrope; 
-    font-size: 16px; 
-    line-height: 26px; 
-    font-weight: 700; 
-    color: #6D31EDFF; /* primary-500 */
-  }
-  /* Header menu item 5 */
-  .header-menu .header-menu-item:nth-child(5) {
-    font-family: Manrope; 
-    font-size: 16px; 
-    line-height: 26px; 
-    font-weight: 700; 
-    color: #6D31EDFF; /* primary-500 */
-  }
+/* Estilos para el menú del índice */
+.index-menu {
+  display: flex; /* Usa flexbox para el diseño */
+  flex-direction: row; /* Elementos en una fila */
+  margin: 0; /* Sin margen */
+  padding: 0; /* Sin padding */
+  list-style: none; /* Sin viñetas */
+}
 
-  /* Button 2 */
+/* Estilos para los elementos del menú */
+.menu-elem {
+  margin: 0 8px; /* Margen horizontal */
+  padding: 0; /* Sin padding */
+  transition: 0.5s; /* Transición suave para transformaciones */
+}
+
+/* Estilos para los enlaces del menú */
+.menu-elem a {
+  color: #7044bf; /* Color del texto */
+  text-decoration: none; /* Sin subrayado */
+}
+
+/* Efecto hover para los elementos del menú */
+.menu-elem:hover {
+  transform: translateY(-5px); /* Desplaza hacia arriba */
+}
+
+/* Estilos para el botón */
 .button {
-    position: absolute; 
-    top: 18px; 
-    left: 1195px; 
-    height: 44px; 
-    padding: 0 16px; 
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
-    font-family: Manrope; 
-    font-size: 16px; 
-    line-height: 26px; 
-    font-weight: 400; 
-    color: #FFFFFFFF; /* white */
-    background: #6D31EDFF; /* primary-500 */
-    opacity: 1; 
-    border: none; 
-    border-radius: 22px; 
-  }
-  /* Hover */
-  .button:hover {
-    color: #FFFFFFFF; /* white */
-    background: #5113D7FF; /* primary-600 */
-  }
-  /* Pressed */
-  .button:hover:active {
-    color: #FFFFFFFF; /* white */
-    background: #3F0EA6FF; /* primary-700 */
-  }
-  /* Disabled */
-  .button:disabled {
-    opacity: 0.4; 
-  }
+  background-color: #7044bf; /* Color de fondo */
+  color: #e7daf6; /* Color del texto */
+  border: none; /* Sin borde */
+  padding: 10px 20px; /* Padding interno */
+  cursor: pointer; /* Cursor de mano */
+  transition: 0.3s; /* Transición suave para transformaciones */
+}
 
-/* Footer */
+.button:hover {
+  color: #e7daf6; /* Color del texto en hover */
+  transform: translateY(-5px); /* Desplaza hacia arriba en hover */
+}
+
+/* Estilos para el footer */
 .footer {
-  position: absolute; 
-  top: 2024px; 
-  left: 0px; 
-  width: 1440px; 
-  height: 310px; 
-  background: #FFFFFFFF; /* white */
-  border-radius: 0px; 
+  background-color: white;
+  padding: 0; /* Elimina el padding del footer */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  bottom: 0;
 }
 
-  /* Image */
-.image {
-  position: absolute; 
-  top: 62px; 
-  left: 655px; 
-  width: 129px; 
-  height: 112px; 
-  border-radius: 0px; 
+/* Estilos para el contenido del footer */
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%; /* Ancho completo */
+  max-width: 1200px; /* Ancho máximo */
+  box-sizing: border-box; /* Incluye el padding en el ancho total */
 }
+
+/* Resto del código */
+.footer-left, .footer-center, .footer-right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.footer-left {
+  align-items: flex-start;
+}
+
+.footer-right {
+  align-items: flex-end;
+}
+
+.footer-left p, .footer-right ul, .footer-right a {
+  margin: 0; /* Ajustar márgenes a 0 */
+  color: #333;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.footer-logo {
+  max-width: 100px;
+}
+
+.footer-menu {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+}
+
+.footer-menu li {
+  margin: 0 10px;
+}
+
+.footer-menu a {
+  color: #333;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.footer-menu li:hover {
+  padding: 0; /* Sin padding */
+  transition: 0.5s; /* Transición suave para transformaciones */
+  transform: translateY(-5px); /* Desplaza hacia arriba */
+
+}
+
+
+.footer-social {
+  list-style: none;
+  padding: 10px 0px;
+  display: flex;
+  flex-direction: row;
+  margin-top: 10px;
+}
+
+.footer-social li {
+  margin: 0 10px;
+}
+
+.footer-social ion-icon {
+  font-size: 20px; /* Ajusta el tamaño del icono */
+  color: #000000; /* Color del icono */
+}
+
+
