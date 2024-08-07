@@ -91,8 +91,9 @@ body, html {
   justify-content: space-between;
   align-items: center;
   width: 100%; /* Ancho completo */
-  max-width: 1200px; /* Ancho máximo */
   box-sizing: border-box; /* Incluye el padding en el ancho total */
+  margin: 30px 20px;
+  padding: 10px 20px; /* Padding alrededor del contenido */
 }
 
 /* Resto del código */
@@ -114,7 +115,7 @@ body, html {
 .footer-left p, .footer-right ul, .footer-right a {
   margin: 0; /* Ajustar márgenes a 0 */
   color: #333;
-  font-size: 14px;
+  font-size: 16px; /* Aumentar tamaño de la fuente */
   text-decoration: none;
 }
 
@@ -131,21 +132,23 @@ body, html {
 
 .footer-menu li {
   margin: 0 10px;
+  transition: 0.3s; /* Transición suave */
 }
 
 .footer-menu a {
   color: #333;
   text-decoration: none;
-  font-size: 14px;
+  font-size: 16px; /* Aumentar tamaño de la fuente */
+  transition: color 0.3s; /* Transición suave para el color */
 }
 
 .footer-menu li:hover {
-  padding: 0; /* Sin padding */
-  transition: 0.5s; /* Transición suave para transformaciones */
-  transform: translateY(-5px); /* Desplaza hacia arriba */
-
+  transform: translateY(-5px); /* Efecto de desplazamiento */
 }
 
+.footer-menu a:hover {
+  color: #7044bf; /* Color en hover */
+}
 
 .footer-social {
   list-style: none;
@@ -163,5 +166,3 @@ body, html {
   font-size: 20px; /* Ajusta el tamaño del icono */
   color: #000000; /* Color del icono */
 }
-
-
