@@ -35,7 +35,7 @@ En nuestra clínica veterinaria, ofrecemos una variedad de servicios adaptados a
 
 ## Paleta de colores
 
-![Imagen de paleta de colores de Doggy Dr.](resources/PaletaColoresDoggyDr.jpeg)
+![Imagen de paleta de colores de Doggy Dr.](images/PaletaColoresDoggyDr.jpeg)
 
 * #E5AFFA
 * #E7DAF6
