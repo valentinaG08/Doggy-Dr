@@ -63,15 +63,16 @@ body, html {
 /* Estilos para el botón */
 .button {
   background-color: #7044bf; /* Color de fondo */
-  color: #e7daf6; /* Color del texto */
+  color: white; /* Color del texto */
   border: none; /* Sin borde */
   padding: 10px 20px; /* Padding interno */
   cursor: pointer; /* Cursor de mano */
   transition: 0.3s; /* Transición suave para transformaciones */
+  border-radius: 10px 10px 10px 10px;
 }
 
 .button:hover {
-  color: #e7daf6; /* Color del texto en hover */
+  color: white; /* Color del texto en hover */
   transform: translateY(-5px); /* Desplaza hacia arriba en hover */
 }
 

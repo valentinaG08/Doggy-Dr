@@ -46,3 +46,14 @@ p {
 .img-container img {
   height: 275px; /* Tamaño uniforme de las imágenes */
 }
+
+#buttonContainer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+#bookingButton p{
+    font-size: 18px;
+}
