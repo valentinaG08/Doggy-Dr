@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Información de la Mascota</title>
+    <link rel="stylesheet" th:href="@{/css/petInfoStyle.css}">
+</head>
+<body>  
+    <div class="container">
+        <h1>Información de la Mascota</h1>
+        <div class="pet-info">
+            <p><strong>Nombre:</strong> <span class="highlight" th:text="${pet.nombre}"></span></p>
+            <p><strong>Raza:</strong> <span class="highlight" th:text="${pet.raza}"></span></p>
+            <p><strong>Edad:</strong> <span class="highlight" th:text="${pet.edad}"></span></p>
+            <p><strong>Servicio:</strong> <span class="highlight" th:text="${pet.servicio}"></span></p>
+        </div>
+    </div>
+</body>
+</html>
