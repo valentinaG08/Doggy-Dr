@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width">
   <title>Doggy Dr.</title>
   <link rel="stylesheet" href="../css/baseStyle.css"/>
+  <link rel="stylesheet" href="../css/contactStyles.css"/>
 
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
@@ -40,7 +41,60 @@
 </header>
 
   <main class="main"> 
-      
+    <h1 >Contáctanos</h1>
+    <h2>Dirección</h2>
+    <section id="containerContact">
+      <img src="../resources/contact/sede.png" alt="sede" id="sede" height="300px">
+      <p>
+        Nos encontramos en la Universidad Javeriana, dentro del Edificio de Ingeniería, en el piso 10,
+        consultorio 352. Nuestras instalaciones están diseñadas para ofrecer el mejor cuidado y confort
+        a sus mascotas, contando con tecnología de última generación.
+      </p>
+    </section>
+    
+    <h2>Teléfono</h2>
+    
+    <p>Llámanos al: (601) 271-1401. Nuestro personal está disponible para atender tus consultas
+    y brindarte la información que necesitas.</p>
+    
+    <h2>Correo Electrónico</h2>
+    
+    <p>Para consultas generales, puedes enviarnos un correo a: info@doggydr.com</p>  
+    
+    <h2>Horarios de Atención</h2>
+
+    <p>Lunes a Viernes: 8:00 AM - 6:00 PM</p>  
+    <p>Sábados: 9:00 AM - 3:00 PM</p>
+    <p>Domingos: Cerrado</p>
+
+    <h2>Formulario de Contacto</h2>
+    <p>¿Tienes alguna pregunta o necesitas más información?
+      Llena el siguiente formulario y nos pondremos en contacto contigo lo antes posible.</p>
+
+      <div class="form-container">
+        <form action="ruta_del_servidor" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="Nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nombre" required>
+            </div>
+            <div class="form-group">
+                <label for="correo">Correo:</label>
+                <input type="email" id="correo" name="correo" required>
+            </div>
+            <div class="form-group">
+                <label for="celular">Celular:</label>
+                <input type="number" id="celular" name="celular" required>
+            </div>
+            <div class="form-group">
+              <label for="mensaje">Mensaje:</label>
+              <input type="text" id="mensaje" name="mensaje" required>
+          </div>
+          <div class="form-group" id="button">
+            <input type="submit" value="Registrar">
+        </div>
+          </form>
+      </div>
+
   </main>
 
   <footer class="footer">
