@@ -23,7 +23,7 @@ body, html {
   left: 0; /* Alinea al borde izquierdo */
   width: 100%; /* Ancho completo */
   padding: 10px 20px; /* Padding alrededor del contenido */
-  position: relative; /* Añade posición relativa */
+  position: fixed; /* Añade posición fixed */
 }
 
 /* Estilos para el título */
@@ -193,6 +193,6 @@ body, html {
 }
 
 .main{
-  margin-top: 60px;
+  margin-top: 110px;
   margin-bottom: 60px;
 }

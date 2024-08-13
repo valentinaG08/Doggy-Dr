@@ -5,10 +5,17 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "type": "java",
+            "name": "DemoApplication",
+            "request": "launch",
+            "mainClass": "com.doggydr.demo.DemoApplication",
+            "projectName": "demo"
+        },
+        {
             "type": "chrome",
             "request": "launch",
             "name": "Launch Chrome against localhost",
-            "url": "http://localhost:8080",
+            "url": "http://localhost:8090",
             "webRoot": "${workspaceFolder}"
         }
     ]
