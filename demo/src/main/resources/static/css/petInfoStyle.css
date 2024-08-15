@@ -6,6 +6,9 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
+    /*background-image: url("../images/FondoPerros2.png");
+    background-size: cover;
+    background-position: center;*/
 }
 
 .container {
@@ -34,4 +37,12 @@ h1 {
 .highlight {
     color: #01070d;
     font-weight: bold;
+}
+
+/* Contenedor para la imagen de la mascota */
+.pet-image img {
+    max-width: 300px; /* Ajusta el tamaño máximo de la imagen */
+    max-height: 300px; /* Ajusta la altura máxima de la imagen */
+    border-radius: 10px; /* Bordes redondeados */
+    object-fit: cover; /* Para que la imagen mantenga sus proporciones */
 }

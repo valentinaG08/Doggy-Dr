@@ -6,12 +6,17 @@ body {
 }
 
 h1 {
-    color: #333;
+    color: #7044bf;
     text-align: center;
     font-size: 2.5em;
     margin-bottom: 20px;
 }
-
+h2{
+    color: #7044bf;
+    font-size: 20px;
+    align-items: center;
+    justify-content: center;
+}
 div {
     display: flex;
     justify-content: center;
@@ -44,4 +49,19 @@ tr:hover {
 
 td {
     color: #333;
+}
+
+/* Estilos para la celda que contiene la imagen */
+.pet-image {
+    display: flex;
+    justify-content: center; /* Centra horizontalmente la imagen dentro de la celda */
+    align-items: center; /* Centra verticalmente la imagen dentro de la celda */
+}
+
+/* Contenedor para la imagen de la mascota */
+.pet-image img {
+    width: 100px; /* Ancho fijo para la imagen */
+    height: 100px; /* Altura fija para la imagen */
+    border-radius: 10px; /* Bordes redondeados */
+    object-fit: cover; /* Asegura que la imagen mantenga sus proporciones y se recorte si es necesario */
 }
