@@ -195,4 +195,5 @@ body, html {
 .main{
   margin-top: 110px;
   margin-bottom: 60px;
+  display: block;
 }

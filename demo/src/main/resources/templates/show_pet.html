@@ -4,17 +4,51 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Información de la Mascota</title>
+    <link rel="stylesheet" th:href="@{/css/baseStyle.css}"/>
     <link rel="stylesheet" th:href="@{/css/petInfoStyle.css}">
 </head>
 <body>  
-    <div class="container">
-        <h1>Información de la Mascota</h1>
-        <div class="pet-info">
-            <p><strong>Nombre:</strong> <span class="highlight" th:text="${pet.nombre}"></span></p>
-            <p><strong>Raza:</strong> <span class="highlight" th:text="${pet.raza}"></span></p>
-            <p><strong>Edad:</strong> <span class="highlight" th:text="${pet.edad}"></span></p>
-            <p><strong>Servicio:</strong> <span class="highlight" th:text="${pet.servicio}"></span></p>
+
+    <header class="header">
+        <h1>Doggy Dr.</h1>
+        <ul class="index-menu">
+            <li class="menu-elem" id="ME1">
+                <a href="/index"> Inicio</a>
+            </li>
+            <li class="menu-elem" id="ME2">
+                <a href="/servicios"> Servicios</a>
+            </li>
+            <li class="menu-elem" id="ME3">
+                <a href="/sedes">Sedes</a>
+            </li>
+            <li class="menu-elem" id="ME4">
+                <a href="/blogs"> Blogs</a>
+            </li>
+            <li class="menu-elem" id="ME5">
+                <a href="/contacto">Contacto</a>
+            </li>  
+        </ul>
+        <button class="button">Chatea con nosotros</button>
+    </header>
+
+    <main class="main">
+
+        <div class="container">
+            <h1>Información de la Mascota</h1>
+            <div class="pet-info">
+                <p><strong>Nombre:</strong> <span class="highlight" th:text="${pet.nombre}"></span></p>
+                <p><strong>Raza:</strong> <span class="highlight" th:text="${pet.raza}"></span></p>
+                <p><strong>Edad:</strong> <span class="highlight" th:text="${pet.edad}"></span></p>
+                <p><strong>Servicio:</strong> <span class="highlight" th:text="${pet.servicio}"></span></p>
+            </div>
+            <div class="pet-image">
+                <img th:src="${pet.urlImage}" alt="Imagen de la mascota">
+            </div>
         </div>
-    </div>
+
+    </main>
+
+    
+
 </body>
 </html>

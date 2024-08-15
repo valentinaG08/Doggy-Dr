@@ -1,15 +1,20 @@
 package com.doggydr.demo.entidad;
 
 public class Pet {
+    private int id;
     private String nombre;
     private String raza;
     private int edad;
     private String servicio;
-    public Pet(String nombre, String raza, int edad, String servicio) {
+    private String urlImage;
+
+    public Pet(int id, String nombre, String raza, int edad, String servicio, String url) {
+        this.id = id;
         this.nombre = nombre;
         this.raza = raza;
         this.edad = edad;
         this.servicio = servicio;
+        this.urlImage = url;
     }
     public String getNombre() {
         return nombre;
@@ -35,6 +40,17 @@ public class Pet {
     public void setServicio(String servicio) {
         this.servicio = servicio;
     }
-
+    public void serUrlImage(String url) {
+        this.urlImage = url;
+    }
+    public String getUrlImage() {
+        return urlImage;
+    }
+    public void setId(int id){
+        this.id = id;
+    }
+    public int getId() {
+        return id;
+    }
     
 }
