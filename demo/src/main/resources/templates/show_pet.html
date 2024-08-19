@@ -34,17 +34,22 @@
     <main class="main">
 
         <div class="container">
-            <h1>Información de la Mascota</h1>
-            <div class="pet-info">
-                <p><strong>Nombre:</strong> <span class="highlight" th:text="${pet.nombre}"></span></p>
-                <p><strong>Raza:</strong> <span class="highlight" th:text="${pet.raza}"></span></p>
-                <p><strong>Edad:</strong> <span class="highlight" th:text="${pet.edad}"></span></p>
-                <p><strong>Servicio:</strong> <span class="highlight" th:text="${pet.servicio}"></span></p>
-            </div>
+            <h1><strong><span id="title1" th:text="${pet.nombre}"></span></strong></h1>
             <div class="pet-image">
                 <img th:src="${pet.urlImage}" alt="Imagen de la mascota">
             </div>
+            <div class="pet-info">
+                <p><strong>Raza:</strong> <span th:text="${pet.raza}"></span></p>
+                <p><strong>Propietario:</strong> <span><bold>Ana Gomez</bold></span></p>
+                <p><strong>ID:</strong> <span th:text="${pet.id}"><bold> </bold></span></p>
+                <p><strong>Peso:</strong> <span th:text="${pet.peso}"><bold></bold></span></p>
+                <p><strong>Edad:</strong> <span  th:text="${pet.edad}"></span></p>
+                <p><strong>Servicio:</strong> <span  th:text="${pet.servicio}"></span></p>
+                <p><strong>Medicinas Suministradas:</strong> <span><bold>Desparasitante Canino</bold></span></p>
+                <p><strong>Costo Total:</strong> <span><bold>$99,000</bolf></span></p>
+            </div>
         </div>
+        
 
     </main>
 

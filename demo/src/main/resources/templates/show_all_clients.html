@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/baseStyle.css"/>
+    <link rel="stylesheet" href="../css/petStyle.css">
+</head>
+
+<body>
+
+    <header class="header">
+        <h1>Doggy Dr.</h1>
+        <ul class="index-menu">
+            <li class="menu-elem" id="ME1">
+                <a href="/index"> Inicio</a>
+            </li>
+            <li class="menu-elem" id="ME2">
+                <a href="/servicios"> Servicios</a>
+            </li>
+            <li class="menu-elem" id="ME3">
+                <a href="/sedes">Sedes</a>
+            </li>
+            <li class="menu-elem" id="ME4">
+                <a href="/blogs"> Blogs</a>
+            </li>
+            <li class="menu-elem" id="ME5">
+                <a href="/contacto">Contacto</a>
+            </li>  
+        </ul>
+        <button class="button">Chatea con nosotros</button>
+    </header>
+
+    <main class="main">
+        <h1>Clientes<h1>
+        <div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Usuario</th>
+                        <th>Correo</th>
+                        <th>Telefono</th>
+                        <th># Mascotas</th>
+                    </tr>
+                </thead>
+                <tbody> 
+                    <tr th:each="cliente : ${clients}">
+                        <td>
+                            <a th:href="@{/client/{id}(id=${cliente.id})}" th:text="${cliente.name}"></a>
+                        </td>
+                        <td th:text="${cliente.user}"></td>
+                        <td th:text="${cliente.mail}"></td>
+                        <td th:text="${cliente.phone}"></td>
+                        <td th:text="${cliente.pets.size()}"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-left">
+                <p>Cra. 7 #40 - 62, Bogotá, Colombia</p>
+                <p>info@doggydr.com</p>
+                <p>© 2024. • Privacidad • Términos • condiciones</p>
+            </div>
+            <div class="footer-center">
+              <img src="../images/logo.png" alt="logo" height="100px" >
+            </div>
+            <div class="footer-right">
+                <ul class="footer-menu">
+                    <li><a href="/servicios">Servicios</a></li>
+                    <li><a href="/sobre-nosotros">Sobre nosotros</a></li>
+                    <li><a href="/sedes">Sedes</a></li>
+                    <li><a href="/blogs">Blog</a></li>
+                    <li><a href="/contacto">Contacto</a></li>
+                </ul>
+                <ul class="footer-social">
+                    <li><a href="#"><ion-icon name="logo-twitter"></ion-icon></a></li>
+                    <li><a href="#"><ion-icon name="logo-facebook"></ion-icon></a></li>
+                    <li><a href="#"><ion-icon name="logo-linkedin"></ion-icon></a></li>
+                    <li><a href="#"><ion-icon name="logo-github"></ion-icon></a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
