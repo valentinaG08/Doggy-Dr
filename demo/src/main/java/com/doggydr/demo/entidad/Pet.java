@@ -6,14 +6,16 @@ public class Pet {
     private String raza;
     private int edad;
     private String servicio;
+    private Double peso;
     private String urlImage;
-
-    public Pet(int id, String nombre, String raza, int edad, String servicio, String url) {
+    
+    public Pet(int id, String nombre, String raza, int edad, String servicio, Double peso, String url) {
         this.id = id;
         this.nombre = nombre;
         this.raza = raza;
         this.edad = edad;
         this.servicio = servicio;
+        this.peso = peso;
         this.urlImage = url;
     }
     public String getNombre() {
@@ -51,6 +53,15 @@ public class Pet {
     }
     public int getId() {
         return id;
+    }
+    public Double getPeso() {
+        return peso;
+    }
+    public void setPeso(Double peso) {
+        this.peso = peso;
+    }
+    public void setUrlImage(String urlImage) {
+        this.urlImage = urlImage;
     }
     
 }
