@@ -34,4 +34,14 @@ public class ClientController {
         model.addAttribute("client", client);
         return "show_client_pets";
     }
+
+    @GetMapping("/login")
+    public String login(Model model){
+        return "clientLogin";
+    }
+
+    @GetMapping("/register")
+    public String register(Model model){
+        return "clientRegister  ";
+    }
 }
