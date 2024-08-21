@@ -45,7 +45,7 @@
 
             <div class="form-container">
                 <h2>Registro de Usuario y Mascota</h2>
-                <form th:object="${mascota}" th:action="@{/pet/agregar}" method="post" enctype="multipart/form-data">
+                <form th:object="${mascota}" th:action="@{/pet/update/{id}}" method="post" enctype="multipart/form-data">
                     <!--<h3>Información del Usuario</h3>
                     <div class="form-group">
                         <label for="cedula">Cédula:</label>

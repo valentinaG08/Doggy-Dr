@@ -1,7 +1,7 @@
 package com.doggydr.demo.entidad;
 
 public class Pet {
-    private int id;
+    private Integer id;
     private String nombre;
     private String raza;
     private int edad;
@@ -9,7 +9,7 @@ public class Pet {
     private Double peso;
     private String urlImage;
     
-    public Pet(int id, String nombre, String raza, int edad, String servicio, Double peso, String url) {
+    public Pet(Integer id, String nombre, String raza, int edad, String servicio, Double peso, String url) {
         this.id = id;
         this.nombre = nombre;
         this.raza = raza;
@@ -42,16 +42,16 @@ public class Pet {
     public void setServicio(String servicio) {
         this.servicio = servicio;
     }
-    public void serUrlImage(String url) {
+    public void setUrlImage(String url) {
         this.urlImage = url;
     }
     public String getUrlImage() {
         return urlImage;
     }
-    public void setId(int id){
+    public void setId(Integer id){
         this.id = id;
     }
-    public int getId() {
+    public Integer getId() {
         return id;
     }
     public Double getPeso() {
@@ -59,9 +59,6 @@ public class Pet {
     }
     public void setPeso(Double peso) {
         this.peso = peso;
-    }
-    public void setUrlImage(String urlImage) {
-        this.urlImage = urlImage;
     }
     
 }

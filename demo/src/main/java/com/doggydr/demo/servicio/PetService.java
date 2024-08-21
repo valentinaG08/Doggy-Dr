@@ -10,5 +10,10 @@ public interface PetService {
     public Pet SearchById(int id);
 
     public Collection<Pet> SearchAll();
+
+    public void deleteById(int id);
     
+    public void update(Pet pet);
+
+    public void add(Pet pet);
 } 

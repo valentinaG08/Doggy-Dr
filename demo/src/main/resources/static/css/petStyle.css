@@ -66,3 +66,27 @@ td {
     border-radius: 10px; /* Bordes redondeados */
     object-fit: cover; /* Asegura que la imagen mantenga sus proporciones y se recorte si es necesario */
 }
+.btn {
+    background-color: #8948eb; /* Color de fondo */
+    color: white; /* Color del texto */
+    padding: 10px 20px; /* Espaciado interno */
+    text-align: center; /* Alineación del texto */
+    text-decoration: none; /* Sin subrayado */
+    display: inline-block; /* Se comporta como un bloque en línea */
+    font-size: 16px; /* Tamaño de fuente */
+    margin-top: 20px; /* Margen superior */
+    border-radius: 5px; /* Bordes redondeados */
+    cursor: pointer; /* Cambia el cursor cuando pasa sobre el botón */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Sombra del botón */
+    transition: background-color 0.3s ease; /* Transición suave en hover */
+}
+
+.btn:hover {
+    background-color: #7038b4; /* Color de fondo cuando se pasa el mouse por encima */
+}
+
+.button-container {
+    display: flex;
+    justify-content: center; /* Centra el botón horizontalmente */
+    width: 100%; /* Ocupa todo el ancho disponible */
+}

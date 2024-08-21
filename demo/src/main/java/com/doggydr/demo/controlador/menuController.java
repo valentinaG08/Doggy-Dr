@@ -34,7 +34,7 @@ public class menuController {
 
     @GetMapping("/agendarCita")
     public String getAgendaCita() {
-        return "agendarCita"; 
+        return "redirect:/pet/add"; 
     }
 
 }
