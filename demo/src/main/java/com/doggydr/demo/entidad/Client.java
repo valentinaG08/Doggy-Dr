@@ -3,7 +3,7 @@ package com.doggydr.demo.entidad;
 import java.util.List;
 
 public class Client{
-    private int id;
+    private Integer id;
     private String name;
     private String user;
     private String password;
@@ -11,7 +11,7 @@ public class Client{
     private String mail;
     private List<Pet> pets;
     
-    public Client(int id, String name, String user, String password, long phone, String mail, List<Pet> pets) {
+    public Client(Integer id, String name, String user, String password, long phone, String mail, List<Pet> pets) {
         this.id = id;
         this.name = name;
         this.user = user;
@@ -21,11 +21,11 @@ public class Client{
         this.pets = pets;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

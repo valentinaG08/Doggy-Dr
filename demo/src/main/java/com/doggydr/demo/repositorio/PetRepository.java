@@ -24,4 +24,20 @@ public class PetRepository {
     public Collection<Pet> findAll(){
         return data.values();
     }
+
+    public void deleteById(int id){
+        data.remove(id);
+    }
+
+    public void update(Pet pet){
+        data.put(pet.getId(), pet);
+    }
+    
+    public void add(Pet pet){
+        int tam = data.size();
+        /*int lastId = data.get(tam).getId();
+        pet.setId(lastId+1);*/
+        System.out.println("hola, yo soy peso pluma con tam: " + tam);
+        data.put(pet.getId(), pet);
+    }
 }

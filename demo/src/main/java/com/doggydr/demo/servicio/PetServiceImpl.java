@@ -24,5 +24,23 @@ public class PetServiceImpl implements PetService{
         return petRepo.findAll();
         // TODO Auto-generated method stub
     }
+
+    @Override
+    public void deleteById(int id) {
+        // TODO Auto-generated method stub
+        petRepo.deleteById(id);
+    }
+
+    @Override
+    public void update(Pet pet) {
+        // TODO Auto-generated method stub
+        petRepo.update(pet);
+    }
+
+    @Override
+    public void add(Pet pet) {
+        // TODO Auto-generated method stub
+        petRepo.add(pet);
+    }
     
 }

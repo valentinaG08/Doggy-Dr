@@ -56,10 +56,18 @@
                         <td class="pet-image">
                             <img th:src="@{${mascota.urlImage}}" alt="Imagen de la mascota">
                         </td>
+                        <td>
+                            <a class="btn btn-info" th:href="@{/pet/update/{id}(id=${mascota.id})}">Editar</a>
+                            <a class="btn btn-danger" th:href="@{/pet/delete/{id}(id=${mascota.id})}">Editar</a>
+                        </td>
                     </tr>
                 </tbody>
             </table>
         </div>
+        <div class="button-container">
+            <a type="button" class="btn" th:href="@{/pet/add}">Agregar mascota</a>
+        </div>
+        
     </main>
 
     <footer class="footer">
