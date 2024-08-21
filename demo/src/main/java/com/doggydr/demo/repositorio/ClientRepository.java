@@ -15,6 +15,8 @@ public class ClientRepository {
 
     private Map<Integer, Client> data = new HashMap<>();
 
+    private int nextId = 1;
+
     public ClientRepository() {
         // Creando mascotas que serán asignadas a los clientes
         Pet perry = new Pet(1, "Perry", "French Poodle", 2, "Baño", 4.5,"https://wowmascota.com/wp-content/uploads/2019/05/pets-753464_640.jpg");
@@ -38,9 +40,9 @@ public class ClientRepository {
         petsClient3.add(zeus);
 
         // Añadiendo los clientes al repositorio
-        data.put(1, new Client(1, "Juan Perez", "juanp", "password123", 1234567890L, "juanp@mail.com", petsClient1));
-        data.put(2, new Client(2, "Maria Gomez", "mariag", "password456", 9876543210L, "mariag@mail.com", petsClient2));
-        data.put(3, new Client(3, "Carlos Ruiz", "carlosr", "password789", 1122334455L, "carlosr@mail.com", petsClient3));
+        data.put(1, new Client(nextId++, "Juan Perez", "juanp", "password123", 1234567890L, "juanp@mail.com", petsClient1));
+        data.put(2, new Client(nextId++, "Maria Gomez", "mariag", "password456", 9876543210L, "mariag@mail.com", petsClient2));
+        data.put(3, new Client(nextId++, "Carlos Ruiz", "carlosr", "password789", 1122334455L, "carlosr@mail.com", petsClient3));
     }
 
     // Método para encontrar un cliente por ID
@@ -51,5 +53,19 @@ public class ClientRepository {
     // Método para listar todos los clientes
     public Collection<Client> findAll() {
         return data.values();
+    }
+
+    public Client findByUsername(String username) {
+        return data.values().stream()
+                   .filter(c -> c.getUser().equals(username))
+                   .findFirst()
+                   .orElse(null);
+    }
+
+    public void save(Client client) {
+        if (client.getId() == null) {
+            client.setId(nextId++);
+        }
+        data.put(client.getId(), client);
     }
 }

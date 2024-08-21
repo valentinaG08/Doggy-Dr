@@ -5,7 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mascotas de Cliente</title>
     <link rel="stylesheet" href="/css/baseStyle.css"/>
-    <link rel="stylesheet" href="/css/petStyle.css">
+    <link rel="stylesheet" href="/css/clientPetStyles.css">
+
+
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -17,26 +25,16 @@
         </div>
         <div class="header-center">
             <ul class="index-menu">
-                <li class="menu-elem" id="ME1">
-                    <a href="/index">Inicio</a>
-                </li>
-                <li class="menu-elem" id="ME2">
-                    <a href="/servicios">Servicios</a>
-                </li>
-                <li class="menu-elem" id="ME3">
-                    <a href="/sedes">Sedes</a>
-                </li>
-                <li class="menu-elem" id="ME4">
-                    <a href="/blogs">Blogs</a>
-                </li>
-                <li class="menu-elem" id="ME5">
-                    <a href="/contacto">Contacto</a>
+                <li class="menu-elem" id="ME1">  
+                    <a th:href="@{/client/{id}/pets(id=${client.id})}">
+                        Mis Mascotas
+                    </a>
                 </li>
             </ul>
         </div>
         <div class="header-right">
             <button class="button">Chatea con nosotros</button>
-            <a href="/client/login"><ion-icon name="person-circle-outline"></ion-icon></a>
+            <a href="/client/logout"><ion-icon name="log-out-outline"></ion-icon></a>
         </div>
     </header>
     
