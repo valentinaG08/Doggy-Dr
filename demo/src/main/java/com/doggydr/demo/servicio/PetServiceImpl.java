@@ -26,7 +26,7 @@ public class PetServiceImpl implements PetService{
     }
 
     @Override
-    public void deleteById(int id) {
+    public void DeleteById(int id) {
         // TODO Auto-generated method stub
         petRepo.deleteById(id);
     }

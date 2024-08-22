@@ -30,4 +30,12 @@ public class ClientServiceImpl implements ClientService {
     public void Register(Client client) {
         clientRepo.save(client);
     }
+
+    public void DeleteById(int id) {
+        clientRepo.deleteById(id);
+    }
+
+    public void update(Client client) {
+        clientRepo.update(client);
+    }
 }

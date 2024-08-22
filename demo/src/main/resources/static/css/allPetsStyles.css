@@ -14,7 +14,7 @@
 
 /* Contenedor de la tabla */
 .main table {
-    width: 70%; /* Ampliar el ancho de la tabla para acomodar la columna de acciones */
+    width: 80%; /* Ancho de la tabla ligeramente mayor */
     margin: 0 auto; /* Centra la tabla */
     border-collapse: collapse;
     background-color: #ffffff;
@@ -25,11 +25,11 @@
 
 /* Estilo de las celdas de la tabla */
 .main th, .main td {
-    padding: 12px; /* Aumentar el padding para mejorar la legibilidad */
+    padding: 12px; /* Ajuste del padding */
     text-align: center;
     border-bottom: 1px solid #ddd;
     color: #333;
-    font-size: 1em; /* Ajustar el tamaño de la fuente */
+    font-size: 1em; /* Tamaño de la fuente */
 }
 
 /* Estilo de las celdas de encabezado */
@@ -51,47 +51,54 @@
     text-decoration: none;
     font-weight: bold;
     transition: color 0.3s ease-in-out;
-    font-size: 1em; /* Ajustar el tamaño de la fuente */
+    font-size: 1em; /* Tamaño de la fuente */
 }
 
 .main td a:hover {
     color: #8948eb;
 }
 
-/* Estilo para los botones CRUD */
+/* Botones de acciones (Editar, Eliminar, Agregar) */
 .main .btn {
-    display: inline-block;
-    padding: 8px 12px;
-    background-color: #7044bf;
-    color: #fff;
-    text-align: center;
+    padding: 8px 14px; /* Aumentar ligeramente el padding */
     border-radius: 5px;
+    font-size: 1em; /* Tamaño de la fuente */
+    text-align: center;
     text-decoration: none;
-    font-size: 0.9em; /* Reducir ligeramente el tamaño de la fuente */
-    transition: background-color 0.3s ease-in-out;
+    display: inline-block;
+    margin: 5px 2px;
+    cursor: pointer;
+    font-weight: bold;
 }
 
 .main .btn-info {
-    background-color: #4caf50; /* Color para el botón de edición */
-}
-
-.main .btn-danger {
-    background-color: #f44336; /* Color para el botón de eliminación */
-}
-
-.main .btn:hover {
-    background-color: white;
+    background-color: #45a049;
+    color: white;
 }
 
 .main .btn-info:hover {
     background-color: #45a049;
 }
 
-.main .btn-danger:hover {
-    background-color: #e53935;
+.main .btn-danger {
+    background-color: #dc3545;
+    color: white;
 }
 
-/* Contenedor del botón de agregar cliente */
+.main .btn-danger:hover {
+    background-color: #c82333;
+}
+
+.main .btn-primary {
+    background-color: #7044bf;
+    color: white;
+}
+
+.main .btn-primary:hover {
+    background-color: white;
+}
+
+/* Contenedor del botón de agregar mascota */
 .button-container {
     text-align: center;
     margin-top: 20px;
@@ -108,5 +115,28 @@
 }
 
 .button-container .btn:hover {
-    background-color: #7044bf;
+    background-color: #8948eb;
+}
+
+/* Estilo de la imagen de la mascota */
+.pet-image img {
+    width: 50px; /* Ajusta el tamaño de la imagen */
+    height: 50px;
+    object-fit: cover; /* Asegura que la imagen cubra el contenedor */
+    border-radius: 50%; /* Hace la imagen circular */
+    border: 2px solid #7044bf; /* Borde alrededor de la imagen */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Footer */
+.footer-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0;
+    background-color: #f8f9fa;
+}
+
+.footer img {
+    max-height: 100px;
 }

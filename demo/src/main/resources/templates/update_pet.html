@@ -5,8 +5,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
   <title>Doggy Dr.</title>
-  <link rel="stylesheet" href="../css/baseStyle.css"/>
-  <link rel="stylesheet" href="../css/bookingStyles.css"/>
+  <link rel="stylesheet" th:href="@{/css/baseStyle.css}">
+  <link rel="stylesheet" th:href="@{/css/updatesStyles.css}">
 
 
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
@@ -26,26 +26,22 @@
         </div>
         <div class="header-center">
             <ul class="index-menu">
-                <li class="menu-elem" id="ME1">
-                    <a href="/index">Inicio</a>
+                <li class="menu-elem" id="ME1">  
+                    <a href="/admin/clients">
+                        Clientes
+                    </a>
                 </li>
-                <li class="menu-elem" id="ME2">
-                    <a href="/servicios">Servicios</a>
-                </li>
-                <li class="menu-elem" id="ME3">
-                    <a href="/sedes">Sedes</a>
-                </li>
-                <li class="menu-elem" id="ME4">
-                    <a href="/blogs">Blogs</a>
-                </li>
-                <li class="menu-elem" id="ME5">
-                    <a href="/contacto">Contacto</a>
+                <li class="menu-elem" id="ME1">  
+                    <a href="/admin/pets">
+                        Mascotas
+                    </a>
                 </li>
             </ul>
         </div>
         <div class="header-right">
             <button class="button">Chatea con nosotros</button>
             <a href="/client/logout"><ion-icon name="log-out-outline"></ion-icon></a>
+            
         </div>
     </header>
     
@@ -53,26 +49,8 @@
         <section id="booking-section">
 
             <div class="form-container">
-                <h2>Registro de Usuario y Mascota</h2>
-                <form th:object="${mascota}" th:action="@{/pet/update/{id}}" method="post" enctype="multipart/form-data">
-                    <!--<h3>Información del Usuario</h3>
-                    <div class="form-group">
-                        <label for="cedula">Cédula:</label>
-                        <input th:field="*{cedula}" type="number" id="cedula" name="cedula" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="nombre_usuario">Nombre:</label>
-                        <input th:field="*{nombre_usuario}" type="text" id="nombre_usuario" name="nombre_usuario" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="correo">Correo:</label>
-                        <input th:field="*{correo}" type="email" id="correo" name="correo" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="celular">Celular:</label>
-                        <input th:field="*{celular}" type="number" id="celular" name="celular" required>
-                    </div>-->
-                    
+                <h2>Actualiza la Información de tu Mascota</h2>
+                <form th:object="${mascota}" th:action="@{/pet/update/{id}(id=${mascota.id})}" method="post" enctype="multipart/form-data">                 
                     <h3>Información de la Mascota</h3>
                     <div class="form-group">
                         <label for="nombre">Nombre:</label>
@@ -106,7 +84,7 @@
                     </div>
                     
                     <div class="form-group" id="button">
-                        <input type="submit" value="Registrar">
+                        <input type="submit" value="Actualizar">
                     </div>
                 </form>
             </div>
@@ -114,28 +92,8 @@
     </main>
     <footer class="footer">
         <div class="footer-content">
-            <div class="footer-left">
-                <p>Cra. 7 #40 - 62, Bogotá, Colombia</p>
-                <p>info@doggydr.com</p>
-                <p>© 2024. • Privacidad • Términos • condiciones</p>
-            </div>
             <div class="footer-center">
-              <img src="../images/logo.png" alt="logo" height="100px" >
-            </div>
-            <div class="footer-right">
-                <ul class="footer-menu">
-                    <li><a href="/servicios">Servicios</a></li>
-                    <li><a href="/sobre-nosotros">Sobre nosotros</a></li>
-                    <li><a href="/sedes">Sedes</a></li>
-                    <li><a href="/blogs">Blog</a></li>
-                    <li><a href="/contacto">Contacto</a></li>
-                </ul>
-                <ul class="footer-social">
-                    <li><a href="#"><ion-icon name="logo-twitter"></ion-icon></a></li>
-                    <li><a href="#"><ion-icon name="logo-facebook"></ion-icon></a></li>
-                    <li><a href="#"><ion-icon name="logo-linkedin"></ion-icon></a></li>
-                    <li><a href="#"><ion-icon name="logo-github"></ion-icon></a></li>
-                </ul>
+                <img th:src="@{/images/logo.png}" alt="logo" height="100px">
             </div>
         </div>
     </footer>

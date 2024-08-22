@@ -50,19 +50,20 @@ public class PetController {
 
     @GetMapping("/delete/{id}")
     public String borrarMascota(@PathVariable("id") int identification){
-        petService.deleteById(identification);
-        return "redirect:/pet/all";
+        petService.DeleteById(identification);
+        return "redirect:/admin/pets";
     }
 
     @GetMapping("/update/{id}")
-    public String mostrarFormularioUpdate(@PathVariable("id") int identification, Model model){
+    public String mostrarFormularioUpdate(@PathVariable("id") int identification, Model model) {
         model.addAttribute("mascota", petService.SearchById(identification));
-        return "pet_update";
+        return "update_pet";
     }
 
     @PostMapping("/update/{id}")
-    public String updatePet(@PathVariable("id") int identification, @ModelAttribute("mascota") Pet pet){
+    public String updatePet(@PathVariable("id") int identification, @ModelAttribute("mascota") Pet pet) {
+        pet.setId(identification); // Asegúrate de que el ID de la mascota se establece correctamente
         petService.update(pet);
-        return "redirect:/pet/all";
+        return "redirect:/admin/pets";
     }
 }

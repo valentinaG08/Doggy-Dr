@@ -68,4 +68,12 @@ public class ClientRepository {
         }
         data.put(client.getId(), client);
     }
+
+    public void deleteById(int id) {
+        data.remove(id);
+    }
+
+    public void update(Client client){
+        data.put(client.getId(), client);
+    }
 }

@@ -11,7 +11,7 @@ public interface PetService {
 
     public Collection<Pet> SearchAll();
 
-    public void deleteById(int id);
+    public void DeleteById(int id);
     
     public void update(Pet pet);
 

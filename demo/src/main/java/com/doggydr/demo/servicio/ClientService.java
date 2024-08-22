@@ -13,4 +13,7 @@ public interface ClientService {
 
     public void Register(Client client);
     
+    public void DeleteById(int id);
+
+    public void update(Client client);
 }
