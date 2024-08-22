@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+ <head>
+     <title> Error</title>
+     <link rel="stylesheet" th:href="@{/css/baseStyle.css}"/>
+     <link rel="stylesheet" th:href="@{/css/errorStyles.css}"/>
+ </head>
+ <body th:style="'background: url(/images/background1.jpg) 
+ no-repeat center center fixed;'">
+    <div class="container">
+        <h1>Ocurrió un Error...</h1>
+        <img th:src="@{/images/error.jpg}" width="100px" height="100px" />
+        <p>Parece ser que ocurrió un problema con la página que buscabas
+            (<span th:text="${path}"></span>).
+        </p>
+        <p th:text="${'El código de error es ' + status + ', lo que significa ' + error + '.'}"></p>
+        <p th:text="${'Mayores detalles: ' + message + '.'}"></p>
+        <a class="btn" href="/index">Volver al inicio</a>
+    </div>
+ </body>
+</html>

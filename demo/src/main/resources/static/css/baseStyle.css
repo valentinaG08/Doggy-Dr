@@ -26,14 +26,31 @@ body, html {
   position: fixed; /* Añade posición fixed */
 }
 
-/* Estilos para el título */
-.header h1 {
+/* Estilos para la parte izquierda del header */
+.header-left {
+  display: flex; /* Usa flexbox para el diseño */
+  align-items: center; /* Centra verticalmente */
+  gap: 10px; /* Espacio entre el logo y el título */
+}
+
+.header-left img {
+  height: 50px; /* Ajusta la altura del logo */
+  width: auto; /* Mantiene la proporción del logo */
+}
+
+.header-left h1 {
   margin: 0; /* Elimina el margen por defecto */
   font-size: 24px; /* Tamaño de fuente */
   color: #7044bf; /* Color del texto */
 }
 
-/* Estilos para el menú del índice */
+/* Estilos para la parte central del header */
+.header-center {
+  flex-grow: 1; /* Toma el espacio disponible en el centro */
+  display: flex; /* Usa flexbox para el diseño */
+  justify-content: center; /* Centra el menú horizontalmente */
+}
+
 .index-menu {
   display: flex; /* Usa flexbox para el diseño */
   flex-direction: row; /* Elementos en una fila */
@@ -42,14 +59,12 @@ body, html {
   list-style: none; /* Sin viñetas */
 }
 
-/* Estilos para los elementos del menú */
 .menu-elem {
-  margin: 0 8px; /* Margen horizontal */
+  margin: 0 15px; /* Margen horizontal */
   padding: 0; /* Sin padding */
   transition: 0.5s; /* Transición suave para transformaciones */
 }
 
-/* Estilos para los enlaces del menú */
 .menu-elem a {
   color: #7044bf; /* Color del texto */
   text-decoration: none; /* Sin subrayado */
@@ -60,6 +75,13 @@ body, html {
   transform: translateY(-5px); /* Desplaza hacia arriba */
 }
 
+/* Estilos para la parte derecha del header */
+.header-right {
+  display: flex; /* Usa flexbox para el diseño */
+  align-items: center; /* Centra verticalmente */
+  gap: 15px; /* Espacio entre el botón y el icono */
+}
+
 /* Estilos para el botón */
 .button {
   background-color: #7044bf; /* Color de fondo */
@@ -68,14 +90,27 @@ body, html {
   padding: 10px 20px; /* Padding interno */
   cursor: pointer; /* Cursor de mano */
   transition: 0.3s; /* Transición suave para transformaciones */
-  border-radius: 10px 10px 10px 10px;
+  border-radius: 10px; /* Bordes redondeados */
 }
 
+/* Estilo hover para el botón */
 .button:hover {
   color: white; /* Color del texto en hover */
   transform: translateY(-5px); /* Desplaza hacia arriba en hover */
 }
 
+/* Estilo para el icono de perfil */
+.header-right a {
+  display: flex; /* Usa flexbox para el diseño */
+  align-items: center; /* Centra verticalmente */
+}
+
+.header-right ion-icon {
+  font-size: 35px; /* Tamaño del icono */
+  color: #7044bf; /* Color del icono */
+}
+
+/* Estilo para la raya debajo del header */
 .header::after {
   content: "";
   position: absolute;
@@ -193,7 +228,7 @@ body, html {
 }
 
 .main{
-  margin-top: 110px;
+  margin-top: 140px;
   margin-bottom: 60px;
   display: block;
 }

@@ -22,5 +22,20 @@ public class ClientServiceImpl implements ClientService {
         return clientRepo.findAll();
         // TODO Auto-generated method stub
     }
+
+    public Client SearchByUsername(String username) {
+        return clientRepo.findByUsername(username);
+    }
     
+    public void Register(Client client) {
+        clientRepo.save(client);
+    }
+
+    public void DeleteById(int id) {
+        clientRepo.deleteById(id);
+    }
+
+    public void update(Client client) {
+        clientRepo.update(client);
+    }
 }
