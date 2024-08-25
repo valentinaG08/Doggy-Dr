@@ -1,7 +1,6 @@
 package com.doggydr.demo.controlador;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.doggydr.demo.entidad.Client;
-import com.doggydr.demo.entidad.Pet;
 import com.doggydr.demo.servicio.ClientService;
 
 @Controller
@@ -31,13 +29,13 @@ public class ClientController {
     }
 
     @GetMapping("/{id}")
-    public String showInfoClient(Model model, @PathVariable("id") int identification){
+    public String showInfoClient(Model model, @PathVariable("id") Long identification){
         model.addAttribute("client", clientService.SearchById(identification));
         return "client";
     }
 
     @GetMapping("/{id}/pets")
-    public String showPetsByClient(@PathVariable int id, Model model) {
+    public String showPetsByClient(@PathVariable Long id, Model model) {
         Client client = clientService.SearchById(id);
         model.addAttribute("client", client);
         return "show_client_pets";
@@ -75,7 +73,7 @@ public class ClientController {
             return "clientRegister";
         }
 
-        Client newClient = new Client(null, name, username, null, Long.parseLong(phone), email, new ArrayList<>());
+        Client newClient = new Client(name, username, null, Long.parseLong(phone), email);
         clientService.Register(newClient);
 
         model.addAttribute("client", newClient);
@@ -88,19 +86,19 @@ public class ClientController {
     }
 
     @GetMapping("/delete/{id}")
-    public String borrarUsuario(@PathVariable("id") int identification){
+    public String borrarUsuario(@PathVariable("id") Long identification){
         clientService.DeleteById(identification);
         return "redirect:/admin/clients";
     }
 
     @GetMapping("/update/{id}")
-    public String formularioActualizarUsuario(@PathVariable("id") int id, Model model) {
+    public String formularioActualizarUsuario(@PathVariable("id") Long id, Model model) {
         model.addAttribute("cliente", clientService.SearchById(id));
         return "update_client";
     }
 
     @PostMapping("/update/{id}")
-    public String actualizarUsuario(@ModelAttribute("cliente") Client cliente, @PathVariable("id") int id) {
+    public String actualizarUsuario(@ModelAttribute("cliente") Client cliente, @PathVariable("id") Long id) {
         Client clienteExistente = clientService.SearchById(id);
     
         if (clienteExistente.getPets() == null) {

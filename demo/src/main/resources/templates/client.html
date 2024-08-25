@@ -42,6 +42,13 @@
         <div id="welcome">
             <h1>Bienvenido <span th:text="${client.name}"></span></h1> <!-- Nombre del cliente -->
         </div>
+
+        <section id="buttonContainer">
+            <a th:href="@{/client/{id}/pets(id=${client.id})}">
+                <button class="button">Mis Mascotas</button>
+            </a>
+        </section>
+
     </main>
 
     <footer class="footer">

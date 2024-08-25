@@ -1,17 +1,14 @@
 package com.doggydr.demo.servicio;
 
 import java.util.Collection;
-
-import org.springframework.stereotype.Service;
-
 import com.doggydr.demo.entidad.Pet;
 
 public interface PetService {
-    public Pet SearchById(int id);
+    public Pet SearchById(Long id);
 
     public Collection<Pet> SearchAll();
 
-    public void DeleteById(int id);
+    public void DeleteById(Long id);
     
     public void update(Pet pet);
 
