@@ -1,31 +1,61 @@
 package com.doggydr.demo.entidad;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "client")
 public class Client{
-    private Integer id;
+
+    @Id
+    @GeneratedValue
+    private Long id;
+
+    @Column(unique = true)
     private String name;
-    private String user;
+
+    private String username;
     private String password;
     private long phone;
     private String mail;
-    private List<Pet> pets;
+
+    @OneToMany(mappedBy = "owner")
+    private List<Pet> pets = new ArrayList<>();
     
-    public Client(Integer id, String name, String user, String password, long phone, String mail, List<Pet> pets) {
+    public Client(){
+
+    }
+
+    public Client(String name, String username, String password, long phone, String mail) {
+        this.name = name;
+        this.username = username;
+        this.password = password;
+        this.phone = phone;
+        this.mail = mail;
+    }
+
+    public Client(Long id, String name, String username, String password, long phone, String mail, List<Pet> pets) {
         this.id = id;
         this.name = name;
-        this.user = user;
+        this.username = username;
         this.password = password;
         this.phone = phone;
         this.mail = mail;
         this.pets = pets;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -38,11 +68,11 @@ public class Client{
     }
 
     public String getUser() {
-        return user;
+        return username;
     }
 
-    public void setUser(String user) {
-        this.user = user;
+    public void setUser(String username) {
+        this.username = username;
     }
 
     public String getPassword() {

@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.doggydr.demo.entidad.Pet;
 import com.doggydr.demo.servicio.PetService;
@@ -27,14 +26,14 @@ public class PetController {
     }
 
     @GetMapping("/find/{id}")
-    public String showInfoPet(Model model, @PathVariable("id") int identification){
-        model.addAttribute("mascota", petService.SearchById(identification));
+    public String showInfoPet(Model model, @PathVariable("id") Long identification){
+        model.addAttribute("pet", petService.SearchById(identification));
         return "show_pet";
     }
     
     @GetMapping("/add")
     public String showAddForms(Model model) {
-        Pet pet = new Pet(0, null, null, 0, null, null, null);
+        Pet pet = new Pet(null, null, 0, null, null, null);
         model.addAttribute("mascota", pet);
         System.out.println("Peticion a add");
         return "agendarCita";
@@ -49,20 +48,20 @@ public class PetController {
     }
 
     @GetMapping("/delete/{id}")
-    public String borrarMascota(@PathVariable("id") int identification){
+    public String borrarMascota(@PathVariable("id") Long identification){
         petService.DeleteById(identification);
         return "redirect:/admin/pets";
     }
 
     @GetMapping("/update/{id}")
-    public String mostrarFormularioUpdate(@PathVariable("id") int identification, Model model) {
+    public String mostrarFormularioUpdate(@PathVariable("id") Long identification, Model model) {
         model.addAttribute("mascota", petService.SearchById(identification));
         return "update_pet";
     }
 
     @PostMapping("/update/{id}")
     public String updatePet(@PathVariable("id") int identification, @ModelAttribute("mascota") Pet pet) {
-        pet.setId(identification); // Asegúrate de que el ID de la mascota se establece correctamente
+        //pet.setId(identification); // Asegúrate de que el ID de la mascota se establece correctamente
         petService.update(pet);
         return "redirect:/admin/pets";
     }
