@@ -65,7 +65,7 @@ body, html {
   transition: 0.5s; /* Transición suave para transformaciones */
 }
 
-.menu-elem a {
+a {
   color: #7044bf; /* Color del texto */
   text-decoration: none; /* Sin subrayado */
 }

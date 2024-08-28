@@ -41,24 +41,7 @@ public class ClientController {
         return "show_client_pets";
     }
 
-    @GetMapping("/login")
-    public String login(Model model){
-        return "clientLogin";
-    }
-
-
-    @PostMapping("/login")
-    public String login(@RequestParam String username, Model model) {
-        Client client = clientService.SearchByUsername(username);
-        if (client != null) {
-            model.addAttribute("client", client);
-            return "client";
-        } else {
-            model.addAttribute("error", "Usuario no encontrado");
-            return "clientLogin";
-        }
-    }
-
+    
 
     @GetMapping("/register")
     public String register(Model model){
