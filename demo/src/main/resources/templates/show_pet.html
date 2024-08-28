@@ -17,10 +17,12 @@
 <body>  
 
     <header class="header">
-        <div class="header-left">
-            <img src="../images/logo.png" alt="logo">
-            <h1>Doggy Dr.</h1>
-        </div>
+        <a href="/index">
+            <div class="header-left">
+                <img src="/images/logo.png" alt="logo">
+                <h1>Doggy Dr.</h1>
+            </div>
+        </a>
         <div class="header-center">
             <ul class="index-menu">
                 <li class="menu-elem" id="ME1">
@@ -56,7 +58,7 @@
             </div>
             <div class="pet-info">
                 <p><strong>Raza:</strong> <span th:text="${pet.raza}"></span></p>
-                <p><strong>Propietario:</strong> <span><bold>Ana Gomez</bold></span></p>
+                <p><strong>Propietario:</strong> <span th:text="${pet.owner.name}"></span></p>
                 <p><strong>ID:</strong> <span th:text="${pet.id}"><bold> </bold></span></p>
                 <p><strong>Peso:</strong> <span th:text="${pet.peso}"><bold></bold></span></p>
                 <p><strong>Edad:</strong> <span  th:text="${pet.edad}"></span></p>

@@ -27,6 +27,11 @@ public class ClientServiceImpl implements ClientService {
     public Client SearchByUsername(String username) {
         return clientRepo.findByUsername(username);
     }
+
+    @Override
+    public Client SearchByDocument(Long document) {
+        return clientRepo.findByDocument(document);
+    }
     
     @Override
     public void Register(Client client) {

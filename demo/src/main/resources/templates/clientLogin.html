@@ -5,6 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
   <title>Doggy Dr.</title>
+  <link rel="stylesheet" href="../css/baseStyle.css"/>
   <link rel="stylesheet" href="../css/ClientLoginNRegister.css"/>
 
 
@@ -18,12 +19,20 @@
 </head>
 
 <body>
+    <header>
+        <a href="/index">
+            <div class="header-left">
+                <h1>Doggy Dr.</h1>
+            </div>
+        </a>
+    </header>
+    
     <main>
         <div class="login-container">
-            <form class="login-form" th:action="@{/client/login}" method="post">
+            <form class="login-form" th:action="@{/login/client}" method="post">
                 <h2>Iniciar Sesión</h2>
-                <label for="username">Usuario:</label>
-                <input type="text" id="username" name="username" required>
+                <label for="document">Documento:</label>
+                <input type="number" id="document" name="document" required>
                 <button type="submit">Iniciar Sesión</button>
             </form>
             <p>¿No tienes una cuenta? <a href="/client/register">Regístrate aquí</a></p> 

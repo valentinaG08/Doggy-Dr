@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mascotas de Cliente</title>
     <link rel="stylesheet" href="/css/baseStyle.css"/>
-    <link rel="stylesheet" href="/css/clientPetStyles.css">
+    <link rel="stylesheet" href="/css/allPetsStyles.css">
 
 
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
@@ -19,10 +19,12 @@
 <body>
 
     <header class="header">
-        <div class="header-left">
-            <img th:src="@{/images/logo.png}" alt="logo">
-            <h1>Doggy Dr.</h1>
-        </div>
+        <a href="/index">
+            <div class="header-left">
+                <img src="/images/logo.png" alt="logo">
+                <h1>Doggy Dr.</h1>
+            </div>
+        </a>
         <div class="header-center">
             <ul class="index-menu">
                 <li class="menu-elem" id="ME1">  
@@ -51,7 +53,6 @@
                         <th>Edad</th>
                         <th>Servicio</th>
                         <th>Foto</th>
-                        <th>Acciones</th> <!-- Columna para las acciones CRUD -->
                     </tr>
                 </thead>
                 <tbody> 
@@ -64,10 +65,6 @@
                         <td th:text="${mascota.servicio}"></td>
                         <td class="pet-image">
                             <img th:src="@{${mascota.urlImage}}" alt="Imagen de la mascota">
-                        </td>
-                        <td>
-                            <a class="btn btn-info" th:href="@{/pet/update/{id}(id=${mascota.id})}">Editar</a>
-                            <a class="btn btn-danger" th:href="@{/pet/delete/{id}(id=${mascota.id})}">Borrar</a>
                         </td>
                     </tr>
                 </tbody>

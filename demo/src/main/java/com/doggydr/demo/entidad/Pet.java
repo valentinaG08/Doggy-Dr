@@ -3,6 +3,7 @@ package com.doggydr.demo.entidad;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
 @Entity
@@ -19,6 +20,7 @@ public class Pet {
     private String urlImage;
 
     @ManyToOne
+    @JoinColumn(name = "owner_id")  // Specify the foreign key column
     private Client owner;
     
     public Pet() {

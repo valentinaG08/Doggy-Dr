@@ -11,6 +11,8 @@ public interface ClientService {
 
     public Client SearchByUsername(String username);
 
+    public Client SearchByDocument(Long document);
+
     public void Register(Client client);
     
     public void DeleteById(Long id);
