@@ -4,12 +4,25 @@
     margin-top: 100px; /* Espacio para el header */
 }
 
+.outer-container {
+    display: flex;
+    justify-content: center; /* Centra el contenedor horizontalmente */
+    width: 100%; /* Asegura que ocupe todo el ancho disponible */
+}
+
+.title-button-container {
+    display: flex;
+    align-items: center; /* Alinea verticalmente el botón con el título */
+    gap: 15px; /* Espacio horizontal entre el título y el botón */
+}
+
 /* Título principal */
 .main h1 {
     color: #7044bf; 
     font-size: 2.5em;
     text-align: center;
     margin-bottom: 30px;
+    margin-right: 20px;
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
@@ -30,7 +43,7 @@
     text-align: center;
     border-bottom: 1px solid #ddd;
     color: #333;
-    font-size: 1em; /* Tamaño de la fuente */
+    font-size: 1.3em; /* Tamaño de la fuente */
 }
 
 /* Estilo de las celdas de encabezado */
@@ -121,7 +134,8 @@
 
 /* Estilo de la imagen de la mascota */
 .pet-image img {
-    height: 60px;
+    height: 100px;
+    width: 100px;
     object-fit: cover; /* Asegura que la imagen cubra el contenedor */
     border-radius: 20%; /* Hace la imagen circular */
     border: 1px solid #7044bf; /* Borde alrededor de la imagen */

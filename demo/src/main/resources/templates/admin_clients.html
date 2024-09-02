@@ -45,7 +45,16 @@
     </header>
 
     <main class="main">
-        <h1>Clientes</h1>
+        <div class="outer-container">
+            <div class="title-button-container">
+                <h1>Clientes</h1>
+        
+                <div class="button-container">
+                    <a type="button" class="btn" th:href="@{/client/register}">+</a>
+                </div>    
+            </div>
+        </div>   
+
         <div>
             <table>
                 <thead>
@@ -61,7 +70,7 @@
                 <tbody> 
                     <tr th:each="cliente : ${clients}">
                         <td>
-                            <a th:href="@{/client/{id}(id=${cliente.id})}" th:text="${cliente.name}"></a>
+                            <a th:href="@{/client/{id}/pets(id=${cliente.id})}" th:text="${cliente.name}"></a>
                         </td>
                         <td th:text="${cliente.user}"></td>
                         <td th:text="${cliente.mail}"></td>
@@ -75,9 +84,7 @@
                 </tbody>
             </table>
         </div>
-        <div class="button-container">
-            <a type="button" class="btn" th:href="@{/client/register}">Agregar cliente</a>
-        </div>
+        
     </main>
 
     <footer class="footer">

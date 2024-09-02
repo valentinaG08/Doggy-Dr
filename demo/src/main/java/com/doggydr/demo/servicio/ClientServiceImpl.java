@@ -14,13 +14,11 @@ public class ClientServiceImpl implements ClientService {
     @Override
     public Client SearchById(Long id) {
         return clientRepo.findById(id).get();
-        // TODO Auto-generated method stub
     }
 
     @Override
     public Collection<Client> SearchAll() {
         return clientRepo.findAll();
-        // TODO Auto-generated method stub
     }
 
     @Override

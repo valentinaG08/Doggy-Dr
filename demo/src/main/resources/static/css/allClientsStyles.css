@@ -4,6 +4,18 @@
     margin-top: 100px; /* Espacio para el header */
 }
 
+.outer-container {
+    display: flex;
+    justify-content: center; /* Centra el contenedor horizontalmente */
+    width: 100%; /* Asegura que ocupe todo el ancho disponible */
+}
+
+.title-button-container {
+    display: flex;
+    align-items: center; /* Alinea verticalmente el botón con el título */
+    gap: 15px; /* Espacio horizontal entre el título y el botón */
+}
+
 /* Título principal */
 .main h1 {
     color: #7044bf; 

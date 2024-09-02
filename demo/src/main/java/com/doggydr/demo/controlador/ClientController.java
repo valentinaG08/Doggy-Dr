@@ -72,7 +72,7 @@ public class ClientController {
     public String borrarUsuario(@PathVariable("id") Long identification){
         clientService.DeleteById(identification);
         return "redirect:/admin/clients";
-    }
+    }   
 
     @GetMapping("/update/{id}")
     public String formularioActualizarUsuario(@PathVariable("id") Long id, Model model) {
