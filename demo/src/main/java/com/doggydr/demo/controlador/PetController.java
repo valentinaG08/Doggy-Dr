@@ -77,6 +77,7 @@ public class PetController {
     public String updatePet(@PathVariable("id") int identification, @ModelAttribute("mascota") Pet pet) {
         //pet.setId(identification); // Asegúrate de que el ID de la mascota se establece correctamente
         petService.update(pet);
+
         return "redirect:/admin/pets";
     }
 }

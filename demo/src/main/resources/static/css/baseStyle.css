@@ -22,7 +22,7 @@ body, html {
   top: 0; /* Alinea al borde superior */
   left: 0; /* Alinea al borde izquierdo */
   width: 100%; /* Ancho completo */
-  padding: 10px 20px; /* Padding alrededor del contenido */
+  padding: 10px 40px; /* Padding alrededor del contenido */
   position: fixed; /* Añade posición fixed */
 }
 
@@ -63,11 +63,34 @@ body, html {
   margin: 0 15px; /* Margen horizontal */
   padding: 0; /* Sin padding */
   transition: 0.5s; /* Transición suave para transformaciones */
+  font-size: 20px;
 }
 
 a {
   color: #7044bf; /* Color del texto */
   text-decoration: none; /* Sin subrayado */
+}
+
+/* Estilos iniciales para los elementos del menú */
+.menu-elem {
+  position: relative; /* Necesario para que el pseudo-elemento se posicione relativamente a .menu-elem */
+  display: inline-block; /* Opcional, según tu diseño */
+  transition: transform 0.3s; /* Transición suave para el desplazamiento */
+}
+
+/* Estilos iniciales del pseudo-elemento ::after */
+.menu-elem::after {
+  content: ''; /* Necesario para crear el pseudo-elemento */
+  position: absolute; /* Posiciona el pseudo-elemento en relación al .menu-elem */
+  left: -10px;
+  right: -10px;
+  bottom: -5px;
+  top: -5px; /* Ocupa todo el espacio del elemento */
+  background-color: rgba(45, 135, 224, 0.2); /* Color de fondo para el rectángulo con transparencia */
+  border-radius: 8px; /* Bordes redondeados opcionales */
+  z-index: -1; /* Coloca el pseudo-elemento detrás del texto */
+  transition: opacity 0.3s; /* Transición suave para la opacidad */
+  opacity: 0; /* Oculta el rectángulo inicialmente */
 }
 
 /* Efecto hover para los elementos del menú */
