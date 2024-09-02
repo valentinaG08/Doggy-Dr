@@ -63,6 +63,6 @@ public class PetController {
     @PostMapping("/update/{id}")
     public String updatePet(@PathVariable("id") int identification, @ModelAttribute("mascota") Pet pet){
         petService.update(pet);
-        return "redirect:/pet/all";
+        return "redirect:/pet/all"; 
     }
 }
