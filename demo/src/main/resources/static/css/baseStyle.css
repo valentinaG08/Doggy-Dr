@@ -60,7 +60,7 @@ body, html {
 }
 
 .menu-elem {
-  margin: 0 15px; /* Margen horizontal */
+  margin: 0 70px; /* Margen horizontal */
   padding: 0; /* Sin padding */
   transition: 0.5s; /* Transición suave para transformaciones */
   font-size: 20px;
@@ -96,6 +96,10 @@ a {
 /* Efecto hover para los elementos del menú */
 .menu-elem:hover {
   transform: translateY(-5px); /* Desplaza hacia arriba */
+}
+/* Efecto hover para mostrar el rectángulo detrás del texto */
+.menu-elem:hover::after {
+  opacity: 1; /* Muestra el rectángulo al pasar el mouse */
 }
 
 /* Estilos para la parte derecha del header */

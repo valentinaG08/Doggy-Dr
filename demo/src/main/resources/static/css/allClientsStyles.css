@@ -10,6 +10,7 @@
     font-size: 2.5em;
     text-align: center;
     margin-bottom: 30px;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 /* Contenedor de la tabla */
@@ -72,11 +73,11 @@
 }
 
 .main .btn-info {
-    background-color: #4caf50; /* Color para el botón de edición */
+    background-color: #62B2D7; /* Color para el botón de edición */
 }
 
 .main .btn-danger {
-    background-color: #f44336; /* Color para el botón de eliminación */
+    background-color: #ef594e; /* Color para el botón de eliminación */
 }
 
 .main .btn:hover {
@@ -84,11 +85,11 @@
 }
 
 .main .btn-info:hover {
-    background-color: #45a049;
+    background-color: #62B2D7;
 }
 
 .main .btn-danger:hover {
-    background-color: #e53935;
+    background-color: #ef594e;
 }
 
 /* Contenedor del botón de agregar cliente */
