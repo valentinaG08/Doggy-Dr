@@ -69,7 +69,12 @@ public class PetController {
 
     @GetMapping("/update/{id}")
     public String mostrarFormularioUpdate(@PathVariable("id") Long identification, Model model) {
-        model.addAttribute("mascota", petService.SearchById(identification));
+        Pet mascota = petService.SearchById(identification);
+        List<Client> clients = (List<Client>) clientService.SearchAll();
+        
+        model.addAttribute("mascota", mascota);
+        model.addAttribute("clients", clients);
+        
         return "update_pet";
     }
 

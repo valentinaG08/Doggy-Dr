@@ -220,3 +220,48 @@ input[type="radio"] {
 #item-3:checked ~ .carousel {
     transform: translateX(-66.666%);
 }
+
+
+.background{
+    position: relative;
+    display: flex;
+    overflow: hidden; /* Asegura que los elementos no se vean fuera del contenedor */
+}
+
+.background span{
+    position: absolute;
+    bottom: -150px; /* Para iniciar los elementos fuera de la vista */
+    width: 30px;
+    height: 30px;
+    background: #7044bf;
+    margin: 0 4px;
+    border-radius: 50%;
+    box-shadow: 0 0 0 10px #512a93, 0 0 50px #7044bf, 0 0 100px #7044bf;
+    animation: animate 15s linear infinite;
+}
+
+.background span:nth-child(even){
+    background: #92dcf9;
+    box-shadow: 0 0 0 10px #67cdf5, 0 0 50px #92dcf9, 0 0 100px #92dcf9;
+}
+
+/* Diferentes tiempos de animación para dar un efecto aleatorio */
+.background span:nth-child(1) {
+    animation-delay: 0s;
+}
+.background span:nth-child(2) {
+    animation-delay: 3s;
+}
+.background span:nth-child(3) {
+    animation-delay: 6s;
+}
+/* Añade más delays para los otros elementos si es necesario */
+
+@keyframes animate {
+    0% {
+        transform: translateY(100vh) scale(0); /* Empieza desde la parte inferior */
+    }
+    100% {
+        transform: translateY(-100vh) scale(1); /* Termina fuera de la vista en la parte superior */
+    }
+}

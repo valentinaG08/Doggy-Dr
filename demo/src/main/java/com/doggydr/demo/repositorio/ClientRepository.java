@@ -10,4 +10,5 @@ public interface ClientRepository extends JpaRepository <Client, Long> {
     // Método personalizado para buscar un cliente por nombre de usuario
     Client findByUsername(String username);
     Client findByDocument(Long document);
+    
 }

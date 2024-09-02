@@ -46,7 +46,16 @@
     </header>
 
     <main class="main">
-        <h1>Mascotas</h1>
+        <div class="outer-container">
+            <div class="title-button-container">
+                <h1>Mascotas</h1>
+        
+                <div class="button-container">
+                    <a type="button" class="btn" th:href="@{/pet/add}">+</a>
+                </div>    
+            </div>
+        </div>        
+        
         <div>
             <table>
                 <thead>
@@ -78,9 +87,7 @@
                 </tbody>
             </table>
         </div>
-        <div class="button-container">
-            <a type="button" class="btn" th:href="@{/pet/add}">Agregar mascota</a>
-        </div>
+        
         
     </main>
 
