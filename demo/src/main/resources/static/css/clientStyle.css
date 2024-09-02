@@ -2,17 +2,85 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 }
 
 #welcome h1 {
     color: #7044bf;
     text-align: center;
     font-size: 2.5em;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+#welcome img{
+    border-radius: 104px;
+    width: 100%;
+    max-width: 250px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); 
+    margin-bottom: 40px;
 }
 
 #buttonContainer{
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-bottom: 50px;
+}
+
+/* Contenedor de opciones */
+#options {
+    text-align: center;
+}
+
+/* Título de opciones */
+#options h2 {
+    color: #62B2D7;
+    font-size: 2em;
+    margin-bottom: 70px;
+    font-family: cursive;
+    font-family: 'Lexend', sans-serif;
+    margin-block-end: 50px;
+}
+
+/* Contenedor de cada opción */
+.option-container {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    margin-bottom: 50px;
+    margin-block-end: 50px;
+}
+
+/* Estilo de cada opción */
+.option {
+    text-align: center;
+    transition: transform 0.3s;
+}
+
+.option img {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 0px 100px;
+}
+
+.option h3 {
+    color: #62B2D7;
+    font-size: 1.5em;
+    margin: 10px 0;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    margin-block-end: 50px;
+}
+
+/* Efecto hover para las opciones */
+.option:hover {
+    transform: translateY(-5px);
+}
+
+.option a {
+    text-decoration: none;
+    color: inherit;
 }

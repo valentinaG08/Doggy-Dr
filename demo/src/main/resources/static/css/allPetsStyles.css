@@ -23,6 +23,7 @@
     text-align: center;
     margin-bottom: 30px;
     margin-right: 20px;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 /* Contenedor de la tabla */
@@ -85,21 +86,21 @@
 }
 
 .main .btn-info {
-    background-color: #45a049;
+    background-color: #62B2D7;
     color: white;
 }
 
 .main .btn-info:hover {
-    background-color: #45a049;
+    background-color: #62B2D7;
 }
 
 .main .btn-danger {
-    background-color: #dc3545;
+    background-color: #ef594e;
     color: white;
 }
 
 .main .btn-danger:hover {
-    background-color: #c82333;
+    background-color: #ef594e;
 }
 
 .main .btn-primary {
