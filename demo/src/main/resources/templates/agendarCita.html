@@ -20,50 +20,43 @@
 
 <body>
     <header class="header">
-        <h1>Doggy Dr.</h1>
-        <ul class="index-menu">
-            <li class="menu-elem" id="ME1">
-                <a href="/index"> Inicio</a>
-            </li>
-            <li class="menu-elem" id="ME2">
-                <a href="/servicios"> Servicios</a>
-            </li>
-            <li class="menu-elem" id="ME3">
-                <a href="/sedes">Sedes</a>
-            </li>
-            <li class="menu-elem" id="ME4">
-                <a href="/blogs"> Blogs</a>
-            </li>
-            <li class="menu-elem" id="ME5">
-                <a href="/contacto">Contacto</a>
-            </li>  
-        </ul>
-        <button class="button">Chatea con nosotros</button>
+        <a href="/index">
+            <div class="header-left">
+                <img src="../images/logo.png" alt="logo">
+                <h1>Doggy Dr.</h1>
+            </div>
+        </a>
+        <div class="header-center">
+            <ul class="index-menu">
+                <li class="menu-elem" id="ME1">
+                    <a href="/index">Inicio</a>
+                </li>
+                <li class="menu-elem" id="ME2">
+                    <a href="/servicios">Servicios</a>
+                </li>
+                <li class="menu-elem" id="ME3">
+                    <a href="/sedes">Sedes</a>
+                </li>
+                <li class="menu-elem" id="ME4">
+                    <a href="/blogs">Blogs</a>
+                </li>
+                <li class="menu-elem" id="ME5">
+                    <a href="/contacto">Contacto</a>
+                </li>
+            </ul>
+        </div>
+        <div class="header-right">
+            <button class="button">Chatea con nosotros</button>
+            <a href="/login/client"><ion-icon name="person-circle-outline"></ion-icon></a>
+        </div>
     </header>
+    
     <main class="main">
         <section id="booking-section">
 
             <div class="form-container">
                 <h2>Registro de Usuario y Mascota</h2>
                 <form th:object="${mascota}" th:action="@{/pet/agregar}" method="post" enctype="multipart/form-data">
-                    <!--<h3>Información del Usuario</h3>
-                    <div class="form-group">
-                        <label for="cedula">Cédula:</label>
-                        <input th:field="*{cedula}" type="number" id="cedula" name="cedula" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="nombre_usuario">Nombre:</label>
-                        <input th:field="*{nombre_usuario}" type="text" id="nombre_usuario" name="nombre_usuario" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="correo">Correo:</label>
-                        <input th:field="*{correo}" type="email" id="correo" name="correo" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="celular">Celular:</label>
-                        <input th:field="*{celular}" type="number" id="celular" name="celular" required>
-                    </div>-->
-                    
                     <h3>Información de la Mascota</h3>
                     <div class="form-group">
                         <label for="nombre">Nombre:</label>
@@ -116,7 +109,7 @@
             <div class="footer-right">
                 <ul class="footer-menu">
                     <li><a href="/servicios">Servicios</a></li>
-                    <li><a href="/sobre-nosotros">Sobre nosotros</a></li>
+                    <!--<li><a href="/sobre-nosotros">Sobre nosotros</a></li> -->
                     <li><a href="/sedes">Sedes</a></li>
                     <li><a href="/blogs">Blog</a></li>
                     <li><a href="/contacto">Contacto</a></li>
@@ -126,6 +119,7 @@
                     <li><a href="#"><ion-icon name="logo-facebook"></ion-icon></a></li>
                     <li><a href="#"><ion-icon name="logo-linkedin"></ion-icon></a></li>
                     <li><a href="#"><ion-icon name="logo-github"></ion-icon></a></li>
+                    <li><a href="/admin/front"><ion-icon name="person-circle-outline"></ion-icon></a></li>
                 </ul>
             </div>
         </div>

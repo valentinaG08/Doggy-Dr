@@ -1,0 +1,18 @@
+#welcome {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#welcome h1 {
+    color: #7044bf;
+    text-align: center;
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+
+#buttonContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

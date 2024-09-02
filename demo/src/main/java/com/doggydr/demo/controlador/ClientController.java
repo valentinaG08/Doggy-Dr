@@ -1,11 +1,17 @@
 package com.doggydr.demo.controlador;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 import com.doggydr.demo.entidad.Client;
 import com.doggydr.demo.servicio.ClientService;
 
@@ -23,15 +29,72 @@ public class ClientController {
     }
 
     @GetMapping("/{id}")
-    public String showInfoClient(Model model, @PathVariable("id") int identification){
+    public String showInfoClient(Model model, @PathVariable("id") Long identification){
         model.addAttribute("client", clientService.SearchById(identification));
         return "client";
     }
 
     @GetMapping("/{id}/pets")
-    public String showPetsByClient(@PathVariable int id, Model model) {
+    public String showPetsByClient(@PathVariable Long id, Model model) {
         Client client = clientService.SearchById(id);
         model.addAttribute("client", client);
         return "show_client_pets";
     }
+
+    
+
+    @GetMapping("/register")
+    public String register(Model model){
+        return "clientRegister";
+    }
+
+    @PostMapping("/register")
+    public String register(@RequestParam String username, @RequestParam String name,
+                           @RequestParam String email, @RequestParam String phone, Model model) {
+        if (clientService.SearchByUsername(username) != null) {
+            model.addAttribute("error", "El nombre de usuario ya está en uso");
+            return "clientRegister";
+        }
+
+        Client newClient = new Client(name, username, null, Long.parseLong(phone), email);
+        clientService.Register(newClient);
+
+        model.addAttribute("client", newClient);
+        return "client"; 
+    }
+
+    @GetMapping("/logout")
+    public String logout(Model model){
+        return "index";
+    }
+
+    @GetMapping("/delete/{id}")
+    public String borrarUsuario(@PathVariable("id") Long identification){
+        clientService.DeleteById(identification);
+        return "redirect:/admin/clients";
+    }
+
+    @GetMapping("/update/{id}")
+    public String formularioActualizarUsuario(@PathVariable("id") Long id, Model model) {
+        model.addAttribute("cliente", clientService.SearchById(id));
+        return "update_client";
+    }
+
+    @PostMapping("/update/{id}")
+    public String actualizarUsuario(@ModelAttribute("cliente") Client cliente, @PathVariable("id") Long id) {
+        Client clienteExistente = clientService.SearchById(id);
+    
+        if (clienteExistente.getPets() == null) {
+            clienteExistente.setPets(new ArrayList<>());
+        }
+        
+        cliente.setPets(clienteExistente.getPets());
+    
+        cliente.setId(id);
+        clientService.update(cliente);
+    
+        return "redirect:/admin/clients";
+    }
 }
+    
+

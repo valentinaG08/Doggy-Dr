@@ -27,8 +27,13 @@
         <div class="header-center">
             <ul class="index-menu">
                 <li class="menu-elem" id="ME1">  
-                    <a th:href="@{/client/{id}/pets(id=${client.id})}">
-                        Mis Mascotas
+                    <a href="/admin/clients">
+                        Clientes
+                    </a>
+                </li>
+                <li class="menu-elem" id="ME1">  
+                    <a href="/admin/pets">
+                        Mascotas
                     </a>
                 </li>
             </ul>
@@ -42,41 +47,14 @@
 
     <main class="main">
         <div id="welcome">
-            <h1>Bienvenido <span th:text="${client.name}"></span></h1> <!-- Nombre del cliente -->
+            <h1>Bienvenido Admin!</h1> 
         </div>
-
-        <section id="buttonContainer">
-            <a th:href="@{/client/{id}/pets(id=${client.id})}">
-                <button class="button">Mis Mascotas</button>
-            </a>
-        </section>
-
     </main>
 
     <footer class="footer">
         <div class="footer-content">
-            <div class="footer-left">
-                <p>Cra. 7 #40 - 62, Bogotá, Colombia</p>
-                <p>info@doggydr.com</p>
-                <p>© 2024. • Privacidad • Términos • Condiciones</p>
-            </div>
             <div class="footer-center">
                 <img src="../images/logo.png" alt="logo" height="100px">
-            </div>
-            <div class="footer-right">
-                <ul class="footer-menu">
-                    <li><a href="/servicios">Servicios</a></li>
-                    <!-- <li><a href="/sobre-nosotros">Sobre nosotros</a></li> -->
-                    <li><a href="/sedes">Sedes</a></li>
-                    <li><a href="/blogs">Blog</a></li>
-                    <li><a href="/contacto">Contacto</a></li>
-                </ul>
-                <ul class="footer-social">
-                    <li><a href="#"><ion-icon name="logo-twitter"></ion-icon></a></li>
-                    <li><a href="#"><ion-icon name="logo-facebook"></ion-icon></a></li>
-                    <li><a href="#"><ion-icon name="logo-linkedin"></ion-icon></a></li>
-                    <li><a href="#"><ion-icon name="logo-github"></ion-icon></a></li>
-                </ul>
             </div>
         </div>
     </footer>

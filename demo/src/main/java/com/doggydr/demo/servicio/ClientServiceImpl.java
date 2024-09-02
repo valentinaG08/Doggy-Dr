@@ -12,8 +12,8 @@ public class ClientServiceImpl implements ClientService {
     ClientRepository clientRepo;
 
     @Override
-    public Client SearchById(int id) {
-        return clientRepo.findById(id);
+    public Client SearchById(Long id) {
+        return clientRepo.findById(id).get();
         // TODO Auto-generated method stub
     }
 
@@ -22,5 +22,30 @@ public class ClientServiceImpl implements ClientService {
         return clientRepo.findAll();
         // TODO Auto-generated method stub
     }
+
+    @Override
+    public Client SearchByUsername(String username) {
+        return clientRepo.findByUsername(username);
+    }
+
+    @Override
+    public Client SearchByDocument(Long document) {
+        return clientRepo.findByDocument(document);
+    }
     
+    @Override
+    public void Register(Client client) {
+        clientRepo.save(client);
+    }
+
+    @Override
+    public void DeleteById(Long id) {
+        clientRepo.deleteById(id);
+    }
+
+    @Override
+    public void update(Client client) {
+        clientRepo.save(client);
+    }
+
 }

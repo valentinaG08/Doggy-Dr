@@ -14,8 +14,8 @@ public class PetServiceImpl implements PetService{
     PetRepository petRepo;
 
     @Override
-    public Pet SearchById(int id) {
-        return petRepo.findById(id);
+    public Pet SearchById(Long id) {
+        return petRepo.findById(id).get();
         // TODO Auto-generated method stub
     }
 
@@ -26,7 +26,7 @@ public class PetServiceImpl implements PetService{
     }
 
     @Override
-    public void deleteById(int id) {
+    public void DeleteById(Long id) {
         // TODO Auto-generated method stub
         petRepo.deleteById(id);
     }
@@ -34,13 +34,13 @@ public class PetServiceImpl implements PetService{
     @Override
     public void update(Pet pet) {
         // TODO Auto-generated method stub
-        petRepo.update(pet);
+        petRepo.save(pet);
     }
 
     @Override
     public void add(Pet pet) {
         // TODO Auto-generated method stub
-        petRepo.add(pet);
+        petRepo.save(pet);
     }
     
 }
