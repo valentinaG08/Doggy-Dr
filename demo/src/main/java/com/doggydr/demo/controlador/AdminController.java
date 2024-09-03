@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.doggydr.demo.servicio.ClientService;
 import com.doggydr.demo.servicio.PetService;
+import com.doggydr.demo.servicio.VetService;
 
 
 @Controller
@@ -19,7 +20,10 @@ public class AdminController {
     @Autowired
     PetService petService;
 
-    @GetMapping("/front")
+    @Autowired
+    VetService vetService;
+
+    @GetMapping("")
     public String showFront(Model model){
         return "admin_front";
     }
@@ -34,6 +38,12 @@ public class AdminController {
     public String showPets(Model model){
         model.addAttribute("pets", petService.SearchAll());
         return "admin_pets";
+    }
+
+    @GetMapping("/vets")
+    public String showVets(Model model){
+        model.addAttribute("vets", vetService.SearchAll());
+        return "admin_vets";
     }
 
 }
