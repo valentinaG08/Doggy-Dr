@@ -1,10 +1,16 @@
 package com.doggydr.demo.entidad;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class Pet {
@@ -22,6 +28,13 @@ public class Pet {
     @ManyToOne
     @JoinColumn(name = "owner_id")  // Specify the foreign key column
     private Client owner;
+    
+    @OneToOne(mappedBy = "pet", cascade = CascadeType.ALL, orphanRemoval = true)
+    private History history;
+
+    @OneToMany(mappedBy = "pet", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Appointment> appointments = new ArrayList<>();
+
     
     public Pet() {
 
@@ -43,15 +56,18 @@ public class Pet {
         this.urlImage = url;
         this.owner = owner;
     }
-    public Pet(Long id, String nombre, String raza, int edad, String servicio, Double peso, String url, Client owner) {
+    public Pet(Long id, String nombre, String raza, int edad, String servicio, Double peso, String urlImage,
+            Client owner, History history, List<Appointment> appointments) {
         this.id = id;
         this.nombre = nombre;
         this.raza = raza;
         this.edad = edad;
         this.servicio = servicio;
         this.peso = peso;
-        this.urlImage = url;
+        this.urlImage = urlImage;
         this.owner = owner;
+        this.history = history;
+        this.appointments = appointments;
     }
     public String getNombre() {
         return nombre;
@@ -100,6 +116,18 @@ public class Pet {
     }
     public void setOwner(Client owner) {
         this.owner = owner;
+    }
+    public History getHistory() {
+        return history;
+    }
+    public void setHistory(History history) {
+        this.history = history;
+    }
+    public List<Appointment> getAppointments() {
+        return appointments;
+    }
+    public void setAppointments(List<Appointment> appointments) {
+        this.appointments = appointments;
     }
     
 }

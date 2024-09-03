@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mascotas de Cliente</title>
     <link rel="stylesheet" href="../css/baseStyle.css"/>
-    <link rel="stylesheet" href="../css/allPetsStyles.css"/>
+    <link rel="stylesheet" href="../css/allClientsStyles.css"/>
 
 
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
@@ -53,7 +53,7 @@
     <main class="main">
         <div class="outer-container">
             <div class="title-button-container">
-                <h1>Mascotas</h1>
+                <h1>Veterinarios</h1>
         
                 <div class="button-container">
                     <a type="button" class="btn" th:href="@{/pet/add}">+</a>
@@ -66,27 +66,25 @@
                 <thead>
                     <tr>
                         <th>Nombre</th>
-                        <th>Raza</th>
-                        <th>Edad</th>
-                        <th>Servicio</th>
-                        <th>Foto</th>
+                        <th>user Name</th>
+                        <th>Documento</th>
+                        <th>Telefono</th>
+                        <th>Correo</th>
                         <th>Acciones</th> <!-- Columna para las acciones CRUD -->
                     </tr>
                 </thead>
                 <tbody> 
-                    <tr th:each="mascota : ${pets}">
+                    <tr th:each="vet: ${vets}">
                         <td>
-                            <a th:href="@{/pet/find/{id}(id=${mascota.id})}" th:text="${mascota.nombre}"></a>
+                            <a th:href="@{/vet/find/{id}(id=${vet.id})}" th:text="${vet.name}"></a>
                         </td>
-                        <td th:text="${mascota.raza}"></td>
-                        <td th:text="${mascota.edad}"></td>
-                        <td th:text="${mascota.servicio}"></td>
-                        <td class="pet-image">
-                            <img th:src="@{${mascota.urlImage}}" alt="Imagen de la mascota">
-                        </td>
+                        <td th:text="${vet.userName}"></td>
+                        <td th:text="${vet.document}"></td>
+                        <td th:text="${vet.phone}"></td>
+                        <td th:text="${vet.mail}"></td>
                         <td>
-                            <a class="btn btn-info" th:href="@{/pet/update/{id}(id=${mascota.id})}">Editar</a>
-                            <a class="btn btn-danger" th:href="@{/pet/delete/{id}(id=${mascota.id})}">Borrar</a>
+                            <a class="btn btn-info" th:href="@{/vet/update/{id}(id=${vet.id})}">Editar</a>
+                            <a class="btn btn-danger" th:href="@{/vet/delete/{id}(id=${vet.id})}">Borrar</a>
                         </td>
                     </tr>
                 </tbody>

@@ -5,8 +5,11 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Controller;
 
+import com.doggydr.demo.repositorio.AdminRepository;
 import com.doggydr.demo.repositorio.ClientRepository;
 import com.doggydr.demo.repositorio.PetRepository;
+import com.doggydr.demo.repositorio.ServiceRepository;
+import com.doggydr.demo.repositorio.VetRepository;
 
 import jakarta.transaction.Transactional;
 
@@ -21,9 +24,39 @@ public class DatabaseInit implements ApplicationRunner {
     @Autowired
     PetRepository petRepository;
 
+    @Autowired
+    AdminRepository adminRepository;
+
+    @Autowired
+    ServiceRepository serviceRepository;
+
+    @Autowired
+    VetRepository vetRepository;
+
     @Override
     public void run(ApplicationArguments args) throws Exception {
         // Añadiendo los clientes al repositorio
+        createClients();
+
+        // Añadir mascotas
+        createPets();
+
+        // Añadir administradores
+        adminRepository.save(new Admin("Juan Sebastian", "juanSe", "angarita"));
+
+        // Añadir servicios
+        serviceRepository.save(new Service("Consultas y chequeos generales", 20.500));
+        serviceRepository.save(new Service("Vacunaciones y Desparasitación", 50.500));
+        serviceRepository.save(new Service("Odontología veterinaria", 120.500));
+        serviceRepository.save(new Service("Laboratorio y diagnóstico por Imágenes", 80.500));
+
+        // Añadir veterinarios
+        vetRepository.save(new Vet("Daniel Carvajal", "daniC", 10131415L, 310123123, "daniel@gmail.com"));
+        vetRepository.save(new Vet("Valentina Garcia", "valeG", 20212223L, 310321321, "valentina@gmail.com"));
+
+    }
+
+    public void createClients () {
         clientRepository.save(new Client("Juan Perez", "juanp", 1234567891L, 3001234561L, "juanp@mail.com"));
         clientRepository.save(new Client("Maria Gomez", "mariag", 1234567892L, 3001234562L, "mariag@mail.com"));
         clientRepository.save(new Client("Carlos Ruiz", "carlosr", 1234567893L, 3001234563L, "carlosr@mail.com"));
@@ -75,7 +108,9 @@ public class DatabaseInit implements ApplicationRunner {
         clientRepository.save(new Client("Martin Castillo", "martinc", 1234567939L, 3001234609L, "martinc@mail.com"));
         clientRepository.save(new Client("María Castillo", "mcastillo", 1234567940L, 300123610L, "martinc@mail.com"));
 
-        // Añadir mascotas
+    }
+
+    public void createPets () {
         petRepository.save( new Pet("Perry", "French Poodle", 2, "Baño", 3.4, "https://wowmascota.com/wp-content/uploads/2019/05/pets-753464_640.jpg", clientRepository.findById(1L).get()));
         petRepository.save( new Pet("Lucas", "Labrador", 2, "Baño", 6.1, "https://es.mypet.com/wp-content/uploads/sites/23/2021/03/ThinkstockPhotos-590080440.jpg?w=1024", clientRepository.findById(2L).get()));
         petRepository.save( new Pet("Zeus", "Golden Retriever", 2, "Tratamiento", 7.4, "https://t2.ea.ltmcdn.com/es/posts/1/6/2/10_curiosidades_del_golden_retriever_21261_orig.jpg", clientRepository.findById(3L).get()));
