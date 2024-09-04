@@ -51,8 +51,8 @@ public class DatabaseInit implements ApplicationRunner {
         serviceRepository.save(new Service("Laboratorio y diagnóstico por Imágenes", 80.500));
 
         // Añadir veterinarios
-        vetRepository.save(new Vet("Daniel Carvajal", "daniC", 10131415L, 310123123, "daniel@gmail.com"));
-        vetRepository.save(new Vet("Valentina Garcia", "valeG", 20212223L, 310321321, "valentina@gmail.com"));
+        vetRepository.save(new Vet("Daniel Carvajal","General", "https://universidadeuropea.com/resources/media/images/medicina-veterinaria-800x450.original.jpg", "daniC", 10131415L, 310123123, "daniel@gmail.com"));
+        vetRepository.save(new Vet("Valentina Garcia", "Cirugía", "https://papelmatic.com/wp-content/uploads/2019/09/papelmatic-higiene-profesional-limpieza-desinfeccion-clinicas-veterinarias.jpg","valeG", 20212223L, 310321321, "valentina@gmail.com"));
 
     }
 

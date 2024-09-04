@@ -49,13 +49,27 @@ h2{
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); 
 }
 
+
+#containerInfo{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 25px 300px; /* Margen superior e inferior de 25px, y margen izquierdo y derecho de 300px */
+    padding: 20px;
+}
+
+
 .form-container {
     background-color: #fff;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    max-width: 800px; /* Aumenta el ancho máximo del contenedor */
-    margin: 0 auto;
+    width: 100%; /* Asegura que el formulario no exceda el ancho del contenedor */
+    box-sizing: border-box; /* Incluye padding y border en el ancho total */
+    margin: 0; /* Elimina márgenes adicionales */
 }
 
 .form-row {

@@ -1,4 +1,0 @@
-2024-09-03 12:28:50.172833-05:00 jdbc[13]: exception
-org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "UPDATE PET SET URL_IMAGE = https[*]://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Italian_Greyhound_standing_gray.jpg/320px-Italian_Greyhound_standing_gray.jpg' WHERE ID = 38;"
-Syntax error in SQL statement "UPDATE PET SET URL_IMAGE = https[*]://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Italian_Greyhound_standing_gray.jpg/320px-Italian_Greyhound_standing_gray.jpg' WHERE ID = 38;"; SQL statement:
-UPDATE PET SET URL_IMAGE = https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Italian_Greyhound_standing_gray.jpg/320px-Italian_Greyhound_standing_gray.jpg' WHERE ID = 38; [42000-230]

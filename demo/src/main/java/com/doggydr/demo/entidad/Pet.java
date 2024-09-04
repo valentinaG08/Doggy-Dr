@@ -10,7 +10,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
 
 @Entity
 public class Pet {
@@ -21,7 +20,7 @@ public class Pet {
     private String nombre;
     private String raza;
     private int edad;
-    private String servicio;
+    private String enfermedad;
     private Double peso;
     private String urlImage;
 
@@ -29,8 +28,8 @@ public class Pet {
     @JoinColumn(name = "owner_id")  // Specify the foreign key column
     private Client owner;
     
-    @OneToOne(mappedBy = "pet", cascade = CascadeType.ALL, orphanRemoval = true)
-    private History history;
+    @OneToMany(mappedBy = "pet", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Treatment> treatments;
 
     @OneToMany(mappedBy = "pet", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Appointment> appointments = new ArrayList<>();
@@ -39,34 +38,34 @@ public class Pet {
     public Pet() {
 
     }
-    public Pet(String nombre, String raza, int edad, String servicio, Double peso, String url) {
+    public Pet(String nombre, String raza, int edad, String enfermedad, Double peso, String url) {
         this.nombre = nombre;
         this.raza = raza;
         this.edad = edad;
-        this.servicio = servicio;
+        this.enfermedad = enfermedad;
         this.peso = peso;
         this.urlImage = url;
     }
-    public Pet(String nombre, String raza, int edad, String servicio, Double peso, String url, Client owner) {
+    public Pet(String nombre, String raza, int edad, String enfermedad, Double peso, String url, Client owner) {
         this.nombre = nombre;
         this.raza = raza;
         this.edad = edad;
-        this.servicio = servicio;
+        this.enfermedad = enfermedad;
         this.peso = peso;
         this.urlImage = url;
         this.owner = owner;
     }
-    public Pet(Long id, String nombre, String raza, int edad, String servicio, Double peso, String urlImage,
-            Client owner, History history, List<Appointment> appointments) {
+    public Pet(Long id, String nombre, String raza, int edad, String enfermedad, Double peso, String urlImage,
+            Client owner, List<Treatment> treatments, List<Appointment> appointments) {
         this.id = id;
         this.nombre = nombre;
         this.raza = raza;
         this.edad = edad;
-        this.servicio = servicio;
+        this.enfermedad = enfermedad;
         this.peso = peso;
         this.urlImage = urlImage;
         this.owner = owner;
-        this.history = history;
+        this.treatments = treatments;
         this.appointments = appointments;
     }
     public String getNombre() {
@@ -87,11 +86,11 @@ public class Pet {
     public void setEdad(int edad) {
         this.edad = edad;
     }
-    public String getServicio() {
-        return servicio;
+    public String getEnfermedad() {
+        return enfermedad;
     }
-    public void setServicio(String servicio) {
-        this.servicio = servicio;
+    public void setEnfermedad(String enfermedad) {
+        this.enfermedad = enfermedad;
     }
     public void setUrlImage(String url) {
         this.urlImage = url;
@@ -117,11 +116,11 @@ public class Pet {
     public void setOwner(Client owner) {
         this.owner = owner;
     }
-    public History getHistory() {
-        return history;
+    public List<Treatment> getTreatments() {
+        return treatments;
     }
-    public void setHistory(History history) {
-        this.history = history;
+    public void setTreatments(List<Treatment> treatments) {
+        this.treatments = treatments;
     }
     public List<Appointment> getAppointments() {
         return appointments;

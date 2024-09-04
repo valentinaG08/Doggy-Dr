@@ -5,6 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
   <title>Registro de Cliente - Doggy Dr.</title>
+  <link rel="stylesheet" href="../css/baseStyle.css"/>
   <link rel="stylesheet" href="../css/ClientLoginNRegister.css"/>
 
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
@@ -16,6 +17,14 @@
 </head>
 
 <body>
+    <header>
+        <a href="/index">
+            <div class="header-left">
+                <h1>Doggy Dr.</h1>
+            </div>
+        </a>
+    </header>
+
     <main>
         <div class="register-container">
             <form class="register-form" th:action="@{/client/register}" method="post">
@@ -37,7 +46,7 @@
 
                 <button type="submit">Registrar</button>
             </form>
-            <p>¿Ya tienes una cuenta? <a href="/client/login">Inicia sesión aquí</a></p>
+            <p>¿Ya tienes una cuenta? <a href="/login/client">Inicia sesión aquí</a></p>
         </div>
     </main>
 </body>
