@@ -49,26 +49,43 @@ h2{
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); 
 }
 
+
+#containerInfo{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 25px 300px; /* Margen superior e inferior de 25px, y margen izquierdo y derecho de 300px */
+    padding: 20px;
+}
+
+
 .form-container {
     background-color: #fff;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    max-width: 600px;
-    margin: 0 auto;
+    width: 100%; /* Asegura que el formulario no exceda el ancho del contenedor */
+    box-sizing: border-box; /* Incluye padding y border en el ancho total */
+    margin: 0; /* Elimina márgenes adicionales */
 }
 
-.formsub{
-    font-size: 35px;
-    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    color: #d38aef;
-    text-align: center;
+.form-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Espacio entre columnas */
 }
 
 .form-group {
+    flex: 1;
+    min-width: calc(50% - 20px); /* Ajuste para el espacio entre columnas */
+    box-sizing: border-box;
     margin-bottom: 15px;
     color: #7044bf;
 }
+
 .form-group label {
     display: block;
     margin-bottom: 5px;
@@ -86,6 +103,7 @@ h2{
     border-radius: 4px;
     box-sizing: border-box;
 }
+
 .form-group input[type="submit"] {
     background-color: #7044bf;
     color: white;
@@ -94,16 +112,18 @@ h2{
     border-radius: 4px;
     cursor: pointer;
 }
+
 .form-group input[type="submit"]:hover {
     background-color: #7044bf;
 }
 
-#button{
+#button {
     display: flex;
-    justify-content: center;  
-    transition: 0.3s; /* Transición suave para transformaciones */  
+    justify-content: center;
+    transition: 0.3s;
 }
+
 #button:hover {
-    color: white; /* Color del texto en hover */
-    transform: translateY(-5px); /* Desplaza hacia arriba en hover */
-  }
+    color: white;
+    transform: translateY(-5px);
+}

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mascotas de Cliente</title>
     <link rel="stylesheet" href="../css/baseStyle.css"/>
-    <link rel="stylesheet" href="../css/allClientsStyles.css"/>
+    <link rel="stylesheet" href="../css/allPetsStyles.css"/>
 
 
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
@@ -70,6 +70,7 @@
                         <th>Documento</th>
                         <th>Telefono</th>
                         <th>Correo</th>
+                        <th>Foto</th>
                         <th>Acciones</th> <!-- Columna para las acciones CRUD -->
                     </tr>
                 </thead>
@@ -82,6 +83,9 @@
                         <td th:text="${vet.document}"></td>
                         <td th:text="${vet.phone}"></td>
                         <td th:text="${vet.mail}"></td>
+                        <td class="pet-image">
+                            <img th:src="@{${vet.urlImage}}" alt="Imagen del veterinario">
+                        </td>
                         <td>
                             <a class="btn btn-info" th:href="@{/vet/update/{id}(id=${vet.id})}">Editar</a>
                             <a class="btn btn-danger" th:href="@{/vet/delete/{id}(id=${vet.id})}">Borrar</a>

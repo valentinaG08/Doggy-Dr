@@ -7,7 +7,10 @@ import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.ManyToMany;
 
 @Entity
 public class Treatment {
@@ -18,28 +21,44 @@ public class Treatment {
 
     private String name;
 
-    @OneToMany(mappedBy = "treatment", cascade = CascadeType.ALL, orphanRemoval = true)
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+        name = "treatment_medicine",
+        joinColumns = @JoinColumn(name = "treatment_id"),
+        inverseJoinColumns = @JoinColumn(name = "medicine_id")
+    )
     private List<Medicine> medicines = new ArrayList<>();
 
     private String description;
 
+    @ManyToOne
+    @JoinColumn(name = "vet_id", nullable = false)
+    private Vet vet;
+
+    @ManyToOne
+    @JoinColumn(name = "pet", nullable = false)
+    private Pet pet;
 
     public Treatment(){
 
     }
     
-    public Treatment(String name, List<Medicine> medicines, String description) {
+    public Treatment(String name, List<Medicine> medicines, String description, Vet vet) {
         this.name = name;
         this.medicines = medicines;
         this.description = description;
+        this.vet = vet;
     }
 
-    public Treatment(Long id, String name, List<Medicine> medicines, String description) {
+    public Treatment(Long id, String name, List<Medicine> medicines, String description, Vet vet) {
         this.id = id;
         this.name = name;
         this.medicines = medicines;
         this.description = description;
+        this.vet = vet;
     }
+
+
 
     public Long getId() {
         return id;
@@ -71,6 +90,14 @@ public class Treatment {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Vet getVet() {
+        return vet;
+    }
+
+    public void setVet(Vet vet) {
+        this.vet = vet;
     }
 
     

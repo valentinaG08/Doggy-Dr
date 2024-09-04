@@ -68,7 +68,7 @@
                         <th>Nombre</th>
                         <th>Raza</th>
                         <th>Edad</th>
-                        <th>Servicio</th>
+                        <th>Enfermedad</th>
                         <th>Foto</th>
                         <th>Acciones</th> <!-- Columna para las acciones CRUD -->
                     </tr>
@@ -80,7 +80,7 @@
                         </td>
                         <td th:text="${mascota.raza}"></td>
                         <td th:text="${mascota.edad}"></td>
-                        <td th:text="${mascota.servicio}"></td>
+                        <td th:text="${mascota.enfermedad}"></td>
                         <td class="pet-image">
                             <img th:src="@{${mascota.urlImage}}" alt="Imagen de la mascota">
                         </td>
