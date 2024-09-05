@@ -1,10 +1,21 @@
-.container{
+.container {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 100px;
     width: 100%;
+    min-height: 100vh; /* Para que cubra toda la altura del viewport */
     padding: 0px 0px 100px 0px;
+    background-image: url(../images/index/backGround3.jpg);
+    background-size: cover; /* Ajusta el tamaño del fondo para cubrir toda la sección */
+    background-position: center; /* Centra el fondo */
+    background-repeat: no-repeat; /* Evita que el fondo se repita */
+}
+
+.containerCompartido {
+    flex: 1;
+    width: 50%;
+    box-sizing: border-box;
 }
 
 .container2 {
@@ -14,7 +25,7 @@
     width: calc(100% - 80px); /* Restando un valor para evitar desbordamientos */
     max-width: 100%;
     gap: 40px; /* Espacio entre las cajas y el contenido textual */
-    padding: 0px 0px 100px 0px;
+    padding: 50px 0px 100px 0px;
 }
 
 .container3 {
@@ -22,26 +33,37 @@
     position: relative; /* Para posicionar los pseudo-elementos respecto a este contenedor */
 }
 
-
-#InfoIndex{
+#infoIndex {
     display: flex;
-    align-items: center;
-    justify-content: center;        
+    flex-direction: column; /* Alinea los elementos verticalmente */
+    align-items: center; /* Centra horizontalmente */
+    justify-content: center; /* Centra verticalmente */
+    text-align: center; /* Centra el texto */
+    gap: 20px; /* Espacio entre los elementos, ajusta según necesidad */
 }
 
-#TextIndex{
+
+#imgLogo {
+    display: block; /* Remueve el display: flex; ya que no es necesario */
+}
+
+#TextIndex, #buttonContainer {
     display: flex;
-    align-items: center;
-    justify-content: center;        
-}
-h2{
-    color: #7044bf;
-    font-size: 20px;
-    align-items: center;
-    justify-content: center;
+    flex-direction: column; /* Alinea los elementos verticalmente */
+    align-items: center; /* Centra horizontalmente */
+    justify-content: center; /* Centra verticalmente */
+    text-align: center; /* Centra el texto */
 }
 
-#buttonContainer{
+
+h2 {
+    color: white;
+    font-size: 28px;
+    align-items: center;
+    justify-content: left;
+}
+
+#buttonContainer {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -54,6 +76,7 @@ h2{
     gap: 10px; /* Espacio entre las cajas */
     width: 40%; /* Ajusta el ancho de las cajas para ocupar la mitad del contenedor */
 }
+
 .box {
     display: flex;
     justify-content: center;
@@ -84,6 +107,7 @@ h2{
     color: #7044bf;
     font-size: 20px;
 }
+
 .info-content {
     width: 40%; /* Ajusta el ancho del contenido textual */
 }
@@ -95,7 +119,7 @@ h2{
 }
 
 .info-content p {
-    font-size: 16px;
+    font-size: 19px;
     line-height: 1.6;
     color: #333;
 }
@@ -114,7 +138,6 @@ h2{
     display: flex;
     width: 300%; /* Ajuste para que cada item ocupe 100% del contenedor */
     transition: transform 0.5s ease-in-out;
-    
 }
 
 .carousel-item {
@@ -221,47 +244,14 @@ input[type="radio"] {
     transform: translateX(-66.666%);
 }
 
-
-.background{
-    position: relative;
-    display: flex;
-    overflow: hidden; /* Asegura que los elementos no se vean fuera del contenedor */
-}
-
-.background span{
+.header::after {
+    content: "";
     position: absolute;
-    bottom: -150px; /* Para iniciar los elementos fuera de la vista */
-    width: 30px;
-    height: 30px;
-    background: #7044bf;
-    margin: 0 4px;
-    border-radius: 50%;
-    box-shadow: 0 0 0 10px #512a93, 0 0 50px #7044bf, 0 0 100px #7044bf;
-    animation: animate 15s linear infinite;
-}
-
-.background span:nth-child(even){
-    background: #92dcf9;
-    box-shadow: 0 0 0 10px #67cdf5, 0 0 50px #92dcf9, 0 0 100px #92dcf9;
-}
-
-/* Diferentes tiempos de animación para dar un efecto aleatorio */
-.background span:nth-child(1) {
-    animation-delay: 0s;
-}
-.background span:nth-child(2) {
-    animation-delay: 3s;
-}
-.background span:nth-child(3) {
-    animation-delay: 6s;
-}
-/* Añade más delays para los otros elementos si es necesario */
-
-@keyframes animate {
-    0% {
-        transform: translateY(100vh) scale(0); /* Empieza desde la parte inferior */
-    }
-    100% {
-        transform: translateY(-100vh) scale(1); /* Termina fuera de la vista en la parte superior */
-    }
-}
+    bottom: -50px; /* Ajusta la posición para que la raya se vea debajo del header */
+    left: 0;
+    width: 100%;
+    height: 50px; /* Grosor de la raya */
+    background-color: #7044bf; /* Color de la raya */
+    z-index: -1; /* Envía la raya detrás del contenido */
+    border-radius: 0 0 50px 50px; /* Bordes redondeados en la parte inferior de la raya */
+  }
