@@ -56,7 +56,7 @@
                 <h1>Veterinarios</h1>
         
                 <div class="button-container">
-                    <a type="button" class="btn" th:href="@{/pet/add}">+</a>
+                    <a type="button" class="btn" th:href="@{/vet/add}">+</a>
                 </div>    
             </div>
         </div>        
@@ -87,7 +87,7 @@
                             <img th:src="@{${vet.urlImage}}" alt="Imagen del veterinario">
                         </td>
                         <td>
-                            <a class="btn btn-info" th:href="@{/vet/update/{id}(id=${vet.id})}">Editar</a>
+                            <a class="btn btn-info">Editar</a> <!--  th:href="@{/vet/update/{id}(id=${vet.id})}" -->
                             <a class="btn btn-danger" th:href="@{/vet/delete/{id}(id=${vet.id})}">Borrar</a>
                         </td>
                     </tr>
