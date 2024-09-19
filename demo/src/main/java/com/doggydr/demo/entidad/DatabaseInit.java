@@ -51,9 +51,7 @@ public class DatabaseInit implements ApplicationRunner {
         serviceRepository.save(new Service("Laboratorio y diagnóstico por Imágenes", 80.500));
 
         // Añadir veterinarios
-        vetRepository.save(new Vet("Daniel Carvajal","General", "https://universidadeuropea.com/resources/media/images/medicina-veterinaria-800x450.original.jpg", "daniC", 10131415L, 310123123, "daniel@gmail.com"));
-        vetRepository.save(new Vet("Valentina Garcia", "Cirugía", "https://papelmatic.com/wp-content/uploads/2019/09/papelmatic-higiene-profesional-limpieza-desinfeccion-clinicas-veterinarias.jpg","valeG", 20212223L, 310321321, "valentina@gmail.com"));
-
+        createVets();
     }
 
     public void createClients () {
@@ -215,4 +213,28 @@ public class DatabaseInit implements ApplicationRunner {
 
     }
     
+    public void createVets () {
+        vetRepository.save(new Vet("Daniel Carvajal","General", "https://universidadeuropea.com/resources/media/images/medicina-veterinaria-800x450.original.jpg", "daniC", 10131415L, 310123123, "daniel@gmail.com"));
+        vetRepository.save(new Vet("Valentina Garcia", "Cirugía", "https://papelmatic.com/wp-content/uploads/2019/09/papelmatic-higiene-profesional-limpieza-desinfeccion-clinicas-veterinarias.jpg","valeG", 20212223L, 310321321, "valentina@gmail.com"));
+        vetRepository.save(new Vet("Santiago Martínez", "Dermatología", "https://universidadeuropea.com/resources/media/images/medicina-veterinaria-800x450.original.jpg", "santiM", 30312234L, 310456789, "santiago@gmail.com"));
+        vetRepository.save(new Vet("Lucía Hernández", "Neurología", "https://papelmatic.com/wp-content/uploads/2019/09/papelmatic-higiene-profesional-limpieza-desinfeccion-clinicas-veterinarias.jpg", "luciaH", 40423345L, 310987654, "lucia@gmail.com"));
+        vetRepository.save(new Vet("Carlos López", "Cardiología", "https://universidadeuropea.com/resources/media/images/medicina-veterinaria-800x450.original.jpg", "carlosL", 50534456L, 310654321, "carlos@gmail.com"));
+        vetRepository.save(new Vet("Camila Ruiz", "Oftalmología", "https://papelmatic.com/wp-content/uploads/2019/09/papelmatic-higiene-profesional-limpieza-desinfeccion-clinicas-veterinarias.jpg", "camilaR", 60645567L, 310789456, "camila@gmail.com"));
+        vetRepository.save(new Vet("Sebastián Gutiérrez", "Traumatología", "https://universidadeuropea.com/resources/media/images/medicina-veterinaria-800x450.original.jpg", "sebasG", 70756678L, 310123789, "sebastian@gmail.com"));
+        vetRepository.save(new Vet("Ana María Ríos", "Odontología", "https://papelmatic.com/wp-content/uploads/2019/09/papelmatic-higiene-profesional-limpieza-desinfeccion-clinicas-veterinarias.jpg", "anaR", 80867789L, 310321654, "ana@gmail.com"));
+        vetRepository.save(new Vet("Tomás Ramírez", "Ortopedia", "https://universidadeuropea.com/resources/media/images/medicina-veterinaria-800x450.original.jpg", "tomasR", 90978890L, 310456123, "tomas@gmail.com"));
+        vetRepository.save(new Vet("Paula Sánchez", "Oncología", "https://papelmatic.com/wp-content/uploads/2019/09/papelmatic-higiene-profesional-limpieza-desinfeccion-clinicas-veterinarias.jpg", "paulaS", 10101112L, 310789321, "paula@gmail.com"));
+        vetRepository.save(new Vet("Diego Torres", "Anestesiología", "https://universidadeuropea.com/resources/media/images/medicina-veterinaria-800x450.original.jpg", "diegoT", 11121223L, 310654987, "diego@gmail.com"));
+        vetRepository.save(new Vet("Carolina Moreno", "Urgencias", "https://papelmatic.com/wp-content/uploads/2019/09/papelmatic-higiene-profesional-limpieza-desinfeccion-clinicas-veterinarias.jpg", "carolinaM", 12131334L, 310987123, "carolina@gmail.com"));
+        vetRepository.save(new Vet("Miguel Fernández", "Rehabilitación", "https://universidadeuropea.com/resources/media/images/medicina-veterinaria-800x450.original.jpg", "miguelF", 13141445L, 310123654, "miguel@gmail.com"));
+        vetRepository.save(new Vet("Isabella Jiménez", "Pediatría", "https://papelmatic.com/wp-content/uploads/2019/09/papelmatic-higiene-profesional-limpieza-desinfeccion-clinicas-veterinarias.jpg", "isabellaJ", 14151556L, 310321987, "isabella@gmail.com"));
+        vetRepository.save(new Vet("Andrés Suárez", "Geriatría", "https://universidadeuropea.com/resources/media/images/medicina-veterinaria-800x450.original.jpg", "andresS", 15161667L, 310456789, "andres@gmail.com"));
+        vetRepository.save(new Vet("Daniela Gómez", "Nefrología", "https://papelmatic.com/wp-content/uploads/2019/09/papelmatic-higiene-profesional-limpieza-desinfeccion-clinicas-veterinarias.jpg", "danielaG", 16171778L, 310789654, "daniela@gmail.com"));
+        vetRepository.save(new Vet("Gabriel Díaz", "Endocrinología", "https://universidadeuropea.com/resources/media/images/medicina-veterinaria-800x450.original.jpg", "gabrielD", 17181889L, 310654123, "gabriel@gmail.com"));
+        vetRepository.save(new Vet("Sara Molina", "Hematología", "https://papelmatic.com/wp-content/uploads/2019/09/papelmatic-higiene-profesional-limpieza-desinfeccion-clinicas-veterinarias.jpg", "saraM", 18191990L, 310987321, "sara@gmail.com"));
+        vetRepository.save(new Vet("Juan Pérez", "Inmunología", "https://universidadeuropea.com/resources/media/images/medicina-veterinaria-800x450.original.jpg", "juanP", 19202001L, 310123987, "juan@gmail.com"));
+        vetRepository.save(new Vet("María Castro", "Patología", "https://papelmatic.com/wp-content/uploads/2019/09/papelmatic-higiene-profesional-limpieza-desinfeccion-clinicas-veterinarias.jpg", "mariaC", 20212112L, 310321654, "maria@gmail.com"));
+        vetRepository.save(new Vet("Felipe Aguilar", "Nutrición", "https://universidadeuropea.com/resources/media/images/medicina-veterinaria-800x450.original.jpg", "felipeA", 21222223L, 310456987, "felipe@gmail.com"));
+        vetRepository.save(new Vet("Mónica Díaz", "Genética", "https://papelmatic.com/wp-content/uploads/2019/09/papelmatic-higiene-profesional-limpieza-desinfeccion-clinicas-veterinarias.jpg", "monicaD", 22232334L, 310789123, "monica@gmail.com"));        
+    }
 }
