@@ -43,21 +43,23 @@ public class Treatment {
 
     }
     
-    public Treatment(String name, List<Medicine> medicines, String description, Vet vet) {
+    // Constructor con todos los campos
+    public Treatment(String name, List<Medicine> medicines, String description, Vet vet, Pet pet) {
         this.name = name;
         this.medicines = medicines;
         this.description = description;
         this.vet = vet;
+        this.pet = pet;
     }
 
-    public Treatment(Long id, String name, List<Medicine> medicines, String description, Vet vet) {
+    public Treatment(Long id, String name, List<Medicine> medicines, String description, Vet vet, Pet pet) {
         this.id = id;
         this.name = name;
         this.medicines = medicines;
         this.description = description;
         this.vet = vet;
+        this.pet = pet;
     }
-
 
 
     public Long getId() {
@@ -100,5 +102,12 @@ public class Treatment {
         this.vet = vet;
     }
 
+    public Pet getPet() {
+        return pet;
+    }
+
+    public void setPet(Pet pet) {
+        this.pet = pet;
+    }
     
 }

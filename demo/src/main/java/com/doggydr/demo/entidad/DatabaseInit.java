@@ -4,12 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Controller;
+import java.util.Arrays;
+import java.util.List;
 
-import com.doggydr.demo.repositorio.AdminRepository;
-import com.doggydr.demo.repositorio.ClientRepository;
-import com.doggydr.demo.repositorio.PetRepository;
-import com.doggydr.demo.repositorio.ServiceRepository;
-import com.doggydr.demo.repositorio.VetRepository;
+import com.doggydr.demo.repositorio.*;
 
 import jakarta.transaction.Transactional;
 
@@ -33,6 +31,12 @@ public class DatabaseInit implements ApplicationRunner {
     @Autowired
     VetRepository vetRepository;
 
+    @Autowired
+    TreatmentRepository treatmentRepository;
+
+    @Autowired
+    MedicineRepository medicineRepository;
+
     @Override
     public void run(ApplicationArguments args) throws Exception {
         // Añadiendo los clientes al repositorio
@@ -52,6 +56,12 @@ public class DatabaseInit implements ApplicationRunner {
 
         // Añadir veterinarios
         createVets();
+
+        // Añador medicinas
+        createMedicine();
+
+        // Añadir tratamientos
+        createTreatment();
     }
 
     public void createClients () {
@@ -237,4 +247,91 @@ public class DatabaseInit implements ApplicationRunner {
         vetRepository.save(new Vet("Felipe Aguilar", "Nutrición", "https://universidadeuropea.com/resources/media/images/medicina-veterinaria-800x450.original.jpg", "felipeA", 21222223L, 310456987, "felipe@gmail.com"));
         vetRepository.save(new Vet("Mónica Díaz", "Genética", "https://papelmatic.com/wp-content/uploads/2019/09/papelmatic-higiene-profesional-limpieza-desinfeccion-clinicas-veterinarias.jpg", "monicaD", 22232334L, 310789123, "monica@gmail.com"));        
     }
+
+    public void createMedicine() {
+        // Medicine(String name, int availableUnits, int soldUnits, Double cost, Double salesPrice)
+
+        medicineRepository.save(new Medicine("Paracetamol", 100, 50, 0.50, 1.00));
+        medicineRepository.save(new Medicine("Ibuprofeno", 200, 120, 0.30, 0.80));
+        medicineRepository.save(new Medicine("Amoxicilina", 150, 80, 0.70, 1.50));
+        medicineRepository.save(new Medicine("Aspirina", 300, 150, 0.25, 0.75));
+        medicineRepository.save(new Medicine("Cetirizina", 50, 30, 0.60, 1.20));
+        medicineRepository.save(new Medicine("Metformina", 250, 140, 0.40, 1.10));
+        medicineRepository.save(new Medicine("Insulina", 100, 90, 2.50, 4.00));
+        medicineRepository.save(new Medicine("Loratadina", 80, 40, 0.55, 1.00));
+        medicineRepository.save(new Medicine("Omeprazol", 180, 100, 0.45, 1.25));
+        medicineRepository.save(new Medicine("Clorfenamina", 120, 60, 0.35, 0.85));
+    }
+
+    public void createTreatment() {
+        // Obtener los medicamentos previamente guardados
+        List<Medicine> medicine1 = Arrays.asList(
+            medicineRepository.findByName("Paracetamol"),
+            medicineRepository.findByName("Ibuprofeno")
+        );
+        
+        List<Medicine> medicine2 = Arrays.asList(
+            medicineRepository.findByName("Amoxicilina"),
+            medicineRepository.findByName("Aspirina")
+        );
+        
+        List<Medicine> medicine3 = Arrays.asList(
+            medicineRepository.findByName("Cetirizina")
+        );
+        
+        List<Medicine> medicine4 = Arrays.asList(
+            medicineRepository.findByName("Metformina"),
+            medicineRepository.findByName("Insulina")
+        );
+        
+        List<Medicine> medicine5 = Arrays.asList(
+            medicineRepository.findByName("Loratadina"),
+            medicineRepository.findByName("Omeprazol")
+        );
+        
+        List<Medicine> medicine6 = Arrays.asList(
+            medicineRepository.findByName("Clorfenamina"),
+            medicineRepository.findByName("Paracetamol")
+        );
+        
+        List<Medicine> medicine7 = Arrays.asList(
+            medicineRepository.findByName("Ibuprofeno"),
+            medicineRepository.findByName("Aspirina")
+        );
+        
+        List<Medicine> medicine8 = Arrays.asList(
+            medicineRepository.findByName("Metformina")
+        );
+        
+        List<Medicine> medicine9 = Arrays.asList(
+            medicineRepository.findByName("Insulina"),
+            medicineRepository.findByName("Loratadina")
+        );
+        
+        List<Medicine> medicine10 = Arrays.asList(
+            medicineRepository.findByName("Omeprazol"),
+            medicineRepository.findByName("Clorfenamina")
+        );
+        
+        Vet vet1 = vetRepository.findById(1L).orElse(null);
+        Vet vet2 = vetRepository.findById(2L).orElse(null);
+        Vet vet3 = vetRepository.findById(3L).orElse(null);
+        Vet vet4 = vetRepository.findById(4L).orElse(null);
+        Vet vet5 = vetRepository.findById(5L).orElse(null);
+
+        Pet pet1 = petRepository.findById(1L).orElse(null);
+
+        // String name, List<Medicine> medicines, String description, Vet vet
+        treatmentRepository.save(new Treatment("Tratamiento de fiebre", medicine1, "Reduce la fiebre en pacientes", vet1, pet1));
+        treatmentRepository.save(new Treatment("Tratamiento de infección", medicine2, "Antibiótico para infecciones", vet2,  petRepository.findById(2L).orElse(null)));
+        treatmentRepository.save(new Treatment("Tratamiento de alergias", medicine3, "Alivia los síntomas de alergias", vet3, petRepository.findById(3L).orElse(null)));
+        treatmentRepository.save(new Treatment("Tratamiento de diabetes", medicine4, "Control diario para diabetes", vet4,  petRepository.findById(4L).orElse(null)));
+        treatmentRepository.save(new Treatment("Tratamiento para resfriado", medicine5, "Reduce los síntomas del resfriado", vet5,  petRepository.findById(5L).orElse(null)));
+        treatmentRepository.save(new Treatment("Tratamiento de dolor", medicine6, "Alivio para dolor leve", vet1,  petRepository.findById(6L).orElse(null)));
+        treatmentRepository.save(new Treatment("Tratamiento de inflamación", medicine7, "Reduce la inflamación", vet2,  petRepository.findById(7L).orElse(null)));
+        treatmentRepository.save(new Treatment("Tratamiento para el control de glucosa", medicine8, "Control de glucosa en sangre", vet3,  petRepository.findById(8L).orElse(null)));
+        treatmentRepository.save(new Treatment("Tratamiento combinado", medicine9, "Controla la diabetes y alergias", vet4,  petRepository.findById(9L).orElse(null)));
+        treatmentRepository.save(new Treatment("Tratamiento para úlceras", medicine10, "Reduce la acidez estomacal", vet5,  petRepository.findById(10L).orElse(null)));
+    }
+
 }
