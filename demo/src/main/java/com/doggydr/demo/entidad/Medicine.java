@@ -1,5 +1,6 @@
 package com.doggydr.demo.entidad;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.Entity;
@@ -21,20 +22,18 @@ public class Medicine {
     private Double salesPrice;
 
     @ManyToMany(mappedBy = "medicines")
-    private List<Treatment> treatments;
+    private List<Treatment> treatments = new ArrayList<>();
 
     
     public Medicine() {
     }
 
-    public Medicine(String name, int availableUnits, int soldUnits, Double cost, Double salesPrice,
-            List<Treatment> treatments) {
+    public Medicine(String name, int availableUnits, int soldUnits, Double cost, Double salesPrice) {
         this.name = name;
         this.availableUnits = availableUnits;
         this.soldUnits = soldUnits;
         this.cost = cost;
         this.salesPrice = salesPrice;
-        this.treatments = treatments;
     }
 
     public Medicine(Long id, String name, int availableUnits, int soldUnits, Double cost, Double salesPrice,
