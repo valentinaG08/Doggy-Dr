@@ -1,6 +1,7 @@
 package com.doggydr.demo.servicio;
 
-import java.util.Collection;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.doggydr.demo.entidad.Client;
@@ -17,7 +18,7 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
-    public Collection<Client> SearchAll() {
+    public List<Client> SearchAll() {
         return clientRepo.findAll();
     }
 

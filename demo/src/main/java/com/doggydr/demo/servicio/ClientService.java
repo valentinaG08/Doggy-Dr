@@ -1,13 +1,13 @@
 package com.doggydr.demo.servicio;
 
-import java.util.Collection;
+import java.util.List;
 
 import com.doggydr.demo.entidad.Client;
 
 public interface ClientService {
     public Client SearchById(Long id);
 
-    public Collection<Client> SearchAll();
+    public List<Client> SearchAll();
 
     public Client SearchByUsername(String username);
 

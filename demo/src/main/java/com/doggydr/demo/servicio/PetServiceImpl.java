@@ -1,6 +1,6 @@
 package com.doggydr.demo.servicio;
 
-import java.util.Collection;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,8 +18,9 @@ public class PetServiceImpl implements PetService{
         return petRepo.findById(id).get();
     }
 
+
     @Override
-    public Collection<Pet> SearchAll() {
+    public List<Pet> SearchAll() {
         return petRepo.findAll();
     }
 
@@ -36,6 +37,12 @@ public class PetServiceImpl implements PetService{
     @Override
     public void add(Pet pet) {
         petRepo.save(pet);
+    }
+
+
+    @Override
+    public List<Pet> SearchByClientId(Long id) {
+        return petRepo.findByClientId(id);
     }
     
 }

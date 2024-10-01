@@ -1,12 +1,15 @@
 package com.doggydr.demo.servicio;
 
-import java.util.Collection;
+import java.util.List;
+
 import com.doggydr.demo.entidad.Pet;
 
 public interface PetService {
     public Pet SearchById(Long id);
 
-    public Collection<Pet> SearchAll();
+    public List<Pet> SearchAll();
+
+    public List<Pet> SearchByClientId(Long id);
 
     public void DeleteById(Long id);
     

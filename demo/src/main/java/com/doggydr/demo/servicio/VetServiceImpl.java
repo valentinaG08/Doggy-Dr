@@ -1,6 +1,6 @@
 package com.doggydr.demo.servicio;
 
-import java.util.Collection;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,7 +18,7 @@ public class VetServiceImpl implements VetService{
     }
 
     @Override
-    public Collection<Vet> SearchAll() {
+    public List<Vet> SearchAll() {
         return vetRepo.findAll();
     }
 
