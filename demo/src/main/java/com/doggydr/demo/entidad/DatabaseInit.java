@@ -6,8 +6,10 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Controller;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import com.doggydr.demo.repositorio.*;
+import com.doggydr.demo.utils.MedicineExcelLoader;
 
 import jakarta.transaction.Transactional;
 
@@ -250,7 +252,16 @@ public class DatabaseInit implements ApplicationRunner {
 
     public void createMedicine() {
         // Medicine(String name, int availableUnits, int soldUnits, Double cost, Double salesPrice)
+        
+        String filePath = "C:\\Personales\\Loretta\\6 Semestre\\Web\\Doggy-Dr\\MEDICAMENTOS_VETERINARIA.xlsx";
 
+        MedicineExcelLoader loader = new MedicineExcelLoader();
+        List<Medicine> medicines = loader.readMedicinesFromExcel(filePath);
+
+        // Guardar las medicinas en la base de datos
+        medicineRepository.saveAll(medicines);
+
+        /* 
         medicineRepository.save(new Medicine("Paracetamol", 100, 50, 0.50, 1.00));
         medicineRepository.save(new Medicine("Ibuprofeno", 200, 120, 0.30, 0.80));
         medicineRepository.save(new Medicine("Amoxicilina", 150, 80, 0.70, 1.50));
@@ -261,58 +272,61 @@ public class DatabaseInit implements ApplicationRunner {
         medicineRepository.save(new Medicine("Loratadina", 80, 40, 0.55, 1.00));
         medicineRepository.save(new Medicine("Omeprazol", 180, 100, 0.45, 1.25));
         medicineRepository.save(new Medicine("Clorfenamina", 120, 60, 0.35, 0.85));
+        */
     }
 
     public void createTreatment() {
         // Obtener los medicamentos previamente guardados
         List<Medicine> medicine1 = Arrays.asList(
-            medicineRepository.findByName("Paracetamol"),
-            medicineRepository.findByName("Ibuprofeno")
+            medicineRepository.findById(1L).orElse(null),
+            medicineRepository.findById(2L).orElse(null)
         );
         
         List<Medicine> medicine2 = Arrays.asList(
-            medicineRepository.findByName("Amoxicilina"),
-            medicineRepository.findByName("Aspirina")
+            medicineRepository.findById(3L).orElse(null),
+            medicineRepository.findById(4L).orElse(null)
         );
         
         List<Medicine> medicine3 = Arrays.asList(
-            medicineRepository.findByName("Cetirizina")
+            medicineRepository.findById(5L).orElse(null),
+            medicineRepository.findById(6L).orElse(null)
         );
         
         List<Medicine> medicine4 = Arrays.asList(
-            medicineRepository.findByName("Metformina"),
-            medicineRepository.findByName("Insulina")
+            medicineRepository.findById(7L).orElse(null),
+            medicineRepository.findById(8L).orElse(null)
         );
-        
+
         List<Medicine> medicine5 = Arrays.asList(
-            medicineRepository.findByName("Loratadina"),
-            medicineRepository.findByName("Omeprazol")
+            medicineRepository.findById(9L).orElse(null),
+            medicineRepository.findById(10L).orElse(null)
         );
-        
+
         List<Medicine> medicine6 = Arrays.asList(
-            medicineRepository.findByName("Clorfenamina"),
-            medicineRepository.findByName("Paracetamol")
+            medicineRepository.findById(11L).orElse(null),
+            medicineRepository.findById(12L).orElse(null)
         );
-        
+
         List<Medicine> medicine7 = Arrays.asList(
-            medicineRepository.findByName("Ibuprofeno"),
-            medicineRepository.findByName("Aspirina")
+            medicineRepository.findById(13L).orElse(null),
+            medicineRepository.findById(14L).orElse(null)
         );
-        
+
         List<Medicine> medicine8 = Arrays.asList(
-            medicineRepository.findByName("Metformina")
+            medicineRepository.findById(15L).orElse(null),
+            medicineRepository.findById(16L).orElse(null)
         );
-        
+
         List<Medicine> medicine9 = Arrays.asList(
-            medicineRepository.findByName("Insulina"),
-            medicineRepository.findByName("Loratadina")
+            medicineRepository.findById(17L).orElse(null),
+            medicineRepository.findById(18L).orElse(null)
         );
-        
+
         List<Medicine> medicine10 = Arrays.asList(
-            medicineRepository.findByName("Omeprazol"),
-            medicineRepository.findByName("Clorfenamina")
+            medicineRepository.findById(19L).orElse(null),
+            medicineRepository.findById(20L).orElse(null)
         );
-        
+
         Vet vet1 = vetRepository.findById(1L).orElse(null);
         Vet vet2 = vetRepository.findById(2L).orElse(null);
         Vet vet3 = vetRepository.findById(3L).orElse(null);
