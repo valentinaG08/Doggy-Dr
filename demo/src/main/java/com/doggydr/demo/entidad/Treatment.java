@@ -2,6 +2,7 @@ package com.doggydr.demo.entidad;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -60,7 +61,6 @@ public class Treatment {
         this.vet = vet;
         this.pet = pet;
     }
-
 
     public Long getId() {
         return id;
