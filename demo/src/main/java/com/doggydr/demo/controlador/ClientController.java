@@ -23,7 +23,7 @@ import com.doggydr.demo.servicio.ClientService;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 
 @RestController
-@RequestMapping("/client")
+@RequestMapping("/owner")
 @CrossOrigin(origins = "http://localhost:4200")
 public class ClientController {
 

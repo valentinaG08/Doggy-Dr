@@ -3,6 +3,8 @@ package com.doggydr.demo.entidad;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -29,6 +31,7 @@ public class Client{
     private long phone;
     private String mail;
 
+    //@JsonIgnore
     @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Pet> pets = new ArrayList<>();
    
@@ -70,11 +73,11 @@ public class Client{
         this.name = name;
     }
 
-    public String getUser() {
+    public String getUsername() {
         return username;
     }
 
-    public void setUser(String username) {
+    public void setUsername(String username) {
         this.username = username;
     }
 

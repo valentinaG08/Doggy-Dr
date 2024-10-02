@@ -1,5 +1,7 @@
 package com.doggydr.demo.entidad;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -14,6 +16,7 @@ public class Payment {
 
     private Double price;
 
+    @JsonIgnore
     @OneToOne
     @JoinColumn(name = "appointment_id", nullable = false)
     private Appointment appointment;

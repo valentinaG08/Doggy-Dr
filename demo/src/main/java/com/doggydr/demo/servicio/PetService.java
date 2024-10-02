@@ -9,7 +9,7 @@ public interface PetService {
 
     public List<Pet> SearchAll();
 
-    public List<Pet> SearchByClientId(Long id);
+    public List<Pet> SearchByOwnerId(Long id);
 
     public void DeleteById(Long id);
     

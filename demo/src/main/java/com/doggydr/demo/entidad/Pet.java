@@ -3,6 +3,8 @@ package com.doggydr.demo.entidad;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -24,13 +26,16 @@ public class Pet {
     private Double peso;
     private String urlImage;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "owner_id")  // Specify the foreign key column
     private Client owner;
     
+    @JsonIgnore
     @OneToMany(mappedBy = "pet", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Treatment> treatments;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "pet", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Appointment> appointments = new ArrayList<>();
 
