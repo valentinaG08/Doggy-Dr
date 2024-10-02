@@ -5,6 +5,8 @@ import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -28,9 +30,11 @@ public class Appointment {
     @JoinColumn(name = "pet_id", nullable = false)
     private Pet pet;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "appointment", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Service> services = new ArrayList<>();
 
+    @JsonIgnore
     @OneToOne(mappedBy = "appointment", cascade = CascadeType.ALL, orphanRemoval = true) 
     private Payment payment;
 

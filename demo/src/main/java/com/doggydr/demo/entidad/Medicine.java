@@ -3,6 +3,8 @@ package com.doggydr.demo.entidad;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -21,6 +23,7 @@ public class Medicine {
     private Double cost;
     private Double salesPrice;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "medicines")
     private List<Treatment> treatments = new ArrayList<>();
 

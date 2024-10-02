@@ -41,8 +41,8 @@ public class PetServiceImpl implements PetService{
 
 
     @Override
-    public List<Pet> SearchByClientId(Long id) {
-        return petRepo.findByClientId(id);
+    public List<Pet> SearchByOwnerId(Long id) {
+        return petRepo.findByOwnerId(id);
     }
     
 }
