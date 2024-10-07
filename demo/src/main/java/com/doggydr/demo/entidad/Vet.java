@@ -32,7 +32,7 @@ public class Vet {
     private long phone;
     private String mail;
 
-    @JsonIgnore
+    //@JsonIgnore
     @OneToMany(mappedBy = "vet", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Treatment> treatments = new ArrayList<>();
 

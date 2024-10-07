@@ -35,6 +35,7 @@ public class Treatment {
 
     private String description;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "vet_id", nullable = false)
     private Vet vet;
