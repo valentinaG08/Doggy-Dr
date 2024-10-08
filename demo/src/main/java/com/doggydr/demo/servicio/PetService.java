@@ -15,5 +15,5 @@ public interface PetService {
     
     public void update(Pet pet);
 
-    public void add(Pet pet);
+    public Pet add(Pet pet);
 } 

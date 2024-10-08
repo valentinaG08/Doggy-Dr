@@ -40,6 +40,7 @@ public class Treatment {
     @JoinColumn(name = "vet_id", nullable = false)
     private Vet vet;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "pet", nullable = false)
     private Pet pet;

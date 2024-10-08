@@ -2,6 +2,8 @@ package com.doggydr.demo.controlador;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -11,15 +13,15 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
 import com.doggydr.demo.entidad.Client;
 import com.doggydr.demo.entidad.Pet;
 import com.doggydr.demo.servicio.ClientService;
 import com.doggydr.demo.servicio.PetService;
-
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
 
 @RestController
 @RequestMapping("/pet")
@@ -55,18 +57,23 @@ public class PetController {
     @GetMapping("/add")
     public String showAddForms(Model model) {
         Pet pet = new Pet();
-        List<Client> clients = (List<Client>) clientService.SearchAll();
+        //List<Client> clients = (List<Client>) clientService.SearchAll();
         model.addAttribute("mascota", pet);
-        model.addAttribute("clients", clients);
+        //model.addAttribute("clients", clients);
         return "createPet";
     }
     
-    @PostMapping("/agregar")
-    public void agregarMascota(@RequestBody Pet pet){
-        /*System.out.println("Peticion");
-        petService.add(pet);*/
-        //return "redirect:/admin/pets";
-        petService.add(pet);
+    @PostMapping("/add")
+    public ResponseEntity<Pet> agregarMascota(@RequestBody Pet pet) {
+        System.out.println("\n\nMascota recibida: " + pet);
+
+        if (pet == null) {
+            return ResponseEntity.badRequest().build(); // Retorna error si pet es null
+        }
+
+        // Si llegamos aquí, significa que pet no es null, así que puedes proceder a guardarla
+        Pet savedPet = petService.add(pet); // Guarda la mascota en la base de datos
+        return ResponseEntity.status(HttpStatus.CREATED).body(savedPet); // Retorna el objeto guardado
     }
 
     @GetMapping("/agendar")
@@ -83,7 +90,7 @@ public class PetController {
         //return "redirect:/admin/pets";
     }
 
-    @GetMapping("/update/{id}")
+   /* @GetMapping("/update/{id}")
     public String mostrarFormularioUpdate(@PathVariable("id") Long identification, Model model) {
         Pet mascota = petService.SearchById(identification);
         List<Client> clients = (List<Client>) clientService.SearchAll();
@@ -92,13 +99,25 @@ public class PetController {
         model.addAttribute("clients", clients);
         
         return "update_pet";
-    }
+    }*/ 
 
     @PutMapping("/update/{id}")
-    public void updatePet(@RequestBody Pet pet) {
-        //pet.setId(identification); // Asegúrate de que el ID de la mascota se establece correctamente
+    public Pet updatePet(@PathVariable("id") Long id, @RequestBody Pet pet) {
+        
+        System.out.println("\n\nRecibido para actualizar: " + pet.getNombre() + " id: " + pet.getId());
+        
+        // Asegúrate de que la mascota exista antes de actualizar
+        if (pet == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Mascota no encontrada");
+        }
+
+        // Guarda la mascota actualizada
         petService.update(pet);
 
-        //return "redirect:/admin/pets";
+        // Devuelve la mascota actualizada
+        return pet;
     }
+
+
+
 }
