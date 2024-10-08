@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -24,7 +25,7 @@ public class Medicine {
     private Double salesPrice;
 
     @JsonIgnore
-    @ManyToMany(mappedBy = "medicines")
+    @ManyToMany(mappedBy = "medicines", cascade = CascadeType.ALL)
     private List<Treatment> treatments = new ArrayList<>();
 
     

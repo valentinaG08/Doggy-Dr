@@ -31,7 +31,7 @@ public class Client{
     private long phone;
     private String mail;
 
-    //@JsonIgnore
+    @JsonIgnore
     @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Pet> pets = new ArrayList<>();
    

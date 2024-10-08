@@ -26,18 +26,18 @@ public class Pet {
     private Double peso;
     private String urlImage;
 
-    @JsonIgnore
+    //@JsonIgnore
     @ManyToOne
     @JoinColumn(name = "owner_id")  // Specify the foreign key column
     private Client owner;
     
-    @JsonIgnore
-    @OneToMany(mappedBy = "pet", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Treatment> treatments;
+    //@JsonIgnore
+    //@OneToMany(mappedBy = "pet", cascade = CascadeType.ALL, orphanRemoval = true)
+    //private List<Treatment> treatments;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "pet", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Appointment> appointments = new ArrayList<>();
+    //@JsonIgnore
+    //@OneToMany(mappedBy = "pet", cascade = CascadeType.ALL, orphanRemoval = true)
+    //private List<Appointment> appointments = new ArrayList<>();
 
     
     public Pet() {
@@ -70,8 +70,8 @@ public class Pet {
         this.peso = peso;
         this.urlImage = urlImage;
         this.owner = owner;
-        this.treatments = treatments;
-        this.appointments = appointments;
+        //this.treatments = treatments;
+        //this.appointments = appointments;
     }
     public String getNombre() {
         return nombre;
@@ -121,7 +121,7 @@ public class Pet {
     public void setOwner(Client owner) {
         this.owner = owner;
     }
-    public List<Treatment> getTreatments() {
+    /*public List<Treatment> getTreatments() {
         return treatments;
     }
     public void setTreatments(List<Treatment> treatments) {
@@ -132,6 +132,6 @@ public class Pet {
     }
     public void setAppointments(List<Appointment> appointments) {
         this.appointments = appointments;
-    }
+    }*/
     
 }
