@@ -17,5 +17,5 @@ public interface ClientService {
     
     public void DeleteById(Long id);
 
-    public void update(Client client);
+    public Client update(Client client);
 }

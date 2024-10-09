@@ -113,5 +113,11 @@ public class Client{
         this.pets = pets;
     }
 
+    @Override
+    public String toString() {
+        return "Client [id=" + id + ", name=" + name + ", username=" + username + ", document=" + document + ", phone="
+                + phone + ", mail=" + mail + ", pets=" + pets + "]";
+    }
+
     
 }

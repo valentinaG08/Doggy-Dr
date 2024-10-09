@@ -8,9 +8,12 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.doggydr.demo.entidad.Client;
 import com.doggydr.demo.entidad.Vet;
 import com.doggydr.demo.servicio.VetService;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -36,4 +39,17 @@ public class VetController {
         //return "redirect:/admin/vets";
     }
 
+    @GetMapping("/add")
+    public String register(Model model){
+        return "clientRegister";
+    }
+
+    @PostMapping("/add")
+    public void register(@RequestBody Vet newVet) {
+        
+        System.out.println("\n\nVeterinario recibido: " + newVet.getName());
+
+        vetService.add(newVet);
+
+    }
 }
