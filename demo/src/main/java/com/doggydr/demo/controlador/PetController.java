@@ -49,6 +49,12 @@ public class PetController {
         return pet;
     }
 
+    @GetMapping("/{id}/owner")
+    public Client showPetOwner(@PathVariable("id") Long identification){
+        Pet pet = petService.SearchById(identification);
+        return pet.getOwner();
+    }
+
     /*@GetMapping("/client/{id}/pets")
     public List<Pet> showClientPets(@PathVariable("id") Long identification){
         return petService.SearchByClientId(identification);

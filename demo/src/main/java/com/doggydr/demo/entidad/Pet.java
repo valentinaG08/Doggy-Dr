@@ -17,19 +17,19 @@ import jakarta.persistence.OneToMany;
 public class Pet {
     @Id
     @GeneratedValue
-    private Long id;
+    public Long id;
 
-    private String nombre;
-    private String raza;
-    private int edad;
-    private String enfermedad;
-    private Double peso;
-    private String urlImage;
+    public String nombre;
+    public String raza;
+    public int edad;
+    public String enfermedad;
+    public Double peso;
+    public String urlImage;
 
-    //@JsonIgnore
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "owner_id")  // Specify the foreign key column
-    private Client owner;
+    public Client owner;
     
     //@JsonIgnore
     //@OneToMany(mappedBy = "pet", cascade = CascadeType.ALL, orphanRemoval = true)

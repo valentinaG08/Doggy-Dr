@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -13,14 +14,15 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.doggydr.demo.entidad.Client;
+import com.doggydr.demo.entidad.Pet;
 import com.doggydr.demo.servicio.ClientService;
-
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
+import com.doggydr.demo.servicio.PetService;
 
 @RestController
 @RequestMapping("/owner")
@@ -29,6 +31,9 @@ public class ClientController {
 
     @Autowired
     ClientService clientService;
+    
+    @Autowired
+    PetService petService;
 
     @GetMapping("/all")
     public List<Client> showClients(Model model){
@@ -43,13 +48,20 @@ public class ClientController {
        // return "client";
        return clientService.SearchById(identification);
     }
-    //Aqui
+
+    @GetMapping("/document/{id}")
+    public Client showInfoClientByDocument(@PathVariable("id") Long identification){
+        //model.addAttribute("client", clientService.SearchById(identification));
+       // return "client";
+       return clientService.SearchByDocument(identification);
+    }
+
     @GetMapping("/{id}/pets")
-    public Client showPetsByClient(@PathVariable("id") Long id) {
+    public List<Pet> showPetsByClient(@PathVariable("id") Long id) {
         Client client = clientService.SearchById(id);
-        /*model.addAttribute("client", client);
-        return "show_client_pets";*/
-        return client;
+        System.out.println("\n\n Pets: " + client.getPets().size());
+
+        return client.getPets();
     }   
 
     @GetMapping("/register")
@@ -66,6 +78,9 @@ public class ClientController {
         }*/
 
         //Client newClient = new Client(name, username, null, Long.parseLong(phone), email);
+        
+        System.out.println("\n\nCliente recibido: " + newClient.getName());
+
         clientService.Register(newClient);
 
         //model.addAttribute("client", newClient);
@@ -85,26 +100,27 @@ public class ClientController {
 
     @GetMapping("/update/{id}")
     public String formularioActualizarUsuario(@PathVariable("id") Long id, Model model) {
-        model.addAttribute("cliente", clientService.SearchById(id));
+        
+        model.addAttribute("Client", clientService.SearchById(id));
         return "update_client";
     }
 
     @PutMapping("/update/{id}")
-    public void actualizarUsuario(@RequestBody Client cliente) {
-        //Client clienteExistente = clientService.SearchById(id);
-    
-        /*if (clienteExistente.getPets() == null) {
-            clienteExistente.setPets(new ArrayList<>());
-        }
+    public ResponseEntity<Client> actualizarUsuario(@PathVariable("id") Long id, @RequestBody Client cliente) {
         
-        cliente.setPets(clienteExistente.getPets());
-    
-        cliente.setId(id);
-        clientService.update(cliente);
-    
-        return "redirect:/admin/clients";*/
-        clientService.update(cliente);
+        if (cliente == null || !cliente.getId().equals(id)) {
+            System.out.println("\n\nCliente recibido: " + cliente.getId());
+            return ResponseEntity.badRequest().build(); // Retorna un error si el ID no coincide
+        }
+
+        List<Pet> pets  = petService.SearchByOwnerId(id);
+
+        cliente.setPets(pets);
+
+        Client updatedClient = clientService.update(cliente);
+        return ResponseEntity.ok(updatedClient);
     }
+
 }
     
 
