@@ -112,7 +112,7 @@ public class PetController {
         
         System.out.println("\n\nRecibido para actualizar: " + pet.getNombre() + " id: " + pet.getId());
         
-        // Asegúrate de que la mascota exista antes de actualizar
+        // Verificar que exista antes de actualizar
         if (pet == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Mascota no encontrada");
         }
