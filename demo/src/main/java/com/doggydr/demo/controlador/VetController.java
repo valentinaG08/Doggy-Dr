@@ -20,7 +20,9 @@ import org.springframework.web.server.ResponseStatusException;
 import com.doggydr.demo.entidad.Client;
 import com.doggydr.demo.entidad.Pet;
 import com.doggydr.demo.entidad.Vet;
+import com.doggydr.demo.entidad.Treatment;
 import com.doggydr.demo.servicio.VetService;
+import com.doggydr.demo.servicio.TreatmentService;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @RestController
@@ -30,6 +32,8 @@ public class VetController {
     
     @Autowired
     VetService vetService;
+    @Autowired
+    TreatmentService treatmentService;
 
     @GetMapping("/all")
     public List<Vet> showVets(Model model) {
@@ -72,20 +76,27 @@ public class VetController {
         vetService.DeleteById(identification);
     }
 
+
     @PutMapping("/update/{id}")
-    public Vet updateVet(@PathVariable("id") Long id, @RequestBody Vet vet){
-        System.out.println("\n\nRecibido para actualizar: " + vet.getName() + " id: " + vet.getId());
+    public ResponseEntity<Vet> updateVet(@PathVariable("id") Long id, @RequestBody Vet vet) {
         
-        //Verificar que exista antes de actualizar
-        if (vet == null) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Veterinario no encontrado");
+        if (vet == null || !vet.getId().equals(id)) {
+            System.out.println("\n\nVeterinario recibido: " + vet.getId());
+            return ResponseEntity.badRequest().build(); // Retorna un error si el ID no coincide
         }
 
-        // Guarda el veterinario actualizada
-        vetService.update(vet);
+        List<Treatment> treatments  = treatmentService.SearchByVetId(id);
 
-        // Devuelve el veterinario actualizada
-        return vet;
+        vet.setTreatments(treatments);
 
+        Vet updatedVet = vetService.update(vet);
+        return ResponseEntity.ok(updatedVet);
     }
+
+    @GetMapping("/{id}/treatments")
+    public List<Treatment> showTreatmentsbyVet(@PathVariable("id") Long id) {
+        Vet vet = vetService.SearchById(id);
+        System.out.println("\n\n Pets: " + vet.getTreatments().size());
+        return vet.getTreatments();
+    }   
 }

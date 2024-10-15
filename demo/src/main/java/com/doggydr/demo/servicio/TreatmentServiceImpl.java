@@ -1,9 +1,12 @@
 package com.doggydr.demo.servicio;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.doggydr.demo.entidad.Pet;
 import com.doggydr.demo.entidad.Treatment;
 import com.doggydr.demo.repositorio.TreatmentRepository;
 
@@ -36,6 +39,11 @@ public class TreatmentServiceImpl implements TreatmentService{
     @Override
     public void update(Treatment treatment) {
         treatmentRepo.save(treatment);
+    }
+
+    @Override
+    public List<Treatment> SearchByVetId(Long id) {
+        return treatmentRepo.findByVetId(id);
     }
 
 }

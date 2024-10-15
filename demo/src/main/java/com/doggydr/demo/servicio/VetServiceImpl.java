@@ -30,8 +30,8 @@ public class VetServiceImpl implements VetService{
     }
 
     @Override
-    public void update(Vet vet) {
-        vetRepo.save(vet);
+    public Vet update(Vet vet) {
+        return vetRepo.save(vet);
     }
 
     @Override

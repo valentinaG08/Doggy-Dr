@@ -12,7 +12,7 @@ public interface VetService {
 
     public void DeleteById(Long id);
     
-    public void update(Vet vet);
+    public Vet update(Vet vet);
 
     public Vet add(Vet vet);
 }
