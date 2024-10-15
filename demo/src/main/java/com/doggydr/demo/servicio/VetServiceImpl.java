@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.doggydr.demo.entidad.Client;
 import com.doggydr.demo.entidad.Pet;
 import com.doggydr.demo.entidad.Vet;
 import com.doggydr.demo.repositorio.VetRepository;
@@ -37,5 +38,10 @@ public class VetServiceImpl implements VetService{
     @Override
     public Vet add(Vet vet) {
         return vetRepo.save(vet);
+    }
+
+    @Override
+    public Vet SearchByDocument(Long document) {
+        return vetRepo.findByDocument(document);
     }
 }

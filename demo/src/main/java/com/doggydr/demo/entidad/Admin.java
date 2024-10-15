@@ -15,7 +15,7 @@ public class Admin {
     private String name;
 
     @Column(unique = true)
-    private String userName;
+    private String username;
 
     private String password;
 
@@ -26,14 +26,14 @@ public class Admin {
     
     public Admin(String name, String userName, String password) {
         this.name = name;
-        this.userName = userName;
+        this.username = userName;
         this.password = password;
     }
 
     public Admin(Long id, String name, String userName, String password) {
         this.id = id;
         this.name = name;
-        this.userName = userName;
+        this.username = userName;
         this.password = password;
     }
 
@@ -54,11 +54,11 @@ public class Admin {
     }
 
     public String getUserName() {
-        return userName;
+        return username;
     }
 
     public void setUserName(String userName) {
-        this.userName = userName;
+        this.username = userName;
     }
 
     public String getPassword() {
