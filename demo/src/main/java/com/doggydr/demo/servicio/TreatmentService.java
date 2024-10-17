@@ -2,9 +2,12 @@ package com.doggydr.demo.servicio;
 
 import java.util.List;
 
+import org.springframework.http.ResponseEntity;
+
 import com.doggydr.demo.entidad.Medicine;
 import com.doggydr.demo.entidad.Pet;
 import com.doggydr.demo.entidad.Treatment;
+import com.doggydr.demo.entidad.TreatmentUsageDTO;
 
 public interface TreatmentService {
     
@@ -27,4 +30,10 @@ public interface TreatmentService {
     public void update(Treatment treatment);
 
     public void add(Treatment treatment);
+
+    public long getTotalTreatments();
+
+    public List<TreatmentUsageDTO> findTop3Treatments();
+
+    public List<TreatmentUsageDTO> findTopMedicines();
 }

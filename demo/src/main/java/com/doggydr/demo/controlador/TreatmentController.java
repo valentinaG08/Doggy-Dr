@@ -22,6 +22,7 @@ import com.doggydr.demo.entidad.Client;
 import com.doggydr.demo.entidad.Medicine;
 import com.doggydr.demo.entidad.Pet;
 import com.doggydr.demo.entidad.Treatment;
+import com.doggydr.demo.entidad.TreatmentUsageDTO;
 import com.doggydr.demo.entidad.Vet;
 import com.doggydr.demo.servicio.PetService;
 import com.doggydr.demo.servicio.TreatmentService;
@@ -106,5 +107,22 @@ public class TreatmentController {
         treatmentService.update(treatment); // Asegúrate de que este método actualiza la mascota en la base de datos
 
         return ResponseEntity.ok(treatment);
+    }
+
+    @GetMapping("/total")
+    public ResponseEntity<Long> getTotalTreatments() {
+        long totalTreatments = treatmentService.getTotalTreatments();
+        return ResponseEntity.ok(totalTreatments);
+    }
+
+    @GetMapping("/top3")
+    public ResponseEntity<List<TreatmentUsageDTO>> getTop3() {
+        List<TreatmentUsageDTO> totalTreatments = treatmentService.findTop3Treatments();
+        return ResponseEntity.ok(totalTreatments);
+    }
+    @GetMapping("/Medicines")
+    public ResponseEntity<List<TreatmentUsageDTO>> getTreatmentsByMedicine() {
+        List<TreatmentUsageDTO> totalTreatments = treatmentService.findTopMedicines();
+        return ResponseEntity.ok(totalTreatments);
     }
 }
