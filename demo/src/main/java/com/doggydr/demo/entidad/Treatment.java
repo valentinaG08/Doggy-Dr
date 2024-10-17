@@ -41,30 +41,34 @@ public class Treatment {
     private Vet vet;
 
     @JsonIgnore
-    @ManyToOne
-    @JoinColumn(name = "pet")
-    private Pet pet;
+    @ManyToMany(cascade = CascadeType.ALL) // Mantener ManyToMany
+    @JoinTable(
+        name = "treatment_pet", // Nombre de la tabla intermedia
+        joinColumns = @JoinColumn(name = "treatment_id"), // Referencia al tratamiento
+        inverseJoinColumns = @JoinColumn(name = "pet_id") // Referencia a la mascota
+    )
+    private List<Pet> pets = new ArrayList<>();
 
     public Treatment(){
 
     }
     
     // Constructor con todos los campos
-    public Treatment(String name, List<Medicine> medicines, String description, Vet vet, Pet pet) {
+    public Treatment(String name, List<Medicine> medicines, String description, Vet vet, List<Pet> pets) {
         this.name = name;
         this.medicines = medicines;
         this.description = description;
         this.vet = vet;
-        this.pet = pet;
+        this.pets = pets;
     }
 
-    public Treatment(Long id, String name, List<Medicine> medicines, String description, Vet vet, Pet pet) {
+    public Treatment(Long id, String name, List<Medicine> medicines, String description, Vet vet, List<Pet> pet) {
         this.id = id;
         this.name = name;
         this.medicines = medicines;
         this.description = description;
         this.vet = vet;
-        this.pet = pet;
+        this.pets = pet;
     }
 
     public Long getId() {
@@ -107,12 +111,12 @@ public class Treatment {
         this.vet = vet;
     }
 
-    public Pet getPet() {
-        return pet;
+    public List<Pet> getPet() {
+        return pets;
     }
 
-    public void setPet(Pet pet) {
-        this.pet = pet;
+    public void setPet(List<Pet> pet) {
+        this.pets = pet;
     }
     
 }
