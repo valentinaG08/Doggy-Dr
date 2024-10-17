@@ -2,6 +2,7 @@ package com.doggydr.demo.servicio;
 
 import java.util.List;
 import com.doggydr.demo.entidad.Medicine;
+import com.doggydr.demo.entidad.Treatment;
 
 public interface MedicineService {
 
@@ -16,4 +17,7 @@ public interface MedicineService {
     public void update(Medicine medicine);
 
     public void add(Medicine medicine);
+
+    public List<Treatment> SearchTreatmentsById(Long id);
+    
 }

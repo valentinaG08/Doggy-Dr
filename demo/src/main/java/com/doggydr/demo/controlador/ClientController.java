@@ -72,19 +72,10 @@ public class ClientController {
     //Falta validación de usuario ya existente
     @PostMapping("/register")
     public void register(@RequestBody Client newClient) {
-        /*if (clientService.SearchByUsername(username) != null) {
-            model.addAttribute("error", "El nombre de usuario ya está en uso");
-            //return "clientRegister";
-        }*/
-
-        //Client newClient = new Client(name, username, null, Long.parseLong(phone), email);
-        
+       
         System.out.println("\n\nCliente recibido: " + newClient.getName());
 
         clientService.Register(newClient);
-
-        //model.addAttribute("client", newClient);
-        //return "client"; 
     }
 
     @GetMapping("/logout")

@@ -20,6 +20,8 @@ import org.springframework.web.server.ResponseStatusException;
 
 import com.doggydr.demo.entidad.Client;
 import com.doggydr.demo.entidad.Pet;
+import com.doggydr.demo.entidad.Treatment;
+import com.doggydr.demo.entidad.Vet;
 import com.doggydr.demo.servicio.ClientService;
 import com.doggydr.demo.servicio.PetService;
 
@@ -54,6 +56,13 @@ public class PetController {
         Pet pet = petService.SearchById(identification);
         return pet.getOwner();
     }
+
+    @GetMapping("/{id}/treatments")
+    public List<Treatment> showTreatmentsbyPet(@PathVariable("id") Long id) {
+        Pet pet = petService.SearchById(id);
+        System.out.println("\n\n Treatments: " + pet.getTreatments().size());
+        return pet.getTreatments();
+    } 
 
     /*@GetMapping("/client/{id}/pets")
     public List<Pet> showClientPets(@PathVariable("id") Long identification){

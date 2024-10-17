@@ -96,8 +96,16 @@ public class VetController {
     @GetMapping("/{id}/treatments")
     public List<Treatment> showTreatmentsbyVet(@PathVariable("id") Long id) {
         Vet vet = vetService.SearchById(id);
-        System.out.println("\n\n Pets: " + vet.getTreatments().size());
+        System.out.println("\n\n Treatments: " + vet.getTreatments().size());
         return vet.getTreatments();
+    } 
+
+    @GetMapping("/{id}/pets")
+    public List<Pet> showPetsbyVet(@PathVariable("id") Long id) {
+        List<Pet> pets = vetService.findPetsByVetId(id);
+        System.out.println("\n\n Pets: " + pets.size());
+
+        return pets;
     } 
     
     @GetMapping("/active")
