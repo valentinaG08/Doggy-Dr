@@ -1,11 +1,12 @@
 package com.doggydr.demo.servicio;
 
-import java.util.Collection;
 import java.util.List;
 
+import org.apache.commons.math3.stat.descriptive.moment.Mean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.doggydr.demo.entidad.Medicine;
 import com.doggydr.demo.entidad.Pet;
 import com.doggydr.demo.entidad.Treatment;
 import com.doggydr.demo.repositorio.TreatmentRepository;
@@ -22,7 +23,7 @@ public class TreatmentServiceImpl implements TreatmentService{
     }
 
     @Override
-    public Collection<Treatment> SearchAll() {
+    public List<Treatment> SearchAll() {
         return treatmentRepo.findAll();
     }
 
@@ -42,12 +43,27 @@ public class TreatmentServiceImpl implements TreatmentService{
     }
 
     @Override
+    public void add(Treatment treatment) {
+        treatmentRepo.save(treatment);
+    }
+
+    @Override
     public List<Treatment> SearchByVetId(Long id) {
         return treatmentRepo.findByVetId(id);
     }
 
     @Override
     public List<Treatment> SearchByPetId(Long id) {
-        return treatmentRepo.findByPetId(id);
+        return treatmentRepo.findByPetsId(id);
+    }
+
+    @Override
+    public List<Pet> SearchPetsById(Long id) {
+        return treatmentRepo.findPetsById(id);
+    }
+
+    @Override
+    public List<Medicine> SearchMedicinesById(Long id) {
+        return treatmentRepo.findMedicinesById(id);
     }
 }
