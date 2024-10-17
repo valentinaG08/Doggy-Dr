@@ -14,6 +14,8 @@ import com.doggydr.demo.entidad.Treatment;
 import com.doggydr.demo.entidad.Vet;
 import com.doggydr.demo.repositorio.VetRepository;
 
+import io.micrometer.observation.annotation.Observed;
+
 @Service
 public class VetServiceImpl implements VetService{
     @Autowired
@@ -73,5 +75,15 @@ public class VetServiceImpl implements VetService{
             pets.addAll(treatment.getPets());
         }
         return pets;
+    }
+
+    @Override
+    public long findAllActives() {
+        return vetRepo.countByStatusTrue();
+    }
+
+    @Override
+    public long findAllInactives() {
+        return vetRepo.countByStatusFalse();
     }
 }

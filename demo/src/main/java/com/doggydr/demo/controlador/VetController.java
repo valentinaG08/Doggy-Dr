@@ -98,5 +98,17 @@ public class VetController {
         Vet vet = vetService.SearchById(id);
         System.out.println("\n\n Pets: " + vet.getTreatments().size());
         return vet.getTreatments();
-    }   
+    } 
+    
+    @GetMapping("/active")
+    public ResponseEntity<Long> getActiveVeterinarians() {
+        long totalVets = vetService.findAllActives();
+        return ResponseEntity.ok(totalVets);
+    }
+
+    @GetMapping("/inactive")
+    public ResponseEntity<Long> getInactiveVeterinarians() {
+        long totalVets = vetService.findAllInactives();
+        return ResponseEntity.ok(totalVets);
+    }
 }

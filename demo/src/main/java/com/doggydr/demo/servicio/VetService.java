@@ -31,4 +31,8 @@ public interface VetService {
     
     // Método para obtener mascotas asociadas a un veterinario
     List<Pet> findPetsByVetId(Long vetId);
+
+    public long findAllActives();
+
+    public long findAllInactives();
 }
