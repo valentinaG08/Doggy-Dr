@@ -15,6 +15,8 @@ public interface TreatmentService {
     public Treatment SearchByName(String name);
     
     public List<Treatment> SearchByVetId(Long id);
+
+    public List<Treatment> SearchByPetId(Long id);
     
     public void DeleteById(Long id);
 

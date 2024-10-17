@@ -42,7 +42,7 @@ public class Treatment {
 
     @JsonIgnore
     @ManyToOne
-    @JoinColumn(name = "pet", nullable = false)
+    @JoinColumn(name = "pet")
     private Pet pet;
 
     public Treatment(){

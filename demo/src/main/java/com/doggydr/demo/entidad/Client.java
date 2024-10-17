@@ -32,7 +32,7 @@ public class Client{
     private String mail;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "owner", cascade = CascadeType.REMOVE, orphanRemoval = true)
     private List<Pet> pets = new ArrayList<>();
    
     public Client(){
