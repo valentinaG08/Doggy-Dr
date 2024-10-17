@@ -46,4 +46,8 @@ public class TreatmentServiceImpl implements TreatmentService{
         return treatmentRepo.findByVetId(id);
     }
 
+    @Override
+    public List<Treatment> SearchByPetId(Long id) {
+        return treatmentRepo.findByPetId(id);
+    }
 }

@@ -12,4 +12,5 @@ import com.doggydr.demo.entidad.Treatment;
 public interface TreatmentRepository extends JpaRepository<Treatment, Long>{
     Treatment findByName(String name);
     List<Treatment> findByVetId(Long id);
+    List<Treatment> findByPetId(Long id);
 }

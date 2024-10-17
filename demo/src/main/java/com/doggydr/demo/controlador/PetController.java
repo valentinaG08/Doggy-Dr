@@ -71,7 +71,7 @@ public class PetController {
     
     @PostMapping("/add")
     public ResponseEntity<Pet> agregarMascota(@RequestBody Pet pet) {
-        System.out.println("\n\nMascota recibida: " + pet);
+        System.out.println("\n\nMascota recibida: " + pet.getNombre());
 
         if (pet == null) {
             return ResponseEntity.badRequest().build(); // Retorna error si pet es null
@@ -82,6 +82,29 @@ public class PetController {
         return ResponseEntity.status(HttpStatus.CREATED).body(savedPet); // Retorna el objeto guardado
     }
 
+    @PutMapping("/{petId}/associate/{ownerId}")
+    public ResponseEntity<Pet> associatePetWithOwner(@PathVariable Long petId, @PathVariable Long ownerId) {
+        System.out.println("\n\nPet ID: " + petId);
+        System.out.println("\n\nOwner ID: " + ownerId);
+
+        Pet pet = petService.SearchById(petId);
+        if (pet == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null); // Mascota no encontrada
+        }
+
+        Client owner = clientService.SearchById(ownerId);
+        if (owner == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null); // Cliente no encontrado
+        }
+
+        // Asociar el dueño a la mascota
+        pet.setOwner(owner);
+        petService.update(pet); // Asegúrate de que este método actualiza la mascota en la base de datos
+
+        return ResponseEntity.ok(pet);
+    }
+
+
     @GetMapping("/agendar")
     public String showAgendaForms(Model model) {
         Pet pet = new Pet(null, null, 0, null, null, null);
@@ -91,21 +114,15 @@ public class PetController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public void borrarMascota(@PathVariable("id") Long identification){
-        petService.DeleteById(identification);
-        //return "redirect:/admin/pets";
+    public ResponseEntity<Void> borrarMascota(@PathVariable("id") Long id) {
+        try {
+            petService.DeleteById(id);
+            return ResponseEntity.noContent().build(); // Devuelve un 204 No Content si se elimina correctamente
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build(); // Maneja cualquier error
+        }
     }
 
-   /* @GetMapping("/update/{id}")
-    public String mostrarFormularioUpdate(@PathVariable("id") Long identification, Model model) {
-        Pet mascota = petService.SearchById(identification);
-        List<Client> clients = (List<Client>) clientService.SearchAll();
-        
-        model.addAttribute("mascota", mascota);
-        model.addAttribute("clients", clients);
-        
-        return "update_pet";
-    }*/ 
 
     @PutMapping("/update/{id}")
     public Pet updatePet(@PathVariable("id") Long id, @RequestBody Pet pet) {
