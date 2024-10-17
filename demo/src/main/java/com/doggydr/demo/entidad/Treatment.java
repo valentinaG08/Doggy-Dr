@@ -3,6 +3,7 @@ package com.doggydr.demo.entidad;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.time.LocalDate;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -37,7 +38,7 @@ public class Treatment {
 
     @JsonIgnore
     @ManyToOne
-    @JoinColumn(name = "vet_id", nullable = false)
+    @JoinColumn(name = "vet_id")
     private Vet vet;
 
     @JsonIgnore
@@ -48,6 +49,11 @@ public class Treatment {
         inverseJoinColumns = @JoinColumn(name = "pet_id") // Referencia a la mascota
     )
     private List<Pet> pets = new ArrayList<>();
+
+    private LocalDate startDate; // Fecha de inicio
+
+    private LocalDate endDate; // Fecha de fin
+
 
     public Treatment(){
 
@@ -60,6 +66,8 @@ public class Treatment {
         this.description = description;
         this.vet = vet;
         this.pets = pets;
+        this.startDate = LocalDate.now();
+        this.endDate = LocalDate.of(2024, 12, 10);
     }
 
     public Treatment(Long id, String name, List<Medicine> medicines, String description, Vet vet, List<Pet> pet) {
@@ -69,6 +77,8 @@ public class Treatment {
         this.description = description;
         this.vet = vet;
         this.pets = pet;
+        this.startDate = LocalDate.now();
+        this.endDate = LocalDate.of(2024, 12, 10);
     }
 
     public Long getId() {
@@ -117,6 +127,30 @@ public class Treatment {
 
     public void setPet(List<Pet> pet) {
         this.pets = pet;
+    }
+
+    public List<Pet> getPets() {
+        return pets;
+    }
+
+    public void setPets(List<Pet> pets) {
+        this.pets = pets;
+    }
+
+    public LocalDate getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(LocalDate startDate) {
+        this.startDate = startDate;
+    }
+
+    public LocalDate getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(LocalDate endDate) {
+        this.endDate = endDate;
     }
     
 }
