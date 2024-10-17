@@ -1,15 +1,20 @@
 package com.doggydr.demo.servicio;
 
 import java.util.List;
+import java.util.ArrayList;
 
+import org.hibernate.engine.internal.Collections;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.doggydr.demo.entidad.Admin;
 import com.doggydr.demo.entidad.Client;
 import com.doggydr.demo.entidad.Pet;
+import com.doggydr.demo.entidad.Treatment;
 import com.doggydr.demo.entidad.Vet;
 import com.doggydr.demo.repositorio.VetRepository;
+
+import io.micrometer.observation.annotation.Observed;
 
 @Service
 public class VetServiceImpl implements VetService{
@@ -54,6 +59,22 @@ public class VetServiceImpl implements VetService{
     @Override
     public Vet findByPassword(String password) {
         return vetRepo.findByPassword(password);
+    }
+
+    @Override
+    public List<Treatment> findTreatmentsByVetId(Long vetId) {
+        Vet vet = SearchById(vetId);
+        return vet != null ? vet.getTreatments() : null;
+    }
+
+    @Override
+    public List<Pet> findPetsByVetId(Long vetId) {
+        List<Treatment> treatments = findTreatmentsByVetId(vetId);
+        List<Pet> pets = new ArrayList<>();
+        for (Treatment treatment : treatments) {
+            pets.addAll(treatment.getPets());
+        }
+        return pets;
     }
 
     @Override
