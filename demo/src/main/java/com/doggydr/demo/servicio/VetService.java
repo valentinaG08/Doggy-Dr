@@ -23,4 +23,8 @@ public interface VetService {
     public Vet findByUserName(String username);
 
     public Vet findByPassword(String password);
+
+    public long findAllActives();
+
+    public long findAllInactives();
 }

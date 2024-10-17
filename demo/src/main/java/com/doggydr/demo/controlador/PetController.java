@@ -68,6 +68,8 @@ public class PetController {
         //model.addAttribute("clients", clients);
         return "createPet";
     }
+
+    
     
     @PostMapping("/add")
     public ResponseEntity<Pet> agregarMascota(@RequestBody Pet pet) {

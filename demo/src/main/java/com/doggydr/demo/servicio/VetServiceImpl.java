@@ -55,4 +55,14 @@ public class VetServiceImpl implements VetService{
     public Vet findByPassword(String password) {
         return vetRepo.findByPassword(password);
     }
+
+    @Override
+    public long findAllActives() {
+        return vetRepo.countByStatusTrue();
+    }
+
+    @Override
+    public long findAllInactives() {
+        return vetRepo.countByStatusFalse();
+    }
 }

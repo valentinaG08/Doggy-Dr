@@ -34,6 +34,7 @@ public class Vet {
 
     private long phone;
     private String mail;
+    private Boolean status;
 
     //@JsonIgnore
     @OneToMany(mappedBy = "vet", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -44,7 +45,7 @@ public class Vet {
         
     }
     
-    public Vet(String name, String specialty, String urlImage, String userName, Long document, long phone, String mail, String password) {
+    public Vet(String name, String specialty, String urlImage, String userName, Long document, long phone, String mail, String password, Boolean status) {
         this.name = name;
         this.specialty = specialty;
         this.urlImage = urlImage;
@@ -53,10 +54,11 @@ public class Vet {
         this.password = password;
         this.phone = phone;
         this.mail = mail;
+        this.status = status;
     }
 
     public Vet(String name, String specialty, String urlImage,String userName, Long document, long phone, String mail,
-            List<Treatment> treatments, String password) {
+            List<Treatment> treatments, String password, Boolean status) {
         this.name = name;
         this.specialty = specialty;
         this.urlImage = urlImage;
@@ -65,10 +67,11 @@ public class Vet {
         this.password = password;
         this.phone = phone;
         this.mail = mail;
+        this.status = status;
         this.treatments = treatments;
     }
     public Vet(Long id, String name, String specialty, String urlImage,String password, String userName, Long document, long phone,
-            String mail, List<Treatment> treatments) {
+            String mail, List<Treatment> treatments, Boolean status) {
         this.id = id;
         this.name = name;
         this.specialty = specialty;
@@ -78,6 +81,7 @@ public class Vet {
         this.document = document;
         this.phone = phone;
         this.mail = mail;
+        this.status = status;
         this.treatments = treatments;
     }
 
@@ -150,4 +154,11 @@ public class Vet {
         this.treatments = treatments;
     }
 
+
+    public Boolean getStatus() {
+        return status;
+    }
+    public void setStatus(Boolean status) {
+        this.status = status;
+    }
 }
