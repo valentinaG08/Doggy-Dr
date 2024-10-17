@@ -27,6 +27,9 @@ public class Vet {
     private String userName;
 
     @Column(unique = true)
+    private String password;
+
+    @Column(unique = true)
     private Long document;
 
     private long phone;
@@ -41,34 +44,37 @@ public class Vet {
         
     }
     
-    public Vet(String name, String specialty, String urlImage, String userName, Long document, long phone, String mail) {
+    public Vet(String name, String specialty, String urlImage, String userName, Long document, long phone, String mail, String password) {
         this.name = name;
         this.specialty = specialty;
         this.urlImage = urlImage;
         this.userName = userName;
         this.document = document;
+        this.password = password;
         this.phone = phone;
         this.mail = mail;
     }
 
-    public Vet(String name, String specialty, String urlImage, String userName, Long document, long phone, String mail,
-            List<Treatment> treatments) {
+    public Vet(String name, String specialty, String urlImage,String userName, Long document, long phone, String mail,
+            List<Treatment> treatments, String password) {
         this.name = name;
         this.specialty = specialty;
         this.urlImage = urlImage;
         this.userName = userName;
         this.document = document;
+        this.password = password;
         this.phone = phone;
         this.mail = mail;
         this.treatments = treatments;
     }
-    public Vet(Long id, String name, String specialty, String urlImage, String userName, Long document, long phone,
+    public Vet(Long id, String name, String specialty, String urlImage,String password, String userName, Long document, long phone,
             String mail, List<Treatment> treatments) {
         this.id = id;
         this.name = name;
         this.specialty = specialty;
         this.urlImage = urlImage;
         this.userName = userName;
+        this.password = password;
         this.document = document;
         this.phone = phone;
         this.mail = mail;
@@ -100,6 +106,13 @@ public class Vet {
     }
     public void setDocument(Long document) {
         this.document = document;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+    public void setPassword(String password) {
+        this.password = password;
     }
     public long getPhone() {
         return phone;

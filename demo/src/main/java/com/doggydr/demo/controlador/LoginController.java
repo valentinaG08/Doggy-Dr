@@ -76,20 +76,24 @@ public class LoginController {
     }
 
     @PostMapping("/vet")
-    public ResponseEntity<?> vetlogin(@RequestBody Long document) {
-        System.out.println("\n\n\nDocumento:"+ document);
+    public ResponseEntity<?> vetlogin(@RequestBody LoginRequest loginRequest) {
+        String username = loginRequest.getUsername();
+        String password = loginRequest.getPassword();
 
-        // Buscar cliente en la base de datos por su documento
-        Vet vet = vetService.SearchByDocument(document);
+        System.out.println("\n\n\n Username: " + username + " Password: " + password);
+
+        // Buscar admin en la base de datos por su usuario y contraseña
+        Vet vet = vetService.findByUserName(username);
+        Vet vet2 = vetService.findByPassword(password);
         
-        // Si el cliente se encuentra, devolver información del cliente en JSON
-        if (vet != null) {
+        // Si el admin se encuentra, devolver información del admin en JSON
+        if (vet != null && vet2 != null) {
             return ResponseEntity.ok(vet);
         } else {
             // Si no se encuentra, devolver un error con un código de estado 404
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Veterinario no encontrado");
-        }
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Veterinario no encontrado");
     }
+}
 
     @GetMapping("/admin")
     public String adminlogin(Model model){
