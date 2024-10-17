@@ -141,6 +141,10 @@ public class PetController {
         return pet;
     }
 
-
+    @GetMapping("/total")
+    public ResponseEntity<Long> getTotalPets() {
+        long totalPets = petService.getTotalPets();
+        return ResponseEntity.ok(totalPets);
+    }
 
 }
