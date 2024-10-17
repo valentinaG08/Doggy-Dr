@@ -63,11 +63,11 @@ public class VetController {
         System.out.println("\n\nVeterinario recibido: " + vet);
 
         if (vet == null) {
-            return ResponseEntity.badRequest().build(); // Retorna error si pet es null
+            return ResponseEntity.badRequest().build(); // Retorna error si vet es null
         }
 
-        // Si llegamos aquí, significa que pet no es null, así que puede proceder a guardarla
-        Vet savedVet = vetService.add(vet); // Guarda la mascota en la base de datos
+        // Si llegamos aquí, significa que vet no es null, así que puede proceder a guardarla
+        Vet savedVet = vetService.add(vet); // Guarda el veterinario en la base de datos
         return ResponseEntity.status(HttpStatus.CREATED).body(savedVet); // Retorna el objeto guardado
     }
 

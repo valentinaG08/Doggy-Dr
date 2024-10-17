@@ -69,5 +69,11 @@ public class PetServiceImpl implements PetService{
     public List<Pet> SearchByOwnerId(Long id) {
         return petRepo.findByOwnerId(id);
     }
+
+    @Override
+    public long getTotalPets() {
+        //System.out.println("Mascotas: "+petRepo.count());
+        return petRepo.count();
+    }
     
 }

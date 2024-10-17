@@ -9,4 +9,5 @@ import com.doggydr.demo.entidad.Pet;
 @Repository
 public interface PetRepository extends JpaRepository<Pet, Long>{
     List<Pet> findByOwnerId(Long id);
+    long count();
 }
