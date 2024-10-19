@@ -44,4 +44,9 @@ public class MedicineServiceImpl implements MedicineService{
     public void add(Medicine medicine) {
         medicineRepository.save(medicine);
     }
+
+    @Override
+    public List<Treatment> SearchTreatmentsById(Long id) {
+        return medicineRepository.findTreatmentsById(id);
+    }
 }

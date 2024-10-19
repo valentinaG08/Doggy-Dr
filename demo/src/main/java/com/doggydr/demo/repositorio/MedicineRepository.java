@@ -14,5 +14,6 @@ import com.doggydr.demo.entidad.Treatment;
 public interface MedicineRepository extends JpaRepository<Medicine, Long>{
     Medicine findByName(String name);
     
+    List<Treatment> findTreatmentsById(Long id);
 }
 

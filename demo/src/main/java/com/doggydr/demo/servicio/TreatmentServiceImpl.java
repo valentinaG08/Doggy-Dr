@@ -15,6 +15,8 @@ import com.doggydr.demo.entidad.Treatment;
 import com.doggydr.demo.entidad.TreatmentUsageDTO;
 import com.doggydr.demo.repositorio.TreatmentRepository;
 import com.doggydr.demo.repositorio.TreatmentPetRepository;
+import com.doggydr.demo.repositorio.MedicineRepository;
+import com.doggydr.demo.repositorio.PetRepository;
 import com.doggydr.demo.repositorio.TreatmentMedicineRepository;
 
 @Service
@@ -24,6 +26,12 @@ public class TreatmentServiceImpl implements TreatmentService{
     TreatmentRepository treatmentRepo;
 
     @Autowired
+    PetRepository petRepo;
+
+    @Autowired
+    MedicineRepository medicineRepo;
+
+    @Autowired
     TreatmentPetRepository treatmentPetRepo;
 
     @Autowired
@@ -31,7 +39,9 @@ public class TreatmentServiceImpl implements TreatmentService{
 
     @Override
     public Treatment SearchById(Long id) {
-        return treatmentRepo.findById(id).get();
+        return treatmentRepo.findById(id).orElseThrow(() -> 
+            new RuntimeException("Tratamiento no encontrado con ID: " + id)
+        );
     }
 
     @Override
@@ -55,8 +65,8 @@ public class TreatmentServiceImpl implements TreatmentService{
     }
 
     @Override
-    public void add(Treatment treatment) {
-        treatmentRepo.save(treatment);
+    public Treatment add(Treatment treatment) {
+        return treatmentRepo.save(treatment);
     }
 
     @Override
@@ -111,6 +121,30 @@ public class TreatmentServiceImpl implements TreatmentService{
         }
 
         return topTreatments;
+    }
+
+    @Override
+    public void associatePetWithTreatment(Long treatmentId, Long petId) {
+        Treatment treatment = treatmentRepo.findById(treatmentId)
+                .orElseThrow(() -> new RuntimeException("Tratamiento no encontrado con ID: " + treatmentId));
+
+        Pet pet = petRepo.findById(petId)
+                .orElseThrow(() -> new RuntimeException("Mascota no encontrada con ID: " + petId));
+
+        treatment.getPets().add(pet); // Asocia la mascota al tratamiento
+        treatmentRepo.save(treatment); // Guarda los cambios
+    }
+
+    @Override
+    public void associateMedicineWithTreatment(Long treatmentId, Long medicineId) {
+        Treatment treatment = treatmentRepo.findById(treatmentId)
+                .orElseThrow(() -> new RuntimeException("Tratamiento no encontrado con ID: " + treatmentId));
+
+        Medicine medicine = medicineRepo.findById(medicineId)
+                .orElseThrow(() -> new RuntimeException("Medicamento no encontrado con ID: " + medicineId));
+
+        treatment.getMedicines().add(medicine); // Asocia el medicamento al tratamiento
+        treatmentRepo.save(treatment); // Guarda los cambios
     }
 
 }

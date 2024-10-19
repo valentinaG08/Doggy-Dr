@@ -35,39 +35,39 @@ public class TreatmentController {
 
     @Autowired
     PetService petService;
-    
+
     @Autowired
     VetService vetService;
 
     @Autowired
     TreatmentService treatmentService;
-    
+
     @GetMapping("/all")
-    public List<Treatment> showTreatments(Model model){
+    public List<Treatment> showTreatments(Model model) {
         return treatmentService.SearchAll();
     }
 
     @GetMapping("/{id}")
-    public Treatment showTrearment(@PathVariable("id") Long id){
+    public Treatment showTrearment(@PathVariable("id") Long id) {
         return treatmentService.SearchById(id);
     }
 
     @GetMapping("/{id}/pets")
-    public List<Pet> showTrearmentTreatments(@PathVariable("id") Long id){
+    public List<Pet> showTrearmentTreatments(@PathVariable("id") Long id) {
         return treatmentService.SearchPetsById(id);
     }
 
     @GetMapping("/{id}/medicines")
-    public List<Medicine> showTrearmentMedicines(@PathVariable("id") Long id){
+    public List<Medicine> showTrearmentMedicines(@PathVariable("id") Long id) {
         return treatmentService.SearchMedicinesById(id);
     }
 
     @PostMapping("/add")
-    public void add(@RequestBody Treatment newTreatment) {
-        System.out.println("\n\nTreatment recibido: " + newTreatment.getName());
-
-        treatmentService.add(newTreatment);
+    public ResponseEntity<Treatment> addTreatment(@RequestBody Treatment treatment) {
+        Treatment savedTreatment = treatmentService.add(treatment); // Guarda el tratamiento
+        return ResponseEntity.ok(savedTreatment); // Devuelve el tratamiento guardado
     }
+
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Void> deleteTreatment(@PathVariable("id") Long id) {
@@ -79,34 +79,59 @@ public class TreatmentController {
         }
     }
 
-
     @GetMapping("/{id}/vet")
-    public Vet showPetOwner(@PathVariable("id") Long id){
+    public Vet showPetOwner(@PathVariable("id") Long id) {
         Treatment treatment = treatmentService.SearchById(id);
+
+        System.out.println("\n\nTreatment ID: " + treatment.getVet().getId());
+
         return treatment.getVet();
     }
 
-
     @PutMapping("/{treatmentId}/associate/{vetId}")
-    public ResponseEntity<Treatment> associatePetWithOwner(@PathVariable Long treatmentId, @PathVariable Long vetId) {
-        System.out.println("\n\nPet ID: " + treatmentId);
-        System.out.println("\n\nOwner ID: " + vetId);
+    public ResponseEntity<Treatment> associateTreatmentWithVet(@PathVariable Long treatmentId, @PathVariable Long vetId) {
+        System.out.println("\n\nTreatment ID: " + treatmentId);
+        System.out.println("\n\nVet ID: " + vetId);
 
-        Vet vet = vetService.SearchById(treatmentId);
+        // Buscar el veterinario por vetId
+        Vet vet = vetService.SearchById(vetId);
         if (vet == null) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null); // Vet no encontrada
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null); // Veterinario no encontrado
         }
+        System.out.println("\n\nVet Name: " + vet.getName());
 
-        Treatment treatment = treatmentService.SearchById(vetId);
+        // Buscar el tratamiento por treatmentId
+        Treatment treatment = treatmentService.SearchById(treatmentId);
         if (treatment == null) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null); // tratamiento no encontrado
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null); // Tratamiento no encontrado
         }
+        System.out.println("\n\nTreatment name: " + treatment.getName());
 
-        // Asociar el dueño a la mascota
+        // Asociar el veterinario al tratamiento
         treatment.setVet(vet);
-        treatmentService.update(treatment); // Asegúrate de que este método actualiza la mascota en la base de datos
+        treatmentService.update(treatment); // Asegúrate de que este método actualiza el tratamiento en la base de datos
 
         return ResponseEntity.ok(treatment);
+    }
+
+    @PutMapping("/{treatmentId}/associate/medicine/{medicineId}")
+    public ResponseEntity<?> associateMedicineWithTreatment(@PathVariable Long treatmentId, @PathVariable Long medicineId) {
+        try {
+            treatmentService.associateMedicineWithTreatment(treatmentId, medicineId);
+            return ResponseEntity.ok("Medicamento asociado correctamente al tratamiento.");
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        }
+    }
+
+    @PutMapping("/{treatmentId}/associate/pet/{petId}")
+    public ResponseEntity<?> associatePetWithTreatment(@PathVariable Long treatmentId, @PathVariable Long petId) {
+        try {
+            treatmentService.associatePetWithTreatment(treatmentId, petId);
+            return ResponseEntity.ok("Mascota asociada correctamente al tratamiento.");
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        }
     }
 
     @GetMapping("/total")

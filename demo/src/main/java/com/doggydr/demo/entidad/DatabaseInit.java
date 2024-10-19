@@ -255,7 +255,7 @@ public class DatabaseInit implements ApplicationRunner {
     public void createMedicine() {
         // Medicine(String name, int availableUnits, int soldUnits, Double cost, Double salesPrice)
         
-        String filePath = "C:\\Users\\DANIEL\\Documents\\Semestres\\Sexto semestre\\Desarrollo Web\\Proyecto\\Doggy-Dr\\MEDICAMENTOS_VETERINARIA.xlsx";
+        String filePath = "C:\\Personales\\Loretta\\6 Semestre\\Web\\Doggy-Dr\\MEDICAMENTOS_VETERINARIA.xlsx";
 
         MedicineExcelLoader loader = new MedicineExcelLoader();
         List<Medicine> medicines = loader.readMedicinesFromExcel(filePath);

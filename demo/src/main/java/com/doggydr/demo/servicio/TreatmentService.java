@@ -29,11 +29,15 @@ public interface TreatmentService {
 
     public void update(Treatment treatment);
 
-    public void add(Treatment treatment);
+    public Treatment add(Treatment treatment);
 
     public long getTotalTreatments();
 
     public List<TreatmentUsageDTO> findTop3Treatments();
 
     public List<TreatmentUsageDTO> findTopMedicines();
+
+    public void associatePetWithTreatment(Long treatmentId, Long petId);
+        
+    public void associateMedicineWithTreatment(Long treatmentId, Long medicineId);
 }
