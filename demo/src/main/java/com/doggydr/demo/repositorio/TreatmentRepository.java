@@ -17,6 +17,8 @@ public interface TreatmentRepository extends JpaRepository<Treatment, Long>{
     List<Treatment> findByVetId(Long id);
 
     List<Treatment> findByPetsId(Long id);
+
+    long count();
     
     @Query("SELECT p FROM Pet p JOIN p.treatments t WHERE t.id = :treatmentId")
     List<Pet> findPetsById(@Param("treatmentId") Long treatmentId);

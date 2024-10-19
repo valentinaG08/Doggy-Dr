@@ -3410,3 +3410,31 @@ org.h2.jdbc.JdbcSQLNonTransientException: The object is already closed [90007-23
 org.h2.jdbc.JdbcSQLNonTransientException: The object is already closed [90007-230]
 2024-10-17 12:32:13.394283-05:00 jdbc[4]: exception
 org.h2.jdbc.JdbcSQLNonTransientException: The object is already closed [90007-230]
+2024-10-17 14:39:16.735139-05:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "[*]""SELECT TREATMENT_ID, COUNT(*) AS num_uses "" +\000d\000a                   ""FROM PetTreatments "" +\000d\000a                   ""GROUP BY TREATMENT_ID "" +\000d\000a                   ""ORDER BY num_uses DESC "" +\000d\000a                   ""LIMIT 3"", nativeQuery = true"
+Syntax error in SQL statement "[*]""SELECT TREATMENT_ID, COUNT(*) AS num_uses "" +\000d\000a                   ""FROM PetTreatments "" +\000d\000a                   ""GROUP BY TREATMENT_ID "" +\000d\000a                   ""ORDER BY num_uses DESC "" +\000d\000a                   ""LIMIT 3"", nativeQuery = true"; SQL statement:
+"SELECT TREATMENT_ID, COUNT(*) AS num_uses " +
+                   "FROM PetTreatments " +
+                   "GROUP BY TREATMENT_ID " +
+                   "ORDER BY num_uses DESC " +
+                   "LIMIT 3", nativeQuery = true [42000-230]
+2024-10-17 14:40:24.282696-05:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "SELECT TREATMENT_ID, COUNT(*) AS num_uses [*]"" +\000d\000a    ""FROM PetTreatments "" +\000d\000a    ""GROUP BY TREATMENT_ID "" +\000d\000a    ""ORDER BY num_uses DESC "" +\000d\000a    ""LIMIT 3"
+Syntax error in SQL statement "SELECT TREATMENT_ID, COUNT(*) AS num_uses [*]"" +\000d\000a    ""FROM PetTreatments "" +\000d\000a    ""GROUP BY TREATMENT_ID "" +\000d\000a    ""ORDER BY num_uses DESC "" +\000d\000a    ""LIMIT 3"; SQL statement:
+SELECT TREATMENT_ID, COUNT(*) AS num_uses " +
+    "FROM PetTreatments " +
+    "GROUP BY TREATMENT_ID " +
+    "ORDER BY num_uses DESC " +
+    "LIMIT 3 [42000-230]
+2024-10-17 14:40:32.919375-05:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "SELECT TREATMENT_ID, COUNT(*) AS num_uses "" +\000d\000a    ""FROM PetTreatments "" +\000d\000a    ""GROUP BY TREATMENT_ID "" +\000d\000a    ""ORDER BY num_uses DESC "" +\000d\000a    ""LIMIT 3[*]"""
+Syntax error in SQL statement "SELECT TREATMENT_ID, COUNT(*) AS num_uses "" +\000d\000a    ""FROM PetTreatments "" +\000d\000a    ""GROUP BY TREATMENT_ID "" +\000d\000a    ""ORDER BY num_uses DESC "" +\000d\000a    ""LIMIT 3[*]"""; SQL statement:
+SELECT TREATMENT_ID, COUNT(*) AS num_uses " +
+    "FROM PetTreatments " +
+    "GROUP BY TREATMENT_ID " +
+    "ORDER BY num_uses DESC " +
+    "LIMIT 3" [42000-230]
+2024-10-17 14:41:15.900516-05:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "SELECT TREATMENT_ID, COUNT(*) AS num_uses "" + ""FROM PetTreatments "" + ""GROUP BY TREATMENT_ID "" + ""ORDER BY num_uses DESC "" + ""LIMIT 3[*]"""
+Syntax error in SQL statement "SELECT TREATMENT_ID, COUNT(*) AS num_uses "" + ""FROM PetTreatments "" + ""GROUP BY TREATMENT_ID "" + ""ORDER BY num_uses DESC "" + ""LIMIT 3[*]"""; SQL statement:
+SELECT TREATMENT_ID, COUNT(*) AS num_uses " + "FROM PetTreatments " + "GROUP BY TREATMENT_ID " + "ORDER BY num_uses DESC " + "LIMIT 3" [42000-230]
