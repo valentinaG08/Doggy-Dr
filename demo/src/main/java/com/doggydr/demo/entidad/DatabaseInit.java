@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.io.File;
 
 import com.doggydr.demo.repositorio.*;
 import com.doggydr.demo.utils.MedicineExcelLoader;
@@ -255,10 +256,43 @@ public class DatabaseInit implements ApplicationRunner {
     public void createMedicine() {
         // Medicine(String name, int availableUnits, int soldUnits, Double cost, Double salesPrice)
         
-        String filePath = "C:\\Personales\\Loretta\\6 Semestre\\Web\\Doggy-Dr\\MEDICAMENTOS_VETERINARIA.xlsx";
-
+        String filePathLorena = "C:\\Personales\\Loretta\\6 Semestre\\Web\\Doggy-Dr\\MEDICAMENTOS_VETERINARIA.xlsx";
+        String filePathDaniel = "C:\\Users\\DANIEL\\Documents\\Semestres\\Sexto semestre\\Desarrollo Web\\Proyecto\\Doggy-DrA\\MEDICAMENTOS_VETERINARIA.xlsx";
+        String filePathNico = "C:\\Users\\Nico\\Desktop\\Web\\Doggy-Dr\\MEDICAMENTOS_VETERINARIA.xlsx";
+        String filePathValentina = "C:\\Users\\Valentina\\Web\\Doggy-Dr\\MEDICAMENTOS_VETERINARIA.xlsx";
         MedicineExcelLoader loader = new MedicineExcelLoader();
-        List<Medicine> medicines = loader.readMedicinesFromExcel(filePath);
+        
+        File file = new File(filePathLorena);
+        
+        // Primero intenta con la ruta de Lorena
+        if (file.exists()) {
+            System.out.println("Archivo encontrado en la ruta de Lorena.");
+        } else {
+            System.out.println("Archivo no encontrado en la ruta de Lorena. Intentando con la ruta de Daniel...");
+            file = new File(filePathDaniel);
+            if (file.exists()) {
+                System.out.println("Archivo encontrado en la ruta de Daniel.");
+            } else {
+                System.out.println("Archivo no encontrado en la ruta de Daniel. Intentando con la ruta de Nico...");
+                file = new File(filePathNico);
+                if (file.exists()) {
+                    System.out.println("Archivo encontrado en la ruta de Nico.");
+                } else {
+                    System.out.println("Archivo no encontrado en la ruta de Nico. Intentando con la ruta de Valentina...");
+                    file = new File(filePathValentina);
+                    if (file.exists()) {
+                        System.out.println("Archivo encontrado en la ruta de Valentina.");
+                    } else {
+                        System.out.println("Archivo no encontrado en ninguna ruta.");
+                        // Maneja el caso en que ninguna ruta funcione
+                        return;
+                    }
+                }
+            }
+        }
+        
+        // Si el archivo existe en alguna de las rutas, se cargan los datos
+        List<Medicine> medicines = loader.readMedicinesFromExcel(file.getAbsolutePath());
 
         // Guardar las medicinas en la base de datos
         medicineRepository.saveAll(medicines);
