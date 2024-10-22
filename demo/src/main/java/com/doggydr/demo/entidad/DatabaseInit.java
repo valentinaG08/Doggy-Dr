@@ -16,8 +16,7 @@ import com.doggydr.demo.utils.MedicineExcelLoader;
 import jakarta.transaction.Transactional;
 
 @Controller
-@Transactional
-@Profile("Default")
+@Transactional //@Profile("Default")
 public class DatabaseInit implements ApplicationRunner {
 
 
