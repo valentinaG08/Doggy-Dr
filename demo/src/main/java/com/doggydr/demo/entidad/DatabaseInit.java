@@ -3,6 +3,7 @@ package com.doggydr.demo.entidad;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Controller;
 import java.util.Arrays;
 import java.util.List;
@@ -15,6 +16,7 @@ import jakarta.transaction.Transactional;
 
 @Controller
 @Transactional
+@Profile("Default")
 public class DatabaseInit implements ApplicationRunner {
 
 
