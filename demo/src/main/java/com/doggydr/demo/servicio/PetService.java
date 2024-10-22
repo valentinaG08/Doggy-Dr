@@ -18,4 +18,6 @@ public interface PetService {
     public Pet add(Pet pet);
 
     public long getTotalPets();
+
+    public long findAllActives();
 } 

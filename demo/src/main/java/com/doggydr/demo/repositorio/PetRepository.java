@@ -10,4 +10,5 @@ import com.doggydr.demo.entidad.Pet;
 public interface PetRepository extends JpaRepository<Pet, Long>{
     List<Pet> findByOwnerId(Long id);
     long count();
+    long countByStatusTrue();
 }

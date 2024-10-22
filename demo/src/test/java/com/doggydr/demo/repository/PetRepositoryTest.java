@@ -36,13 +36,13 @@ public class PetRepositoryTest {
         clientRepository.save(new Client("Luis Sanchez", "luiss", 1234567895L, 3001234565L, "luiss@mail.com"));
         
         // Pets
-        petRepository.save(new Pet("Perry", "French Poodle", 2, "Otitis", 3.4, "https://wowmascota.com/wp-content/uploads/2019/05/pets-753464_640.jpg", clientRepository.findById(1L).get()));
-        petRepository.save(new Pet("Lucas", "Labrador", 2, "Gastroenteritis", 6.1, "https://es.mypet.com/wp-content/uploads/sites/23/2021/03/ThinkstockPhotos-590080440.jpg?w=1024", clientRepository.findById(2L).get()));
-        petRepository.save(new Pet("Zeus", "Golden Retriever", 2, "Displasia de cadera", 7.4, "https://t2.ea.ltmcdn.com/es/posts/1/6/2/10_curiosidades_del_golden_retriever_21261_orig.jpg", clientRepository.findById(3L).get()));
-        petRepository.save(new Pet("Luna", "Siberian Husky", 3, "Sarna", 10.5, "https://www.dogster.com/wp-content/uploads/2024/01/siberian-husky-dog-standing-on-grass_Edalin-Photograhy_Shutterstock.jpeg", clientRepository.findById(4L).get()));
-        petRepository.save(new Pet("Bella", "Bulldog Francés", 1, "Alergias", 7.0, "https://t2.ea.ltmcdn.com/es/posts/4/4/2/cuantos_cachorros_puede_tener_un_bulldog_frances_24244_orig.jpg", clientRepository.findById(5L).get()));
-        petRepository.save(new Pet("Max", "Pastor Alemán", 4, "Dermatitis", 11.0, "https://i.blogs.es/a9adf6/kinshuk-bose-pkgzncmkdxo-unsplash/450_1000.jpeg", clientRepository.findById(1L).get()));
-        petRepository.save(new Pet("Charlie", "Bulldog Francés", 2, "Problemas respiratorios", 12.8, "https://4.bp.blogspot.com/-atz5WgBqCys/VxasgrWNCEI/AAAAAAAB9Ao/ClzFWC9eEEcOWygTP4l3m0rEXVpRTX1ggCKgB/s1600/Perritos-cachorros-162.jpg", clientRepository.findById(2L).get()));
+        petRepository.save(new Pet("Perry", "French Poodle", 2, "Otitis", 3.4, "https://wowmascota.com/wp-content/uploads/2019/05/pets-753464_640.jpg", clientRepository.findById(1L).get(), true));
+        petRepository.save(new Pet("Lucas", "Labrador", 2, "Gastroenteritis", 6.1, "https://es.mypet.com/wp-content/uploads/sites/23/2021/03/ThinkstockPhotos-590080440.jpg?w=1024", clientRepository.findById(2L).get(), true));
+        petRepository.save(new Pet("Zeus", "Golden Retriever", 2, "Displasia de cadera", 7.4, "https://t2.ea.ltmcdn.com/es/posts/1/6/2/10_curiosidades_del_golden_retriever_21261_orig.jpg", clientRepository.findById(3L).get(), true));
+        petRepository.save(new Pet("Luna", "Siberian Husky", 3, "Sarna", 10.5, "https://www.dogster.com/wp-content/uploads/2024/01/siberian-husky-dog-standing-on-grass_Edalin-Photograhy_Shutterstock.jpeg", clientRepository.findById(4L).get(), true));
+        petRepository.save(new Pet("Bella", "Bulldog Francés", 1, "Alergias", 7.0, "https://t2.ea.ltmcdn.com/es/posts/4/4/2/cuantos_cachorros_puede_tener_un_bulldog_frances_24244_orig.jpg", clientRepository.findById(5L).get(), true));
+        petRepository.save(new Pet("Max", "Pastor Alemán", 4, "Dermatitis", 11.0, "https://i.blogs.es/a9adf6/kinshuk-bose-pkgzncmkdxo-unsplash/450_1000.jpeg", clientRepository.findById(1L).get(), true));
+        petRepository.save(new Pet("Charlie", "Bulldog Francés", 2, "Problemas respiratorios", 12.8, "https://4.bp.blogspot.com/-atz5WgBqCys/VxasgrWNCEI/AAAAAAAB9Ao/ClzFWC9eEEcOWygTP4l3m0rEXVpRTX1ggCKgB/s1600/Perritos-cachorros-162.jpg", clientRepository.findById(2L).get(), true));
         
         
         
@@ -50,7 +50,7 @@ public class PetRepositoryTest {
 
     @Test
     public void PetRepository_save_Pet() {
-        Pet pet = new Pet("Lucas", "Golden", 3, "Otitis", 10.3, "https://tse4.mm.bing.net/th?id=OIP.cxN-GoALtVN6Cq0D5aHZNgHaEo&pid=Api&P=0&h=180");
+        Pet pet = new Pet("Lucas", "Golden", 3, "Otitis", 10.3, "https://tse4.mm.bing.net/th?id=OIP.cxN-GoALtVN6Cq0D5aHZNgHaEo&pid=Api&P=0&h=180",true);
 
         Pet savedPet = petRepository.save(pet);
 
@@ -60,8 +60,8 @@ public class PetRepositoryTest {
     @Test
     public void PetRepository_FindAll_NotEmpyList(){
         // arrange
-        Pet pet1 = new Pet("Lucas", "Golden", 3, "Otitis", 10.3, "https://tse4.mm.bing.net/th?id=OIP.cxN-GoALtVN6Cq0D5aHZNgHaEo&pid=Api&P=0&h=180");
-        Pet pet2 = new Pet("Paco", "Chiguagua", 2, "Otitis", 5.3, "https://st.depositphotos.com/1009420/1286/i/450/depositphotos_12868536-stock-photo-chihuahua.jpg");
+        Pet pet1 = new Pet("Lucas", "Golden", 3, "Otitis", 10.3, "https://tse4.mm.bing.net/th?id=OIP.cxN-GoALtVN6Cq0D5aHZNgHaEo&pid=Api&P=0&h=180", true);
+        Pet pet2 = new Pet("Paco", "Chiguagua", 2, "Otitis", 5.3, "https://st.depositphotos.com/1009420/1286/i/450/depositphotos_12868536-stock-photo-chihuahua.jpg", true);
 
         // act
         petRepository.save(pet1);

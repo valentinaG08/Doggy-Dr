@@ -75,5 +75,10 @@ public class PetServiceImpl implements PetService{
         //System.out.println("Mascotas: "+petRepo.count());
         return petRepo.count();
     }
+
+    @Override
+    public long findAllActives() {
+        return petRepo.countByStatusTrue();
+    }
     
 }

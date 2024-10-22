@@ -27,6 +27,7 @@ public class Pet {
     public String enfermedad;
     public Double peso;
     public String urlImage;
+    public Boolean status;
 
     @JsonIgnore
     @ManyToOne
@@ -45,15 +46,16 @@ public class Pet {
     public Pet() {
 
     }
-    public Pet(String nombre, String raza, int edad, String enfermedad, Double peso, String url) {
+    public Pet(String nombre, String raza, int edad, String enfermedad, Double peso, String url,  Boolean status) {
         this.nombre = nombre;
         this.raza = raza;
         this.edad = edad;
         this.enfermedad = enfermedad;
         this.peso = peso;
         this.urlImage = url;
+        this.status = status;
     }
-    public Pet(String nombre, String raza, int edad, String enfermedad, Double peso, String url, Client owner) {
+    public Pet(String nombre, String raza, int edad, String enfermedad, Double peso, String url, Client owner,  Boolean status) {
         this.nombre = nombre;
         this.raza = raza;
         this.edad = edad;
@@ -61,9 +63,10 @@ public class Pet {
         this.peso = peso;
         this.urlImage = url;
         this.owner = owner;
+        this.status = status;
     }
     public Pet(Long id, String nombre, String raza, int edad, String enfermedad, Double peso, String urlImage,
-            Client owner, List<Treatment> treatments, List<Appointment> appointments) {
+            Client owner, List<Treatment> treatments, List<Appointment> appointments,  Boolean status) {
         this.id = id;
         this.nombre = nombre;
         this.raza = raza;
@@ -72,6 +75,7 @@ public class Pet {
         this.peso = peso;
         this.urlImage = urlImage;
         this.owner = owner;
+        this.status = status;
         //this.treatments = treatments;
         //this.appointments = appointments;
     }
@@ -128,6 +132,13 @@ public class Pet {
     }
     public void setTreatments(List<Treatment> treatments) {
         this.treatments = treatments;
+    }
+
+    public Boolean getStatus() {
+        return status;
+    }
+    public void setStatus(Boolean status) {
+        this.status = status;
     }
     /*public List<Appointment> getAppointments() {
         return appointments;

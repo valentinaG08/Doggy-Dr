@@ -118,7 +118,7 @@ public class PetController {
 
     @GetMapping("/agendar")
     public String showAgendaForms(Model model) {
-        Pet pet = new Pet(null, null, 0, null, null, null);
+        Pet pet = new Pet(null, null, 0, null, null, null,false);
         model.addAttribute("mascota", pet);
         System.out.println("Peticion a agendar");
         return "agendarCita";
@@ -156,6 +156,12 @@ public class PetController {
     public ResponseEntity<Long> getTotalPets() {
         long totalPets = petService.getTotalPets();
         return ResponseEntity.ok(totalPets);
+    }
+
+    @GetMapping("/active")
+    public ResponseEntity<Long> getActivePets() {
+        long totalVets = petService.findAllActives();
+        return ResponseEntity.ok(totalVets);
     }
 
 }
