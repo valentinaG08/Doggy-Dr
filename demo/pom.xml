@@ -83,6 +83,13 @@
 			<version>4.1.2</version>
 		</dependency>
 
+		<!-- Dependencias para test -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+
 	</dependencies>
 
 	<build>
