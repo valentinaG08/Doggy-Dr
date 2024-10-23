@@ -40,4 +40,10 @@ public interface TreatmentService {
     public void associatePetWithTreatment(Long treatmentId, Long petId);
         
     public void associateMedicineWithTreatment(Long treatmentId, Long medicineId);
+
+    public long getTotalSales();
+
+    public long getTotalGains();
+
+    public long getMedicineIdByTreatmentId(Long id);
 }

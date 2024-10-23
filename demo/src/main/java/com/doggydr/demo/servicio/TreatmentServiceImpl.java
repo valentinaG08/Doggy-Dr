@@ -147,6 +147,19 @@ public class TreatmentServiceImpl implements TreatmentService{
         treatmentRepo.save(treatment); // Guarda los cambios
     }
 
+    @Override
+    public long getMedicineIdByTreatmentId(Long id) {
+        return treatmentMedicineRepo.findMedicineIdByTreatmentId(id);
+    }
+    @Override
+    public long getTotalSales(){
+        return treatmentMedicineRepo.findTotalSales();
+    }
+
+    @Override
+    public long getTotalGains(){
+        return treatmentMedicineRepo.findTotalGains();
+    }
 }
 
 
