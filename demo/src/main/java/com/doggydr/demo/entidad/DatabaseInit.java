@@ -16,7 +16,8 @@ import com.doggydr.demo.utils.MedicineExcelLoader;
 import jakarta.transaction.Transactional;
 
 @Controller
-@Transactional //@Profile("Default")
+@Transactional
+//@Profile("Default")
 public class DatabaseInit implements ApplicationRunner {
 
 
@@ -258,7 +259,7 @@ public class DatabaseInit implements ApplicationRunner {
         // Medicine(String name, int availableUnits, int soldUnits, Double cost, Double salesPrice)
         
         String filePathLorena = "C:\\Personales\\Loretta\\6 Semestre\\Web\\Doggy-Dr\\MEDICAMENTOS_VETERINARIA.xlsx";
-        String filePathDaniel = "C:\\Users\\DANIEL\\Documents\\Semestres\\Sexto semestre\\Desarrollo Web\\Proyecto\\Doggy-DrA\\MEDICAMENTOS_VETERINARIA.xlsx";
+        String filePathDaniel = "C:\\Users\\DANIEL\\Documents\\Semestres\\Sexto semestre\\Desarrollo Web\\Proyecto\\Doggy-Dr\\MEDICAMENTOS_VETERINARIA.xlsx";
         String filePathNico = "C:\\Users\\Nicolas\\Documents\\UNIVERSIDAD\\SEXTO SEMESTRE\\Desarrollo Web Grupo 2\\Doggy-Dr-main\\MEDICAMENTOS_VETERINARIA.xlsx";        
         String filePathValentina = "C:\\Users\\Valentina\\Web\\Doggy-Dr\\MEDICAMENTOS_VETERINARIA.xlsx";
     
