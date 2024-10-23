@@ -20,4 +20,5 @@ public interface MedicineService {
 
     public List<Treatment> SearchTreatmentsById(Long id);
     
+    public void soldMedicine(Long id);
 }

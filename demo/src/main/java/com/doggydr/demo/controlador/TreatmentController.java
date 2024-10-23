@@ -150,4 +150,16 @@ public class TreatmentController {
         List<TreatmentUsageDTO> totalTreatments = treatmentService.findTopMedicines();
         return ResponseEntity.ok(totalTreatments);
     }
+
+    @GetMapping("/totalSales")
+    public ResponseEntity<Long> getTotalSales() {
+        long totalSales = treatmentService.getTotalSales();
+        return ResponseEntity.ok(totalSales);
+    }
+
+    @GetMapping("/totalGains")
+    public ResponseEntity<Long> getTotalGains() {
+        long totalGains = treatmentService.getTotalGains();
+        return ResponseEntity.ok(totalGains);
+    }
 }

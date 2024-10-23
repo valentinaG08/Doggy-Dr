@@ -49,4 +49,13 @@ public class MedicineServiceImpl implements MedicineService{
     public List<Treatment> SearchTreatmentsById(Long id) {
         return medicineRepository.findTreatmentsById(id);
     }
+
+    @Override
+    public void soldMedicine(Long id) {
+        Medicine medicine = medicineRepository.findById(id)
+        .orElseThrow(() -> new RuntimeException("Medicamento no encontrado con ID: " + id));
+        medicine.setAvailableUnits(medicine.getAvailableUnits() - 1);
+        medicine.setSoldUnits(medicine.getSoldUnits() + 1);
+        medicineRepository.save(medicine);
+    }
 }
