@@ -1,6 +1,9 @@
 package com.doggydr.demo.controlador;
 
 import java.util.List;
+
+import org.apache.catalina.connector.Response;
+import org.etsi.uri.x01903.v13.ResponderIDType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -43,50 +46,78 @@ public class TreatmentController {
     TreatmentService treatmentService;
 
     @GetMapping("/all")
-    public List<Treatment> showTreatments(Model model) {
-        return treatmentService.SearchAll();
+    public ResponseEntity<List<Treatment>>showTreatments(Model model) {
+        
+        List<Treatment> lista =  treatmentService.SearchAll();
+
+        ResponseEntity<List<Treatment>> response = new ResponseEntity<>(lista, HttpStatus.OK);
+        return response;
     }
 
     @GetMapping("/{id}")
-    public Treatment showTrearment(@PathVariable("id") Long id) {
-        return treatmentService.SearchById(id);
+    public ResponseEntity<Treatment> showTrearment(@PathVariable("id") Long id) {
+        
+        Treatment treatment = treatmentService.SearchById(id);
+
+        if (treatment == null){
+            return new ResponseEntity<Treatment>(treatment, HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<Treatment>(treatment, HttpStatus.OK);
     }
 
     @GetMapping("/{id}/pets")
-    public List<Pet> showTrearmentTreatments(@PathVariable("id") Long id) {
-        return treatmentService.SearchPetsById(id);
+    public ResponseEntity<List<Pet>> showTrearmentTreatments(@PathVariable("id") Long id) {
+        List<Pet> pets = treatmentService.SearchPetsById(id);
+        if (pets == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(pets, HttpStatus.OK);
     }
 
     @GetMapping("/{id}/medicines")
-    public List<Medicine> showTrearmentMedicines(@PathVariable("id") Long id) {
-        return treatmentService.SearchMedicinesById(id);
+    public ResponseEntity<List<Medicine>> showTrearmentMedicines(@PathVariable("id") Long id) {
+        List<Medicine> medicines = treatmentService.SearchMedicinesById(id);
+        if (medicines == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(medicines, HttpStatus.OK);
     }
-
     @PostMapping("/add")
     public ResponseEntity<Treatment> addTreatment(@RequestBody Treatment treatment) {
         Treatment savedTreatment = treatmentService.add(treatment); // Guarda el tratamiento
-        return ResponseEntity.ok(savedTreatment); // Devuelve el tratamiento guardado
+        if (savedTreatment == null) {
+            return new ResponseEntity<Treatment>(savedTreatment, HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<Treatment>(savedTreatment, HttpStatus.CREATED); // Devuelve el tratamiento guardado
     }
 
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<Void> deleteTreatment(@PathVariable("id") Long id) {
-        try {
+    public ResponseEntity<String> deleteTreatment(@PathVariable("id") Long id) {
             treatmentService.DeleteById(id);
-            return ResponseEntity.noContent().build(); // Devuelve un 204 No Content si se elimina correctamente
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build(); // Maneja cualquier error
-        }
+        return new ResponseEntity<>("ELIMINADO", HttpStatus.NO_CONTENT);
     }
 
     @GetMapping("/{id}/vet")
-    public Vet showPetOwner(@PathVariable("id") Long id) {
-        Treatment treatment = treatmentService.SearchById(id);
+public ResponseEntity<Vet> showPetOwner(@PathVariable("id") Long id) {
+    Treatment treatment = treatmentService.SearchById(id);
 
-        System.out.println("\n\nTreatment ID: " + treatment.getVet().getId());
-
-        return treatment.getVet();
+    // Verificar si el tratamiento existe
+    if (treatment == null) {
+        return new ResponseEntity<Vet>(HttpStatus.NOT_FOUND);
     }
+
+    // Verificar si el tratamiento tiene un veterinario asociado
+    if (treatment.getVet() == null) {
+        return new ResponseEntity<Vet>(HttpStatus.NOT_FOUND);
+    }
+
+    System.out.println("\n\nVet ID: " + treatment.getVet().getId());
+
+    // Retornar el veterinario asociado al tratamiento
+    return new ResponseEntity<Vet>(treatment.getVet(), HttpStatus.OK);
+}
+
 
     @PutMapping("/{treatmentId}/associate/{vetId}")
     public ResponseEntity<Treatment> associateTreatmentWithVet(@PathVariable Long treatmentId, @PathVariable Long vetId) {
@@ -111,7 +142,7 @@ public class TreatmentController {
         treatment.setVet(vet);
         treatmentService.update(treatment); // Asegúrate de que este método actualiza el tratamiento en la base de datos
 
-        return ResponseEntity.ok(treatment);
+        return new ResponseEntity<Treatment>(treatment, HttpStatus.OK);
     }
 
     @PutMapping("/{treatmentId}/associate/medicine/{medicineId}")
@@ -135,31 +166,33 @@ public class TreatmentController {
     }
 
     @GetMapping("/total")
-    public ResponseEntity<Long> getTotalTreatments() {
-        long totalTreatments = treatmentService.getTotalTreatments();
-        return ResponseEntity.ok(totalTreatments);
-    }
+public ResponseEntity<Long> getTotalTreatments() {
+    long totalTreatments = treatmentService.getTotalTreatments();
+    return new ResponseEntity<Long>(totalTreatments, HttpStatus.OK);
+}
 
-    @GetMapping("/top3")
-    public ResponseEntity<List<TreatmentUsageDTO>> getTop3() {
-        List<TreatmentUsageDTO> totalTreatments = treatmentService.findTop3Treatments();
-        return ResponseEntity.ok(totalTreatments);
-    }
-    @GetMapping("/Medicines")
-    public ResponseEntity<List<TreatmentUsageDTO>> getTreatmentsByMedicine() {
-        List<TreatmentUsageDTO> totalTreatments = treatmentService.findTopMedicines();
-        return ResponseEntity.ok(totalTreatments);
-    }
+@GetMapping("/top3")
+public ResponseEntity<List<TreatmentUsageDTO>> getTop3() {
+    List<TreatmentUsageDTO> totalTreatments = treatmentService.findTop3Treatments();
+    return new ResponseEntity<List<TreatmentUsageDTO>>(totalTreatments, HttpStatus.OK);
+}
 
-    @GetMapping("/totalSales")
-    public ResponseEntity<Long> getTotalSales() {
-        long totalSales = treatmentService.getTotalSales();
-        return ResponseEntity.ok(totalSales);
-    }
+@GetMapping("/Medicines")
+public ResponseEntity<List<TreatmentUsageDTO>> getTreatmentsByMedicine() {
+    List<TreatmentUsageDTO> totalTreatments = treatmentService.findTopMedicines();
+    return new ResponseEntity<List<TreatmentUsageDTO>>(totalTreatments, HttpStatus.OK); 
+}
 
-    @GetMapping("/totalGains")
-    public ResponseEntity<Long> getTotalGains() {
-        long totalGains = treatmentService.getTotalGains();
-        return ResponseEntity.ok(totalGains);
-    }
+@GetMapping("/totalSales")
+public ResponseEntity<Long> getTotalSales() {
+    long totalSales = treatmentService.getTotalSales();
+    return new ResponseEntity<Long>(totalSales, HttpStatus.OK);
+}
+
+@GetMapping("/totalGains")
+public ResponseEntity<Long> getTotalGains() {
+    long totalGains = treatmentService.getTotalGains();
+    return new ResponseEntity<Long>(totalGains, HttpStatus.OK);
+}
+
 }

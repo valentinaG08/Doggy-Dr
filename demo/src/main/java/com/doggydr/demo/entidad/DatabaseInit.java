@@ -260,7 +260,7 @@ public class DatabaseInit implements ApplicationRunner {
         
         String filePathLorena = "C:\\Personales\\Loretta\\6 Semestre\\Web\\Doggy-Dr\\MEDICAMENTOS_VETERINARIA.xlsx";
         String filePathDaniel = "C:\\Users\\DANIEL\\Documents\\Semestres\\Sexto semestre\\Desarrollo Web\\Proyecto\\Doggy-Dr\\MEDICAMENTOS_VETERINARIA.xlsx";
-        String filePathNico = "C:\\Users\\Nicolas\\Documents\\UNIVERSIDAD\\SEXTO SEMESTRE\\Desarrollo Web Grupo 2\\Doggy-Dr-main\\MEDICAMENTOS_VETERINARIA.xlsx";        
+        String filePathNico = "C:\\Users\\nikit\\Documents\\UNIVERSIDAD\\Sexto Semestre\\Web Grupo 2\\Doggy-Dr\\MEDICAMENTOS_VETERINARIA.xlsx";        
         String filePathValentina = "C:\\Users\\Valentina\\Web\\Doggy-Dr\\MEDICAMENTOS_VETERINARIA.xlsx";
     
         MedicineExcelLoader loader = new MedicineExcelLoader();
