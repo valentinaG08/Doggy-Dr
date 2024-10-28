@@ -103,6 +103,7 @@ public class TreatmentServiceTestNaive {
         Assertions.assertThat(newTreatment).isNotNull();
     }
 
+
     @Test
     public void TreatmentService_SearchAll_TreatmentList() {
 
