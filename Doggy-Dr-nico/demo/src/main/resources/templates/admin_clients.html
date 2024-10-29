@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mascotas de Cliente</title>
+    <link rel="stylesheet" href="../css/baseStyle.css"/>
+    <link rel="stylesheet" href="../css/allClientsStyles.css">
+
+
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header class="header">
+        <a href="/index">
+            <div class="header-left">
+                <img src="../images/logo.png" alt="logo">
+                <h1>Doggy Dr.</h1>
+            </div>
+        </a>
+        <div class="header-center">
+            <ul class="index-menu">
+                <li class="menu-elem" id="ME1">  
+                    <a href="/admin/clients">
+                        Clientes
+                    </a>
+                </li>
+                <li class="menu-elem" id="ME1">  
+                    <a href="/admin/pets">
+                        Mascotas
+                    </a>
+                </li>
+                <li class="menu-elem" id="ME1">  
+                    <a href="/admin/vets">
+                        Veterinarios
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="header-right">
+            <button class="button">Chatea con nosotros</button>
+            <a href="/client/logout"><ion-icon name="log-out-outline"></ion-icon></a>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="outer-container">
+            <div class="title-button-container">
+                <h1>Clientes</h1>
+        
+                <div class="button-container">
+                    <a type="button" class="btn" th:href="@{/client/register}">+</a>
+                </div>    
+            </div>
+        </div>   
+
+        <div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Usuario</th>
+                        <th>Correo</th>
+                        <th>Teléfono</th>
+                        <th># Mascotas</th>
+                        <th>Acciones</th> <!-- Columna para las acciones CRUD -->
+                    </tr>
+                </thead>
+                <tbody> 
+                    <tr th:each="cliente : ${clients}">
+                        <td>
+                            <a th:href="@{/client/{id}/pets(id=${cliente.id})}" th:text="${cliente.name}"></a>
+                        </td>
+                        <td th:text="${cliente.user}"></td>
+                        <td th:text="${cliente.mail}"></td>
+                        <td th:text="${cliente.phone}"></td>
+                        <td th:text="${cliente.pets.size()}"></td>
+                        <td>
+                            <a class="btn btn-info" th:href="@{/client/update/{id}(id=${cliente.id})}">Editar</a>
+                            <a class="btn btn-danger" th:href="@{/client/delete/{id}(id=${cliente.id})}">Borrar</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-center">
+                <img src="../images/logo.png" alt="logo" height="100px">
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
