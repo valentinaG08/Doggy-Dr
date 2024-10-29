@@ -41,14 +41,16 @@ public class Treatment {
     @JoinColumn(name = "vet_id")
     private Vet vet;
 
+    /* 
     @JsonIgnore
     @ManyToMany(cascade = CascadeType.ALL) // Mantener ManyToMany
     @JoinTable(
         name = "treatment_pet", // Nombre de la tabla intermedia
         joinColumns = @JoinColumn(name = "treatment_id"), // Referencia al tratamiento
         inverseJoinColumns = @JoinColumn(name = "pet_id") // Referencia a la mascota
-    )
-    private List<Pet> pets = new ArrayList<>();
+    ) */
+
+    private Pet pet;
 
     private LocalDate startDate; // Fecha de inicio
 
@@ -60,23 +62,23 @@ public class Treatment {
     }
     
     // Constructor con todos los campos
-    public Treatment(String name, List<Medicine> medicines, String description, Vet vet, List<Pet> pets) {
+    public Treatment(String name, List<Medicine> medicines, String description, Vet vet, Pet pet) {
         this.name = name;
         this.medicines = medicines;
         this.description = description;
         this.vet = vet;
-        this.pets = pets;
+        this.pet = pet;
         this.startDate = LocalDate.now();
         this.endDate = LocalDate.of(2024, 12, 10);
     }
 
-    public Treatment(Long id, String name, List<Medicine> medicines, String description, Vet vet, List<Pet> pet) {
+    public Treatment(Long id, String name, List<Medicine> medicines, String description, Vet vet, Pet pet) {
         this.id = id;
         this.name = name;
         this.medicines = medicines;
         this.description = description;
         this.vet = vet;
-        this.pets = pet;
+        this.pet = pet;
         this.startDate = LocalDate.now();
         this.endDate = LocalDate.of(2024, 12, 10);
     }
@@ -121,20 +123,20 @@ public class Treatment {
         this.vet = vet;
     }
 
-    public List<Pet> getPet() {
-        return pets;
+    public Pet getPet() {
+        return pet;
     }
 
-    public void setPet(List<Pet> pet) {
-        this.pets = pet;
+    public void setPet(Pet pet) {
+        this.pet = pet;
     }
 
-    public List<Pet> getPets() {
-        return pets;
+    public Pet getPets() {
+        return pet;
     }
 
-    public void setPets(List<Pet> pets) {
-        this.pets = pets;
+    public void setPets(Pet pet) {
+        this.pet = pet;
     }
 
     public LocalDate getStartDate() {

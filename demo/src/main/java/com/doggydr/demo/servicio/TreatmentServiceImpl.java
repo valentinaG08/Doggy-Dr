@@ -131,7 +131,7 @@ public class TreatmentServiceImpl implements TreatmentService{
         Pet pet = petRepo.findById(petId)
                 .orElseThrow(() -> new RuntimeException("Mascota no encontrada con ID: " + petId));
 
-        treatment.getPets().add(pet); // Asocia la mascota al tratamiento
+        treatment.setPet(pet); // Asocia la mascota al tratamiento
         treatmentRepo.save(treatment); // Guarda los cambios
     }
 

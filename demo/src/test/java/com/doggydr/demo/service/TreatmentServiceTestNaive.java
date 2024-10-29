@@ -65,7 +65,7 @@ public class TreatmentServiceTestNaive {
         Pet pet1 = petRepository.findById(1L).orElse(null);
         Pet pet2 = petRepository.findById(2L).orElse(null);
         
-        treatmentService.add(new Treatment("Tratamiento de fiebre", medicine1, "Reduce la fiebre en pacientes", vet1, Arrays.asList(pet1, pet2 ) ) );
+        treatmentService.add(new Treatment("Tratamiento de fiebre", medicine1, "Reduce la fiebre en pacientes", vet1, pet1 ) );
         
 
         /*
@@ -94,7 +94,7 @@ public class TreatmentServiceTestNaive {
         Treatment treatment = new Treatment("Tratamiento de fiebre",
                 Arrays.asList(medicineRepository.findById(1l).get(), medicineRepository.findById(2l).get()),
                 "Reduce la fiebre en pacientes", vetRepository.findById(1l).get(),
-                Arrays.asList(petRepository.findById(1l).get(), petRepository.findById(2l).get()));
+                petRepository.findById(1l).get());
 
         System.out.println("\n\n tr med:" + treatment.getMedicines().size());
 
