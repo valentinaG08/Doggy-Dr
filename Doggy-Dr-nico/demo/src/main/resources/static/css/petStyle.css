@@ -1,0 +1,93 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f8ff;
+    margin: 0;
+    padding: 20px;
+}
+
+h1 {
+    color: #7044bf;
+    text-align: center;
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+h2{
+    color: #7044bf;
+    font-size: 20px;
+    align-items: center;
+    justify-content: center;
+}
+div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+table {
+    width: 80%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #8948eb;
+    color: white;
+}
+
+tr:hover {
+    background-color: #f5f5f5;
+}
+
+td {
+    color: #333;
+}
+
+/* Estilos para la celda que contiene la imagen */
+.pet-image {
+    display: flex;
+    justify-content: center; /* Centra horizontalmente la imagen dentro de la celda */
+    align-items: center; /* Centra verticalmente la imagen dentro de la celda */
+}
+
+/* Contenedor para la imagen de la mascota */
+.pet-image img {
+    width: 100px; /* Ancho fijo para la imagen */
+    height: 100px; /* Altura fija para la imagen */
+    border-radius: 10px; /* Bordes redondeados */
+    object-fit: cover; /* Asegura que la imagen mantenga sus proporciones y se recorte si es necesario */
+}
+.btn {
+    background-color: #8948eb; /* Color de fondo */
+    color: white; /* Color del texto */
+    padding: 10px 20px; /* Espaciado interno */
+    text-align: center; /* Alineación del texto */
+    text-decoration: none; /* Sin subrayado */
+    display: inline-block; /* Se comporta como un bloque en línea */
+    font-size: 16px; /* Tamaño de fuente */
+    margin-top: 20px; /* Margen superior */
+    border-radius: 5px; /* Bordes redondeados */
+    cursor: pointer; /* Cambia el cursor cuando pasa sobre el botón */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Sombra del botón */
+    transition: background-color 0.3s ease; /* Transición suave en hover */
+}
+
+.btn:hover {
+    background-color: #7038b4; /* Color de fondo cuando se pasa el mouse por encima */
+}
+
+.button-container {
+    display: flex;
+    justify-content: center; /* Centra el botón horizontalmente */
+    width: 100%; /* Ocupa todo el ancho disponible */
+}

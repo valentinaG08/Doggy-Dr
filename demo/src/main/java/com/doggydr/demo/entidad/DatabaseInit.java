@@ -260,7 +260,10 @@ public class DatabaseInit implements ApplicationRunner {
         
         String filePathLorena = "C:\\Personales\\Loretta\\6 Semestre\\Web\\Doggy-Dr\\MEDICAMENTOS_VETERINARIA.xlsx";
         String filePathDaniel = "C:\\Users\\DANIEL\\Documents\\Semestres\\Sexto semestre\\Desarrollo Web\\Proyecto\\Doggy-Dr\\MEDICAMENTOS_VETERINARIA.xlsx";
+
         String filePathNico = "C:\\Users\\nikit\\Documents\\UNIVERSIDAD\\Sexto Semestre\\Web Grupo 2\\Doggy-Dr\\MEDICAMENTOS_VETERINARIA.xlsx";        
+        String filePathNicoPortatil = "C:\\Users\\nikit\\Documents\\UNIVERSIDAD\\Sexto Semestre\\Web Grupo 2\\Doggy-Dr-main\\MEDICAMENTOS_VETERINARIA.xlsx";        
+
         String filePathValentina = "C:\\Users\\Valentina\\Web\\Doggy-Dr\\MEDICAMENTOS_VETERINARIA.xlsx";
     
         MedicineExcelLoader loader = new MedicineExcelLoader();
@@ -280,6 +283,12 @@ public class DatabaseInit implements ApplicationRunner {
                 file = new File(filePathNico);
                 if (file.exists()) {
                     System.out.println("Archivo encontrado en la ruta de Nico.");
+                } else {
+                    System.out.println("Archivo no encontrado en la ruta de Nico. Intentando con la ruta del portatil...");
+                    file = new File(filePathNicoPortatil);
+                }
+                if (file.exists()) {
+                    System.out.println("Archivo encontrado en la ruta de Nico Portatil.");
                 } else {
                     System.out.println("Archivo no encontrado en la ruta de Nico. Intentando con la ruta de Valentina...");
                     file = new File(filePathValentina);
@@ -375,16 +384,16 @@ public class DatabaseInit implements ApplicationRunner {
         Pet pet1 = petRepository.findById(1L).orElse(null);
 
         // String name, List<Medicine> medicines, String description, Vet vet
-        treatmentRepository.save(new Treatment("Tratamiento de fiebre", medicine1, "Reduce la fiebre en pacientes", vet1, Arrays.asList(pet1, petRepository.findById(11L).get()) ) );
-        treatmentRepository.save(new Treatment("Tratamiento de infección", medicine2, "Antibiótico para infecciones", vet2,  Arrays.asList( petRepository.findById(2L).get(), petRepository.findById(12L).get() ) ) );
-        treatmentRepository.save(new Treatment("Tratamiento de alergias", medicine3, "Alivia los síntomas de alergias", vet3, Arrays.asList(petRepository.findById(3L).get(), petRepository.findById(13L).get() ) ) );
-        treatmentRepository.save(new Treatment("Tratamiento de diabetes", medicine4, "Control diario para diabetes", vet4,  Arrays.asList(petRepository.findById(4L).get(), petRepository.findById(14L).get() ) ) );
-        treatmentRepository.save(new Treatment("Tratamiento para resfriado", medicine5, "Reduce los síntomas del resfriado", vet5,  Arrays.asList(petRepository.findById(5L).get(), petRepository.findById(15L).get() ) ) );
-        treatmentRepository.save(new Treatment("Tratamiento de dolor", medicine6, "Alivio para dolor leve", vet1,  Arrays.asList(petRepository.findById(6L).get(), petRepository.findById(16L).get() ) ) );
-        treatmentRepository.save(new Treatment("Tratamiento de inflamación", medicine7, "Reduce la inflamación", vet2,  Arrays.asList(petRepository.findById(7L).get(), petRepository.findById(17L).get() ) ) );
-        treatmentRepository.save(new Treatment("Tratamiento para el control de glucosa", medicine8, "Control de glucosa en sangre", vet3,  Arrays.asList(petRepository.findById(8L).get(), petRepository.findById(18L).get() ) ) );
-        treatmentRepository.save(new Treatment("Tratamiento combinado", medicine9, "Controla la diabetes y alergias", vet4,  Arrays.asList(petRepository.findById(9L).get(), petRepository.findById(19L).get() ) ) );
-        treatmentRepository.save(new Treatment("Tratamiento para úlceras", medicine10, "Reduce la acidez estomacal", vet5,  Arrays.asList(petRepository.findById(10L).get(), petRepository.findById(20L).get() ) ) );
+        treatmentRepository.save(new Treatment("Tratamiento de fiebre", medicine1, "Reduce la fiebre en pacientes", vet1, pet1 ) );
+        treatmentRepository.save(new Treatment("Tratamiento de infección", medicine2, "Antibiótico para infecciones", vet2, petRepository.findById(2L).get() ) );
+        treatmentRepository.save(new Treatment("Tratamiento de alergias", medicine3, "Alivia los síntomas de alergias", vet3, petRepository.findById(3L).get() ) );
+        treatmentRepository.save(new Treatment("Tratamiento de diabetes", medicine4, "Control diario para diabetes", vet4, petRepository.findById(4L).get() ) );
+        treatmentRepository.save(new Treatment("Tratamiento para resfriado", medicine5, "Reduce los síntomas del resfriado", vet5, petRepository.findById(5L).get() ) );
+        treatmentRepository.save(new Treatment("Tratamiento de dolor", medicine6, "Alivio para dolor leve", vet1, petRepository.findById(6L).get() ) );
+        treatmentRepository.save(new Treatment("Tratamiento de inflamación", medicine7, "Reduce la inflamación", vet2, petRepository.findById(7L).get() ) );
+        treatmentRepository.save(new Treatment("Tratamiento para el control de glucosa", medicine8, "Control de glucosa en sangre", vet3, petRepository.findById(8L).get() ) );
+        treatmentRepository.save(new Treatment("Tratamiento combinado", medicine9, "Controla la diabetes y alergias", vet4, petRepository.findById(9L).get() ) );
+        treatmentRepository.save(new Treatment("Tratamiento para úlceras", medicine10, "Reduce la acidez estomacal", vet5, petRepository.findById(10L).get() ) );
     }
 
 }

@@ -72,7 +72,7 @@ public class VetServiceImpl implements VetService{
         List<Treatment> treatments = findTreatmentsByVetId(vetId);
         List<Pet> pets = new ArrayList<>();
         for (Treatment treatment : treatments) {
-            pets.addAll(treatment.getPets());
+            pets.add(treatment.getPet());
         }
         return pets;
     }

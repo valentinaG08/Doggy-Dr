@@ -84,10 +84,10 @@ public class TreatmentRepositoryTest {
         Pet pet2 = petRepository.findById(2L).orElse(null);
         Pet pet3 = petRepository.findById(3L).orElse(null);
 
-        treatmentRepository.save(new Treatment("Tratamiento de fiebre", medicine1, "Reduce la fiebre en pacientes", vet1, Arrays.asList(pet1, pet2 ) ) );
-        treatmentRepository.save(new Treatment("Tratamiento de infección", medicine2, "Antibiótico para infecciones", vet2,  Arrays.asList( pet2, pet3 ) ) );
-        treatmentRepository.save(new Treatment("Tratamiento de alergias", medicine3, "Alivia los síntomas de alergias", vet3, Arrays.asList(pet3, pet1 ) ) );
-        treatmentRepository.save(new Treatment("Tratamiento de diabetes", medicine4, "Control diario para diabetes", vet1,  Arrays.asList(pet3, pet2 ) ) );
+        treatmentRepository.save(new Treatment("Tratamiento de fiebre", medicine1, "Reduce la fiebre en pacientes", vet1, pet1 ) );
+        treatmentRepository.save(new Treatment("Tratamiento de infección", medicine2, "Antibiótico para infecciones", vet2,  pet2 ) );
+        treatmentRepository.save(new Treatment("Tratamiento de alergias", medicine3, "Alivia los síntomas de alergias", vet3, pet3) );
+        treatmentRepository.save(new Treatment("Tratamiento de diabetes", medicine4, "Control diario para diabetes", vet1,  pet3 ) );
         
         // asignar tratamientos a los pet
         pet1.setTreatments(  Arrays.asList(treatmentRepository.findById(1L).get(), treatmentRepository.findById(2L).get()) );

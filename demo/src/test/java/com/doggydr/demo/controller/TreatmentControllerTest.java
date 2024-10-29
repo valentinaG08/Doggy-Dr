@@ -67,13 +67,13 @@ public class TreatmentControllerTest {
                                 new ArrayList<>(),
                                 "Descripción del tratamiento 1",
                                 new Vet(),
-                                new ArrayList<>()),
+                                new Pet()),
                         new Treatment(
                                 "Tratamiento 2",
                                 new ArrayList<>(),
                                 "Descripción del tratamiento 2",
                                 new Vet(),
-                                new ArrayList<>())));
+                                new Pet())));
 
         ResultActions response = mockMvc.perform(get("/treatment/all")
                 .contentType(MediaType.APPLICATION_JSON));
@@ -107,7 +107,7 @@ public class TreatmentControllerTest {
                 new ArrayList<>(),
                 "Descripción del tratamiento",
                 new Vet(),
-                new ArrayList<>());
+                new Pet());
 
         when(treatmentService.SearchById(treatmentId)).thenReturn(treatment);
 
@@ -128,64 +128,57 @@ public class TreatmentControllerTest {
 
         Mockito.when(treatmentService.SearchPetsById(treatmentId)).thenReturn(pets);
 
-        
         ResultActions response = mockMvc.perform(
                 get("/treatment/{id}/pets", treatmentId)
                         .contentType(MediaType.APPLICATION_JSON));
 
-    
         response.andExpect(status().isOk()) // estado HTTP OK
                 .andExpect(jsonPath("$.size()").value(pets.size()));
     }
 
     @Test
     public void TreatmentController_showTrearmentTreatments_NotFound() throws Exception {
-       
+
         Long treatmentId = 1L;
 
         Mockito.when(treatmentService.SearchPetsById(treatmentId)).thenReturn(null);
 
-        
         ResultActions response = mockMvc.perform(
                 get("/treatment/{id}/pets", treatmentId)
                         .contentType(MediaType.APPLICATION_JSON));
 
-        
         response.andExpect(status().isNotFound());
     }
 
     @Test
-public void TreatmentController_showTrearmentMedicines_Success() throws Exception {
-    Long treatmentId = 1L;
+    public void TreatmentController_showTrearmentMedicines_Success() throws Exception {
+        Long treatmentId = 1L;
 
-    List<Medicine> medicines = List.of(new Medicine(), new Medicine());
+        List<Medicine> medicines = List.of(new Medicine(), new Medicine());
 
-    Mockito.when(treatmentService.SearchMedicinesById(treatmentId)).thenReturn(medicines);
+        Mockito.when(treatmentService.SearchMedicinesById(treatmentId)).thenReturn(medicines);
 
-    ResultActions response = mockMvc.perform(
-        get("/treatment/{id}/medicines", treatmentId)
-            .contentType(MediaType.APPLICATION_JSON)
-    );
+        ResultActions response = mockMvc.perform(
+                get("/treatment/{id}/medicines", treatmentId)
+                        .contentType(MediaType.APPLICATION_JSON));
 
-    response.andExpect(status().isOk()) // estado HTTP OK
-            .andExpect(jsonPath("$.size()").value(medicines.size())); // Verifica que el tamaño de la lista de medicinas sea correcto
-}
+        response.andExpect(status().isOk()) // estado HTTP OK
+                .andExpect(jsonPath("$.size()").value(medicines.size())); // Verifica que el tamaño de la lista de
+                                                                          // medicinas sea correcto
+    }
 
-@Test
-public void TreatmentController_showTrearmentMedicines_NotFound() throws Exception {
-    Long treatmentId = 1L;
+    @Test
+    public void TreatmentController_showTrearmentMedicines_NotFound() throws Exception {
+        Long treatmentId = 1L;
 
-    Mockito.when(treatmentService.SearchMedicinesById(treatmentId)).thenReturn(null);
+        Mockito.when(treatmentService.SearchMedicinesById(treatmentId)).thenReturn(null);
 
-    ResultActions response = mockMvc.perform(
-        get("/treatment/{id}/medicines", treatmentId)
-            .contentType(MediaType.APPLICATION_JSON)
-    );
+        ResultActions response = mockMvc.perform(
+                get("/treatment/{id}/medicines", treatmentId)
+                        .contentType(MediaType.APPLICATION_JSON));
 
-    response.andExpect(status().isNotFound());
-}
-
-
+        response.andExpect(status().isNotFound());
+    }
 
     @Test
     public void TreatmentController_addTreatment_Treatment() throws Exception {
@@ -193,10 +186,9 @@ public void TreatmentController_showTrearmentMedicines_NotFound() throws Excepti
         List<Medicine> medicines = new ArrayList<>();
         medicines.add(new Medicine());
         Vet vet = new Vet();
-        List<Pet> pets = new ArrayList<>();
-        pets.add(new Pet());
+        Pet pet = new Pet();
 
-        Treatment treatment = new Treatment("Tratamiento 1", medicines, "Descripción del tratamiento", vet, pets);
+        Treatment treatment = new Treatment("Tratamiento 1", medicines, "Descripción del tratamiento", vet, pet);
 
         when(treatmentService.add(Mockito.any(Treatment.class))).thenReturn(treatment);
 
@@ -226,216 +218,201 @@ public void TreatmentController_showTrearmentMedicines_NotFound() throws Excepti
     }
 
     @Test
-public void TreatmentController_showPetOwner_Success() throws Exception {
-    Long treatmentId = 1L;
+    public void TreatmentController_showPetOwner_Success() throws Exception {
+        Long treatmentId = 1L;
 
-    Vet vet = new Vet();
-    vet.setId(1L);
+        Vet vet = new Vet();
+        vet.setId(1L);
 
-    Treatment treatment = new Treatment();
-    treatment.setVet(vet);
+        Treatment treatment = new Treatment();
+        treatment.setVet(vet);
 
-    Mockito.when(treatmentService.SearchById(treatmentId)).thenReturn(treatment);
+        Mockito.when(treatmentService.SearchById(treatmentId)).thenReturn(treatment);
 
-    ResultActions response = mockMvc.perform(
-        get("/treatment/{id}/vet", treatmentId)
-            .contentType(MediaType.APPLICATION_JSON)
-    );
+        ResultActions response = mockMvc.perform(
+                get("/treatment/{id}/vet", treatmentId)
+                        .contentType(MediaType.APPLICATION_JSON));
 
-    response.andExpect(status().isOk()) // estado HTTP OK
-            .andExpect(jsonPath("$.id").value(vet.getId())); // Verifica que el ID del veterinario sea correcto
-}
+        response.andExpect(status().isOk()) // estado HTTP OK
+                .andExpect(jsonPath("$.id").value(vet.getId())); // Verifica que el ID del veterinario sea correcto
+    }
 
-@Test
-public void TreatmentController_showPetOwner_TreatmentNotFound() throws Exception {
-    Long treatmentId = 1L;
+    @Test
+    public void TreatmentController_showPetOwner_TreatmentNotFound() throws Exception {
+        Long treatmentId = 1L;
 
-    Mockito.when(treatmentService.SearchById(treatmentId)).thenReturn(null);
+        Mockito.when(treatmentService.SearchById(treatmentId)).thenReturn(null);
 
-    ResultActions response = mockMvc.perform(
-        get("/treatment/{id}/vet", treatmentId)
-            .contentType(MediaType.APPLICATION_JSON)
-    );
+        ResultActions response = mockMvc.perform(
+                get("/treatment/{id}/vet", treatmentId)
+                        .contentType(MediaType.APPLICATION_JSON));
 
-    response.andExpect(status().isNotFound());
-}
+        response.andExpect(status().isNotFound());
+    }
 
-@Test
-public void TreatmentController_showPetOwner_VetNotFound() throws Exception {
-    Long treatmentId = 1L;
+    @Test
+    public void TreatmentController_showPetOwner_VetNotFound() throws Exception {
+        Long treatmentId = 1L;
 
-    Treatment treatment = new Treatment();
-    treatment.setVet(null);
+        Treatment treatment = new Treatment();
+        treatment.setVet(null);
 
-    Mockito.when(treatmentService.SearchById(treatmentId)).thenReturn(treatment);
+        Mockito.when(treatmentService.SearchById(treatmentId)).thenReturn(treatment);
 
-    ResultActions response = mockMvc.perform(
-        get("/treatment/{id}/vet", treatmentId)
-            .contentType(MediaType.APPLICATION_JSON)
-    );
+        ResultActions response = mockMvc.perform(
+                get("/treatment/{id}/vet", treatmentId)
+                        .contentType(MediaType.APPLICATION_JSON));
 
-    response.andExpect(status().isNotFound());
-}
+        response.andExpect(status().isNotFound());
+    }
 
-@Test
-public void TreatmentController_associateTreatmentWithVet_Success() throws Exception {
-    Long treatmentId = 1L;
-    Long vetId = 1L;
+    @Test
+    public void TreatmentController_associateTreatmentWithVet_Success() throws Exception {
+        Long treatmentId = 1L;
+        Long vetId = 1L;
 
-    Vet vet = new Vet();
-    vet.setId(vetId);
-    vet.setName("Dr. John Doe");
+        Vet vet = new Vet();
+        vet.setId(vetId);
+        vet.setName("Dr. John Doe");
 
-    Treatment treatment = new Treatment();
-    treatment.setId(treatmentId);
-    treatment.setName("Tratamiento 1");
-    treatment.setVet(vet);
+        Treatment treatment = new Treatment();
+        treatment.setId(treatmentId);
+        treatment.setName("Tratamiento 1");
+        treatment.setVet(vet);
 
-    Mockito.when(vetService.SearchById(vetId)).thenReturn(vet);
-    Mockito.when(treatmentService.SearchById(treatmentId)).thenReturn(treatment);
+        Mockito.when(vetService.SearchById(vetId)).thenReturn(vet);
+        Mockito.when(treatmentService.SearchById(treatmentId)).thenReturn(treatment);
 
-    Mockito.doNothing().when(treatmentService).update(treatment);
+        Mockito.doNothing().when(treatmentService).update(treatment);
 
-    ResultActions response = mockMvc.perform(
-        put("/treatment/{treatmentId}/associate/{vetId}", treatmentId, vetId)
-            .contentType(MediaType.APPLICATION_JSON)
-    );
+        ResultActions response = mockMvc.perform(
+                put("/treatment/{treatmentId}/associate/{vetId}", treatmentId, vetId)
+                        .contentType(MediaType.APPLICATION_JSON));
 
-    response.andExpect(status().isOk())
-            .andExpect(jsonPath("$.name").value("Tratamiento 1"))
-            // No verificamos el campo vet debido a @JsonIgnore
-            .andExpect(jsonPath("$.vet").doesNotExist());
-}
+        response.andExpect(status().isOk())
+                .andExpect(jsonPath("$.name").value("Tratamiento 1"))
+                // No verificamos el campo vet debido a @JsonIgnore
+                .andExpect(jsonPath("$.vet").doesNotExist());
+    }
 
-@Test
-public void TreatmentController_associateTreatmentWithVet_VetNotFound() throws Exception {
-    Long treatmentId = 1L;
-    Long vetId = 1L;
+    @Test
+    public void TreatmentController_associateTreatmentWithVet_VetNotFound() throws Exception {
+        Long treatmentId = 1L;
+        Long vetId = 1L;
 
-    Mockito.when(vetService.SearchById(vetId)).thenReturn(null);
+        Mockito.when(vetService.SearchById(vetId)).thenReturn(null);
 
-    ResultActions response = mockMvc.perform(
-        put("/treatment/{treatmentId}/associate/{vetId}", treatmentId, vetId)
-            .contentType(MediaType.APPLICATION_JSON)
-    );
+        ResultActions response = mockMvc.perform(
+                put("/treatment/{treatmentId}/associate/{vetId}", treatmentId, vetId)
+                        .contentType(MediaType.APPLICATION_JSON));
 
-    response.andExpect(status().isNotFound());
-}
+        response.andExpect(status().isNotFound());
+    }
 
-@Test
-public void TreatmentController_associateTreatmentWithVet_TreatmentNotFound() throws Exception {
-    Long treatmentId = 1L;
-    Long vetId = 1L;
+    @Test
+    public void TreatmentController_associateTreatmentWithVet_TreatmentNotFound() throws Exception {
+        Long treatmentId = 1L;
+        Long vetId = 1L;
 
-    Vet vet = new Vet();
-    vet.setId(vetId);
+        Vet vet = new Vet();
+        vet.setId(vetId);
 
-    Mockito.when(vetService.SearchById(vetId)).thenReturn(vet);
-   
-    Mockito.when(treatmentService.SearchById(treatmentId)).thenReturn(null);
+        Mockito.when(vetService.SearchById(vetId)).thenReturn(vet);
 
-    ResultActions response = mockMvc.perform(
-        put("/treatment/{treatmentId}/associate/{vetId}", treatmentId, vetId)
-            .contentType(MediaType.APPLICATION_JSON)
-    );
+        Mockito.when(treatmentService.SearchById(treatmentId)).thenReturn(null);
 
+        ResultActions response = mockMvc.perform(
+                put("/treatment/{treatmentId}/associate/{vetId}", treatmentId, vetId)
+                        .contentType(MediaType.APPLICATION_JSON));
 
-    response.andExpect(status().isNotFound());
-}
+        response.andExpect(status().isNotFound());
+    }
 
-@Test
-public void TreatmentController_getTotalTreatments_Success() throws Exception {
-    long totalTreatments = 10L;
+    @Test
+    public void TreatmentController_getTotalTreatments_Success() throws Exception {
+        long totalTreatments = 10L;
 
-    Mockito.when(treatmentService.getTotalTreatments()).thenReturn(totalTreatments);
+        Mockito.when(treatmentService.getTotalTreatments()).thenReturn(totalTreatments);
 
-    ResultActions response = mockMvc.perform(
-        get("/treatment/total")
-            .contentType(MediaType.APPLICATION_JSON)
-    );
+        ResultActions response = mockMvc.perform(
+                get("/treatment/total")
+                        .contentType(MediaType.APPLICATION_JSON));
 
-    response.andExpect(status().isOk())
-            .andExpect(jsonPath("$").value(totalTreatments)); // Verifica el total de tratamientos
-}
+        response.andExpect(status().isOk())
+                .andExpect(jsonPath("$").value(totalTreatments)); // Verifica el total de tratamientos
+    }
 
-@Test
-public void TreatmentController_getTop3_Success() throws Exception {
-    List<TreatmentUsageDTO> topTreatments = List.of(
-        new TreatmentUsageDTO(1L, 100L),
-        new TreatmentUsageDTO(2L, 80L),
-        new TreatmentUsageDTO(3L, 60L)
-    );
+    @Test
+    public void TreatmentController_getTop3_Success() throws Exception {
+        List<TreatmentUsageDTO> topTreatments = List.of(
+                new TreatmentUsageDTO(1L, 100L),
+                new TreatmentUsageDTO(2L, 80L),
+                new TreatmentUsageDTO(3L, 60L));
 
-    Mockito.when(treatmentService.findTop3Treatments()).thenReturn(topTreatments);
+        Mockito.when(treatmentService.findTop3Treatments()).thenReturn(topTreatments);
 
-    ResultActions response = mockMvc.perform(
-        get("/treatment/top3")
-            .contentType(MediaType.APPLICATION_JSON)
-    );
+        ResultActions response = mockMvc.perform(
+                get("/treatment/top3")
+                        .contentType(MediaType.APPLICATION_JSON));
 
-    response.andExpect(status().isOk())
-            .andExpect(jsonPath("$.size()").value(topTreatments.size())) // Verifica que se devuelven 3 tratamientos
-            .andExpect(jsonPath("$[0].treatmentId").value(1L))
-            .andExpect(jsonPath("$[0].numUses").value(100L))
-            .andExpect(jsonPath("$[1].treatmentId").value(2L))
-            .andExpect(jsonPath("$[1].numUses").value(80L))
-            .andExpect(jsonPath("$[2].treatmentId").value(3L))
-            .andExpect(jsonPath("$[2].numUses").value(60L));
-}
+        response.andExpect(status().isOk())
+                .andExpect(jsonPath("$.size()").value(topTreatments.size())) // Verifica que se devuelven 3 tratamientos
+                .andExpect(jsonPath("$[0].treatmentId").value(1L))
+                .andExpect(jsonPath("$[0].numUses").value(100L))
+                .andExpect(jsonPath("$[1].treatmentId").value(2L))
+                .andExpect(jsonPath("$[1].numUses").value(80L))
+                .andExpect(jsonPath("$[2].treatmentId").value(3L))
+                .andExpect(jsonPath("$[2].numUses").value(60L));
+    }
 
+    @Test
+    public void TreatmentController_getTreatmentsByMedicine_Success() throws Exception {
 
-@Test
-public void TreatmentController_getTreatmentsByMedicine_Success() throws Exception {
+        List<TreatmentUsageDTO> treatmentsByMedicine = List.of(
+                new TreatmentUsageDTO(1L, 120L),
+                new TreatmentUsageDTO(2L, 90L));
 
-    List<TreatmentUsageDTO> treatmentsByMedicine = List.of(
-        new TreatmentUsageDTO(1L, 120L),
-        new TreatmentUsageDTO(2L, 90L)
-    );
+        Mockito.when(treatmentService.findTopMedicines()).thenReturn(treatmentsByMedicine);
 
-    Mockito.when(treatmentService.findTopMedicines()).thenReturn(treatmentsByMedicine);
+        ResultActions response = mockMvc.perform(
+                get("/treatment/Medicines")
+                        .contentType(MediaType.APPLICATION_JSON));
 
-    ResultActions response = mockMvc.perform(
-        get("/treatment/Medicines")
-            .contentType(MediaType.APPLICATION_JSON)
-    );
+        response.andExpect(status().isOk())
+                .andExpect(jsonPath("$.size()").value(treatmentsByMedicine.size())) // Verifica el número de
+                                                                                    // tratamientos por medicina
+                .andExpect(jsonPath("$[0].treatmentId").value(1L))
+                .andExpect(jsonPath("$[0].numUses").value(120L))
+                .andExpect(jsonPath("$[1].treatmentId").value(2L))
+                .andExpect(jsonPath("$[1].numUses").value(90L));
+    }
 
-    response.andExpect(status().isOk())
-            .andExpect(jsonPath("$.size()").value(treatmentsByMedicine.size())) // Verifica el número de tratamientos por medicina
-            .andExpect(jsonPath("$[0].treatmentId").value(1L))
-            .andExpect(jsonPath("$[0].numUses").value(120L))
-            .andExpect(jsonPath("$[1].treatmentId").value(2L))
-            .andExpect(jsonPath("$[1].numUses").value(90L));
-}
+    @Test
+    public void TreatmentController_getTotalSales_Success() throws Exception {
+        long totalSales = 5000L;
 
+        Mockito.when(treatmentService.getTotalSales()).thenReturn(totalSales);
 
-@Test
-public void TreatmentController_getTotalSales_Success() throws Exception {
-    long totalSales = 5000L;
+        ResultActions response = mockMvc.perform(
+                get("/treatment/totalSales")
+                        .contentType(MediaType.APPLICATION_JSON));
 
-    Mockito.when(treatmentService.getTotalSales()).thenReturn(totalSales);
+        response.andExpect(status().isOk())
+                .andExpect(jsonPath("$").value(totalSales));
+    }
 
-    ResultActions response = mockMvc.perform(
-        get("/treatment/totalSales")
-            .contentType(MediaType.APPLICATION_JSON)
-    );
+    @Test
+    public void TreatmentController_getTotalGains_Success() throws Exception {
+        long totalGains = 10000L;
 
-    response.andExpect(status().isOk())
-            .andExpect(jsonPath("$").value(totalSales));
-}
+        Mockito.when(treatmentService.getTotalGains()).thenReturn(totalGains);
 
-@Test
-public void TreatmentController_getTotalGains_Success() throws Exception {
-    long totalGains = 10000L;
+        ResultActions response = mockMvc.perform(
+                get("/treatment/totalGains")
+                        .contentType(MediaType.APPLICATION_JSON));
 
-    Mockito.when(treatmentService.getTotalGains()).thenReturn(totalGains);
-
-    ResultActions response = mockMvc.perform(
-        get("/treatment/totalGains")
-            .contentType(MediaType.APPLICATION_JSON)
-    );
-
-    response.andExpect(status().isOk())
-            .andExpect(jsonPath("$").value(totalGains));
-}
+        response.andExpect(status().isOk())
+                .andExpect(jsonPath("$").value(totalGains));
+    }
 
 }
