@@ -17,8 +17,8 @@ import jakarta.transaction.Transactional;
 
 @Controller
 @Transactional
-//@Profile("Default")
-public class DatabaseInit implements ApplicationRunner {
+@Profile("test")
+public class DatabaseInitTest implements ApplicationRunner {
 
 
     @Autowired
@@ -260,10 +260,7 @@ public class DatabaseInit implements ApplicationRunner {
         
         String filePathLorena = "C:\\Personales\\Loretta\\6 Semestre\\Web\\Doggy-Dr\\MEDICAMENTOS_VETERINARIA.xlsx";
         String filePathDaniel = "C:\\Users\\DANIEL\\Documents\\Semestres\\Sexto semestre\\Desarrollo Web\\Proyecto\\Doggy-Dr\\MEDICAMENTOS_VETERINARIA.xlsx";
-
-        String filePathNico = "C:\\Users\\nikit\\Documents\\UNIVERSIDAD\\Sexto Semestre\\Web Grupo 2\\Doggy-Dr\\MEDICAMENTOS_VETERINARIA.xlsx";        
-        String filePathNicoPortatil = "C:\\Users\\nikit\\Documents\\UNIVERSIDAD\\Sexto Semestre\\Web Grupo 2\\Doggy-Dr-main\\MEDICAMENTOS_VETERINARIA.xlsx";        
-
+        String filePathNico = "C:\\Users\\nikit\\Documents\\UNIVERSIDAD\\Sexto Semestre\\Web Grupo 2\\Doggy-Dr-main\\MEDICAMENTOS_VETERINARIA.xlsx";        
         String filePathValentina = "C:\\Users\\Valentina\\Web\\Doggy-Dr\\MEDICAMENTOS_VETERINARIA.xlsx";
     
         MedicineExcelLoader loader = new MedicineExcelLoader();
@@ -283,12 +280,6 @@ public class DatabaseInit implements ApplicationRunner {
                 file = new File(filePathNico);
                 if (file.exists()) {
                     System.out.println("Archivo encontrado en la ruta de Nico.");
-                } else {
-                    System.out.println("Archivo no encontrado en la ruta de Nico. Intentando con la ruta del portatil...");
-                    file = new File(filePathNicoPortatil);
-                }
-                if (file.exists()) {
-                    System.out.println("Archivo encontrado en la ruta de Nico Portatil.");
                 } else {
                     System.out.println("Archivo no encontrado en la ruta de Nico. Intentando con la ruta de Valentina...");
                     file = new File(filePathValentina);
@@ -389,7 +380,7 @@ public class DatabaseInit implements ApplicationRunner {
         treatmentRepository.save(new Treatment("Tratamiento de alergias", medicine3, "Alivia los síntomas de alergias", vet3, petRepository.findById(3L).get() ) );
         treatmentRepository.save(new Treatment("Tratamiento de diabetes", medicine4, "Control diario para diabetes", vet4, petRepository.findById(4L).get() ) );
         treatmentRepository.save(new Treatment("Tratamiento para resfriado", medicine5, "Reduce los síntomas del resfriado", vet5, petRepository.findById(5L).get() ) );
-        treatmentRepository.save(new Treatment("Tratamiento de dolor", medicine6, "Alivio para dolor leve", vet1, petRepository.findById(6L).get() ) );
+        treatmentRepository.save(new Treatment("Tratamiento de dolor", medicine6, "Alivio para dolor leve", vet1,petRepository.findById(6L).get()) );
         treatmentRepository.save(new Treatment("Tratamiento de inflamación", medicine7, "Reduce la inflamación", vet2, petRepository.findById(7L).get() ) );
         treatmentRepository.save(new Treatment("Tratamiento para el control de glucosa", medicine8, "Control de glucosa en sangre", vet3, petRepository.findById(8L).get() ) );
         treatmentRepository.save(new Treatment("Tratamiento combinado", medicine9, "Controla la diabetes y alergias", vet4, petRepository.findById(9L).get() ) );

@@ -36,12 +36,13 @@ public class Treatment {
 
     private String description;
 
+    
     @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "vet_id")
     private Vet vet;
 
-    /* 
+    /*
     @JsonIgnore
     @ManyToMany(cascade = CascadeType.ALL) // Mantener ManyToMany
     @JoinTable(
@@ -49,7 +50,6 @@ public class Treatment {
         joinColumns = @JoinColumn(name = "treatment_id"), // Referencia al tratamiento
         inverseJoinColumns = @JoinColumn(name = "pet_id") // Referencia a la mascota
     ) */
-
     private Pet pet;
 
     private LocalDate startDate; // Fecha de inicio
@@ -128,14 +128,6 @@ public class Treatment {
     }
 
     public void setPet(Pet pet) {
-        this.pet = pet;
-    }
-
-    public Pet getPets() {
-        return pet;
-    }
-
-    public void setPets(Pet pet) {
         this.pet = pet;
     }
 

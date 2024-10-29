@@ -95,7 +95,6 @@ public class TreatmentServiceTestNaive {
                 Arrays.asList(medicineRepository.findById(1l).get(), medicineRepository.findById(2l).get()),
                 "Reduce la fiebre en pacientes", vetRepository.findById(1l).get(),
                 petRepository.findById(1l).get());
-
         System.out.println("\n\n tr med:" + treatment.getMedicines().size());
 
         Treatment newTreatment = treatmentService.add(treatment);
