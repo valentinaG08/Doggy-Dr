@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Doggy Dr.</title>
+  <link rel="stylesheet" href="../css/baseStyle.css"/>
+  <link rel="stylesheet" href="../css/hqStyles.css"/>
+
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet">
+ 
+</head>
+
+<body>
+    <header class="header">
+        <a href="/index">
+            <div class="header-left">
+                <img src="../images/logo.png" alt="logo">
+                <h1>Doggy Dr.</h1>
+            </div>
+        </a>
+        <div class="header-center">
+            <ul class="index-menu">
+                <li class="menu-elem" id="ME1">
+                    <a href="/index">Inicio</a>
+                </li>
+                <li class="menu-elem" id="ME2">
+                    <a href="/servicios">Servicios</a>
+                </li>
+                <li class="menu-elem" id="ME3">
+                    <a href="/sedes">Sedes</a>
+                </li>
+                <li class="menu-elem" id="ME4">
+                    <a href="/blogs">Blogs</a>
+                </li>
+                <li class="menu-elem" id="ME5">
+                    <a href="/contacto">Contacto</a>
+                </li>
+            </ul>
+        </div>
+        <div class="header-right">
+            <button class="button">Chatea con nosotros</button>
+            <a href="/login/client"><ion-icon name="person-circle-outline"></ion-icon></a>
+        </div>
+    </header>
+    
+
+  <main class="main"> 
+    <section id="containerSede">
+        <img src="../images/headquarters/sedePrincipal.png" alt="sede" id="sede" height="450px">
+    </section>
+    <h1>Sede Principal</h1>
+    
+    <p>
+        Nuestra sede principal está ubicada dentro de la Universidad Javeriana en la carrera 7 #40 -62,
+        específicamente en el Edificio de Ingeniería, piso 10, consultorio 352. Contamos con instalaciones
+        veterinarias de primer nivel, equipadas con tecnología avanzada y diseñadas para ofrecer el mejor cuidado
+        y confort a sus mascotas.
+    </p>
+
+    <h1>Galeria</h1>
+
+    <section id="containerGaleria">
+        <img src="../images/headquarters/Gllry1.png" alt="galeria1" id="galeria1">
+        <img src="../images/headquarters/Gllry2.png" alt="galeria2" id="galeria2">
+        <img src="../images/headquarters/Gllry3.png" alt="galeria3" id="galeria3">
+        <img src="../images/headquarters/Gllry4.png" alt="galeria4" id="galeria4">
+        <img src="../images/headquarters/Gllry5.png" alt="galeria5" id="galeria5">
+        <img src="../images/headquarters/Gllry6.png" alt="galeria6" id="galeria6">
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+        <div class="footer-left">
+            <p>Cra. 7 #40 - 62, Bogotá, Colombia</p>
+            <p>info@doggydr.com</p>
+            <p>© 2024. • Privacidad • Términos • condiciones</p>
+        </div>
+        <div class="footer-center">
+          <img src="../images/logo.png" alt="logo" height="100px" >
+        </div>
+        <div class="footer-right">
+            <ul class="footer-menu">
+                <li><a href="/servicios">Servicios</a></li>
+                <!-- <li><a href="/sobre-nosotros">Sobre nosotros</a></li> -->
+                <li><a href="/sedes">Sedes</a></li>
+                <li><a href="/blogs">Blog</a></li>
+                <li><a href="/contacto">Contacto</a></li>
+            </ul>
+            <ul class="footer-social">
+                <li><a href="#"><ion-icon name="logo-twitter"></ion-icon></a></li>
+                <li><a href="#"><ion-icon name="logo-facebook"></ion-icon></a></li>
+                <li><a href="#"><ion-icon name="logo-linkedin"></ion-icon></a></li>
+                <li><a href="#"><ion-icon name="logo-github"></ion-icon></a></li>
+                <li><a href="/admin"><ion-icon name="person-circle-outline"></ion-icon></a></li>
+            </ul>
+        </div>
+    </div>
+</footer>
+  <script src="script.js"></script>
+</body>
+
+</html>
