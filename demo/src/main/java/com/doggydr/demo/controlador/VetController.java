@@ -4,6 +4,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -107,6 +108,18 @@ if(userRepository.existsByUsername(vet.getMail())){
 
     
 }
+
+ @GetMapping("/details")
+    public ResponseEntity<Vet> buscarVeterinario(){
+        Vet vet = vetService.findByUserName(
+            SecurityContextHolder.getContext().getAuthentication().getName()
+        );
+
+        if(vet == null){
+            return new ResponseEntity<Vet>(vet, HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<Vet>(vet, HttpStatus.OK);
+    }
 
 
     @DeleteMapping("/delete/{id}")

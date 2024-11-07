@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -78,6 +79,18 @@ public class ClientController {
         System.out.println("\n\n Pets: " + client.getPets().size());
 
         return client.getPets();
+    }
+
+    @GetMapping("/details")
+    public ResponseEntity<Client> buscarCliente(){
+        Client client = clientService.SearchByUsername(
+            SecurityContextHolder.getContext().getAuthentication().getName()
+        );
+
+        if(client == null){
+            return new ResponseEntity<Client>(client, HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<Client>(client, HttpStatus.OK);
     }
 
     @GetMapping("/register")

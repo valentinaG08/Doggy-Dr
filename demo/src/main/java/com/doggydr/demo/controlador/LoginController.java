@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.authorization.method.AuthorizeReturnObject;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.ui.Model;
@@ -21,6 +22,7 @@ import com.doggydr.demo.entidad.LoginRequest;
 import com.doggydr.demo.servicio.ClientService;
 
 import com.doggydr.demo.entidad.Vet;
+import com.doggydr.demo.security.JWTGenerator;
 import com.doggydr.demo.servicio.VetService;
 import com.doggydr.demo.DTOs.AdminDTO;
 import com.doggydr.demo.DTOs.AdminMapper;
@@ -45,6 +47,9 @@ public class LoginController {
 
     @Autowired
     AuthenticationManager authenticationManager;
+
+    @Autowired
+    JWTGenerator jwtGenerator;
 
     @GetMapping("/client")
     public String login(Model model) {
@@ -76,8 +81,8 @@ public class LoginController {
          );
 
          SecurityContextHolder.getContext().setAuthentication(authentication);
-
-         return new ResponseEntity<String>("Usuario ingresado con exito", HttpStatus.OK);
+         String token = jwtGenerator.generateToken(authentication);
+         return new ResponseEntity<String>(token, HttpStatus.OK);
     }
 
     @GetMapping("/vet")
@@ -103,8 +108,8 @@ public class LoginController {
          );
 
          SecurityContextHolder.getContext().setAuthentication(authentication);
-
-         return new ResponseEntity<String>("Usuario ingresado con exito", HttpStatus.OK);
+         String token = jwtGenerator.generateToken(authentication);
+         return new ResponseEntity<String>(token, HttpStatus.OK);
     }
         
 
