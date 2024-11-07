@@ -37,10 +37,10 @@ public class ClientServiceImpl implements ClientService {
     public Client SearchByDocument(Long document) {
         return clientRepo.findByDocument(document);
     }
-    
+
     @Override
-    public void Register(Client client) {
-        clientRepo.save(client);
+    public Client Register(Client client) {
+        return clientRepo.save(client);
     }
 
     @Override
@@ -63,7 +63,6 @@ public class ClientServiceImpl implements ClientService {
         // Ahora eliminar el owner
         clientRepo.delete(owner);
     }
-
 
     @Override
     public Client update(Client client) {

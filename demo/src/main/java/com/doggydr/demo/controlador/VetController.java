@@ -22,7 +22,10 @@ import com.doggydr.demo.DTOs.VetMapper;
 import com.doggydr.demo.entidad.Client;
 import com.doggydr.demo.entidad.Pet;
 import com.doggydr.demo.entidad.Vet;
+import com.doggydr.demo.repositorio.UserRepository;
+import com.doggydr.demo.security.CustomUserDetailService;
 import com.doggydr.demo.entidad.Treatment;
+import com.doggydr.demo.entidad.UserEntity;
 import com.doggydr.demo.servicio.VetService;
 import com.doggydr.demo.servicio.TreatmentService;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -36,6 +39,12 @@ public class VetController {
     VetService vetService;
     @Autowired
     TreatmentService treatmentService;
+
+    @Autowired
+    UserRepository userRepository;
+
+    @Autowired
+    CustomUserDetailService customUserDetailService;
 
     @GetMapping("/all")
     public List<Vet> showVets(Model model) {
@@ -61,8 +70,9 @@ public class VetController {
     }
 
     @PostMapping("/add")
-public ResponseEntity<VetDTO> agregarVeterinario(@RequestBody VetDTO vetDTO) {
-    System.out.println("\n\nVeterinario recibido: " + vetDTO);
+public ResponseEntity agregarVeterinario(@RequestBody Vet vet) {
+    /*
+     System.out.println("\n\nVeterinario recibido: " + vetDTO);
 
     if (vetDTO == null) {
         return ResponseEntity.badRequest().build(); // Retorna error si vetDTO es null
@@ -80,6 +90,22 @@ public ResponseEntity<VetDTO> agregarVeterinario(@RequestBody VetDTO vetDTO) {
     VetDTO savedVetDTO = VetMapper.INSTANCE.convert(savedVet);
 
     return ResponseEntity.status(HttpStatus.CREATED).body(savedVetDTO);
+     */
+if(userRepository.existsByUsername(vet.getMail())){
+            return new ResponseEntity<String>("Este usuario ya existe", HttpStatus.BAD_REQUEST);
+        }
+
+        UserEntity userEntity =  customUserDetailService.VetToUser(vet);
+        vet.setUser(userEntity);
+        Vet VetDB = vetService.add(vet);
+        VetDTO newVetDTO = VetMapper.INSTANCE.convert(VetDB);
+
+        if(newVetDTO == null){
+            return new ResponseEntity<VetDTO>(newVetDTO, HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<VetDTO>(newVetDTO,HttpStatus.CREATED);
+
+    
 }
 
 
