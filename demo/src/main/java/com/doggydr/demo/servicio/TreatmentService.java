@@ -21,7 +21,7 @@ public interface TreatmentService {
 
     public List<Treatment> SearchByPetId(Long id);
 
-    public List<Pet> SearchPetsById(Long id);
+    public Pet SearchPetById(Long id);
 
     public List<Medicine> SearchMedicinesById(Long id);
     

@@ -76,12 +76,12 @@ public class TreatmentServiceImpl implements TreatmentService{
 
     @Override
     public List<Treatment> SearchByPetId(Long id) {
-        return treatmentRepo.findByPetsId(id);
+        return treatmentRepo.findByPetId(id);
     }
 
     @Override
-    public List<Pet> SearchPetsById(Long id) {
-        return treatmentRepo.findPetsById(id);
+    public Pet SearchPetById(Long id) {
+        return treatmentRepo.findPetById(id);
     }
 
     @Override
@@ -133,6 +133,8 @@ public class TreatmentServiceImpl implements TreatmentService{
 
         treatment.setPet(pet); // Asocia la mascota al tratamiento
         treatmentRepo.save(treatment); // Guarda los cambios
+        pet.getTreatments().add(treatment);
+        petRepo.save(pet);
     }
 
     @Override

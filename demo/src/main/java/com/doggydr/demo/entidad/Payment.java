@@ -7,8 +7,11 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
+@Data @NoArgsConstructor
 public class Payment {
     @Id
     @GeneratedValue
@@ -22,10 +25,6 @@ public class Payment {
     private Appointment appointment;
 
 
-    
-    public Payment() {
-    }
-
     public Payment(Double price, Appointment appointment) {
         this.price = price;
         this.appointment = appointment;
@@ -37,30 +36,4 @@ public class Payment {
         this.appointment = appointment;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Double getPrice() {
-        return price;
-    }
-
-    public void setPrice(Double price) {
-        this.price = price;
-    }
-
-    public Appointment getAppointment() {
-        return appointment;
-    }
-
-    public void setAppointment(Appointment appointment) {
-        this.appointment = appointment;
-    }
-
-
-    
 }

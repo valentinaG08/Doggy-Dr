@@ -10,8 +10,14 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
+@Data @NoArgsConstructor
+@Builder @AllArgsConstructor
 public class Medicine {
     
     @Id
@@ -28,79 +34,6 @@ public class Medicine {
     @ManyToMany(mappedBy = "medicines", cascade = CascadeType.ALL)
     private List<Treatment> treatments = new ArrayList<>();
 
-    
-    public Medicine() {
-    }
+//(Long id, String name, int availableUnits, int soldUnits, Double cost, Double salesPrice, List<Treatment> treatments)
 
-    public Medicine(String name, int availableUnits, int soldUnits, Double cost, Double salesPrice) {
-        this.name = name;
-        this.availableUnits = availableUnits;
-        this.soldUnits = soldUnits;
-        this.cost = cost;
-        this.salesPrice = salesPrice;
-    }
-
-    public Medicine(Long id, String name, int availableUnits, int soldUnits, Double cost, Double salesPrice,
-            List<Treatment> treatments) {
-        this.id = id;
-        this.name = name;
-        this.availableUnits = availableUnits;
-        this.soldUnits = soldUnits;
-        this.cost = cost;
-        this.salesPrice = salesPrice;
-        this.treatments = treatments;
-    }
-
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public List<Treatment> getTreatments() {
-        return treatments;
-    }
-
-    public void setTreatments(List<Treatment> treatments) {
-        this.treatments = treatments;
-    }
-
-    public Double getCost() {
-        return cost;
-    }
-
-    public void setCost(Double cost) {
-        this.cost = cost;
-    }
-
-    public Double getSalesPrice() {
-        return salesPrice;
-    }
-    public void setSalesPrice(Double salesPrice) {
-        this.salesPrice = salesPrice;
-    }
-    public int getAvailableUnits() {
-        return availableUnits;
-    }
-    public void setAvailableUnits(int availableUnits) {
-        this.availableUnits = availableUnits;
-    }
-    public int getSoldUnits() {
-        return soldUnits;
-    }
-    public void setSoldUnits(int soldUnits) {
-        this.soldUnits = soldUnits;
-    }
-    
 }
