@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
+import com.doggydr.demo.DTOs.VetDTO;
+import com.doggydr.demo.DTOs.VetMapper;
 import com.doggydr.demo.entidad.Client;
 import com.doggydr.demo.entidad.Pet;
 import com.doggydr.demo.entidad.Vet;
@@ -59,17 +61,27 @@ public class VetController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<Vet> agregarVeterinario(@RequestBody Vet vet) {
-        System.out.println("\n\nVeterinario recibido: " + vet);
+public ResponseEntity<VetDTO> agregarVeterinario(@RequestBody VetDTO vetDTO) {
+    System.out.println("\n\nVeterinario recibido: " + vetDTO);
 
-        if (vet == null) {
-            return ResponseEntity.badRequest().build(); // Retorna error si vet es null
-        }
-
-        // Si llegamos aquí, significa que vet no es null, así que puede proceder a guardarla
-        Vet savedVet = vetService.add(vet); // Guarda el veterinario en la base de datos
-        return ResponseEntity.status(HttpStatus.CREATED).body(savedVet); // Retorna el objeto guardado
+    if (vetDTO == null) {
+        return ResponseEntity.badRequest().build(); // Retorna error si vetDTO es null
     }
+
+    // Crear entidad Vet usando los datos de VetDTO
+    Vet vet = new Vet();
+    vet.setName(vetDTO.getName());
+    vet.setMail(vetDTO.getMail());
+    
+    // Guardar el veterinario en la base de datos
+    Vet savedVet = vetService.add(vet);
+
+    // Convertir el Vet guardado a VetDTO para la respuesta
+    VetDTO savedVetDTO = VetMapper.INSTANCE.convert(savedVet);
+
+    return ResponseEntity.status(HttpStatus.CREATED).body(savedVetDTO);
+}
+
 
     @DeleteMapping("/delete/{id}")
     public void deleteVet(@PathVariable("id") Long identification){

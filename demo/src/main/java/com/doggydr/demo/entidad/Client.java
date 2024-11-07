@@ -11,11 +11,18 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 
 @Entity
+@Data
+@NoArgsConstructor
 public class Client{
 
+    @OneToOne(cascade = CascadeType.ALL)
+    private UserEntity user;
     @Id
     @GeneratedValue
     private Long id;
@@ -35,10 +42,6 @@ public class Client{
     @OneToMany(mappedBy = "owner", cascade = CascadeType.REMOVE, orphanRemoval = true)
     private List<Pet> pets = new ArrayList<>();
    
-    public Client(){
-
-    }
-
     public Client(String name, String username, Long document, Long phone, String mail) {
         this.name = name;
         this.username = username;
@@ -57,67 +60,10 @@ public class Client{
         this.pets = pets;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public Long getDocument() {
-        return document;
-    }
-
-    public void setDocument(Long document) {
-        this.document = document;
-    }
-
-    public Long getPhone() {
-        return phone;
-    }
-
-    public void setPhone(Long phone) {
-        this.phone = phone;
-    }
-
-    public String getMail() {
-        return mail;
-    }
-
-    public void setMail(String mail) {
-        this.mail = mail;
-    }
-
-    public List<Pet> getPets() {
-        return pets;
-    }
-
-    public void setPets(List<Pet> pets) {
-        this.pets = pets;
-    }
-
     @Override
     public String toString() {
         return "Client [id=" + id + ", name=" + name + ", username=" + username + ", document=" + document + ", phone="
                 + phone + ", mail=" + mail + ", pets=" + pets + "]";
     }
 
-    
 }

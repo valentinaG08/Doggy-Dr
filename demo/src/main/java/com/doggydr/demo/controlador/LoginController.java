@@ -18,7 +18,10 @@ import com.doggydr.demo.servicio.ClientService;
 
 import com.doggydr.demo.entidad.Vet;
 import com.doggydr.demo.servicio.VetService;
-
+import com.doggydr.demo.DTOs.AdminDTO;
+import com.doggydr.demo.DTOs.AdminMapper;
+import com.doggydr.demo.DTOs.VetDTO;
+import com.doggydr.demo.DTOs.VetMapper;
 import com.doggydr.demo.entidad.Admin;
 import com.doggydr.demo.servicio.AdminService;
 
@@ -75,25 +78,17 @@ public class LoginController {
         return "vetLogin";
     }
 
-    @PostMapping("/vet")
-    public ResponseEntity<?> vetlogin(@RequestBody LoginRequest loginRequest) {
-        String username = loginRequest.getUsername();
-        String password = loginRequest.getPassword();
+      @PostMapping("/vet")
+    public ResponseEntity<?> vetLogin(@RequestBody LoginRequest loginRequest) {
+        Vet vet = vetService.findByUserName(loginRequest.getUsername());
 
-        System.out.println("\n\n\n Username: " + username + " Password: " + password);
-
-        // Buscar admin en la base de datos por su usuario y contraseña
-        Vet vet = vetService.findByUserName(username);
-        Vet vet2 = vetService.findByPassword(password);
-        
-        // Si el admin se encuentra, devolver información del admin en JSON
-        if (vet != null && vet2 != null) {
-            return ResponseEntity.ok(vet);
+        if (vet != null && vet.getPassword().equals(loginRequest.getPassword())) {
+            VetDTO vetDTO = VetMapper.INSTANCE.convert(vet);
+            return ResponseEntity.ok(vetDTO);
         } else {
-            // Si no se encuentra, devolver un error con un código de estado 404
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Veterinario no encontrado");
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Veterinario no encontrado o contraseña incorrecta");
+        }
     }
-}
 
     @GetMapping("/admin")
     public String adminlogin(Model model){
@@ -101,22 +96,14 @@ public class LoginController {
     }
 
     @PostMapping("/admin")
-        public ResponseEntity<?> adminlogin(@RequestBody LoginRequest loginRequest) {
-            String username = loginRequest.getUsername();
-            String password = loginRequest.getPassword();
+    public ResponseEntity<?> adminLogin(@RequestBody LoginRequest loginRequest) {
+        Admin admin = adminService.findByUsername(loginRequest.getUsername());
 
-            System.out.println("\n\n\n Username: " + username + " Password: " + password);
-
-            // Buscar admin en la base de datos por su usuario y contraseña
-            Admin admin = adminService.findByUsername(username);
-            Admin admin2 = adminService.findByPassword(password);
-            
-            // Si el admin se encuentra, devolver información del admin en JSON
-            if (admin != null && admin2 != null) {
-                return ResponseEntity.ok(admin);
-            } else {
-                // Si no se encuentra, devolver un error con un código de estado 404
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Admin no encontrado");
+        if (admin != null && admin.getPassword().equals(loginRequest.getPassword())) {
+            AdminDTO adminDTO = AdminMapper.INSTANCE.convert(admin);
+            return ResponseEntity.ok(adminDTO);
+        } else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Admin no encontrado o contraseña incorrecta");
         }
     }
 

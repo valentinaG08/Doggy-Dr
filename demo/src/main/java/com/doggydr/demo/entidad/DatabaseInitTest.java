@@ -51,7 +51,7 @@ public class DatabaseInitTest implements ApplicationRunner {
         createPets();
 
         // Añadir administradores
-        adminRepository.save(new Admin("Juan Sebastian", "juanSe", "angarita"));
+        adminRepository.save(new Admin(null, null, "Juan Sebastian", "juanSe", "angarita"));
 
         // Añadir servicios
         serviceRepository.save(new Service("Consultas y chequeos generales", 20.500));
