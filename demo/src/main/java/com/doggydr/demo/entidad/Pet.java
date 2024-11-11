@@ -14,8 +14,11 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
+@Data @NoArgsConstructor
 public class Pet {
     @Id
     @GeneratedValue
@@ -35,7 +38,7 @@ public class Pet {
     public Client owner;
     
     @JsonIgnore
-    @ManyToMany(mappedBy = "pets")
+    @OneToMany(mappedBy = "pet", cascade = CascadeType.ALL) //@ManyToMany(mappedBy = "pet")
     private List<Treatment> treatments;
 
     //@JsonIgnore
@@ -43,9 +46,6 @@ public class Pet {
     //private List<Appointment> appointments = new ArrayList<>();
 
     
-    public Pet() {
-
-    }
     public Pet(String nombre, String raza, int edad, String enfermedad, Double peso, String url,  Boolean status) {
         this.nombre = nombre;
         this.raza = raza;
@@ -79,72 +79,5 @@ public class Pet {
         //this.treatments = treatments;
         //this.appointments = appointments;
     }
-    public String getNombre() {
-        return nombre;
-    }
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-    public String getRaza() {
-        return raza;
-    }
-    public void setRaza(String raza) {
-        this.raza = raza;
-    }
-    public int getEdad() {
-        return edad;
-    }
-    public void setEdad(int edad) {
-        this.edad = edad;
-    }
-    public String getEnfermedad() {
-        return enfermedad;
-    }
-    public void setEnfermedad(String enfermedad) {
-        this.enfermedad = enfermedad;
-    }
-    public void setUrlImage(String url) {
-        this.urlImage = url;
-    }
-    public String getUrlImage() {
-        return urlImage;
-    }
-    public void setId(Long id){
-        this.id = id;
-    }
-    public Long getId() {
-        return id;
-    }
-    public Double getPeso() {
-        return peso;
-    }
-    public void setPeso(Double peso) {
-        this.peso = peso;
-    }
-    public Client getOwner() {
-        return owner;
-    }
-    public void setOwner(Client owner) {
-        this.owner = owner;
-    }
-    public List<Treatment> getTreatments() {
-        return treatments;
-    }
-    public void setTreatments(List<Treatment> treatments) {
-        this.treatments = treatments;
-    }
-
-    public Boolean getStatus() {
-        return status;
-    }
-    public void setStatus(Boolean status) {
-        this.status = status;
-    }
-    /*public List<Appointment> getAppointments() {
-        return appointments;
-    }
-    public void setAppointments(List<Appointment> appointments) {
-        this.appointments = appointments;
-    }*/
     
 }

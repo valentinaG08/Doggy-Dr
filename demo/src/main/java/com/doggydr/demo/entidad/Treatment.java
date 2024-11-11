@@ -14,9 +14,12 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToOne;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import jakarta.persistence.ManyToMany;
 
 @Entity
+@Data @NoArgsConstructor
 public class Treatment {
     
     @Id
@@ -36,30 +39,26 @@ public class Treatment {
 
     private String description;
 
-    
     @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "vet_id")
     private Vet vet;
 
-    /*
     @JsonIgnore
-    @ManyToMany(cascade = CascadeType.ALL) // Mantener ManyToMany
-    @JoinTable(
-        name = "treatment_pet", // Nombre de la tabla intermedia
-        joinColumns = @JoinColumn(name = "treatment_id"), // Referencia al tratamiento
-        inverseJoinColumns = @JoinColumn(name = "pet_id") // Referencia a la mascota
-    ) */
+    //@ManyToMany(cascade = CascadeType.ALL) // Mantener ManyToMany
+    //@JoinTable(
+    //    name = "treatment_pet", // Nombre de la tabla intermedia
+    //    joinColumns = @JoinColumn(name = "treatment_id"), // Referencia al tratamiento
+    //    inverseJoinColumns = @JoinColumn(name = "pet_id") // Referencia a la mascota
+    //)private List<Pet> pet = new ArrayList<>();
+    @ManyToOne
+    @JoinColumn(name = "pet_id")
     private Pet pet;
 
     private LocalDate startDate; // Fecha de inicio
 
     private LocalDate endDate; // Fecha de fin
 
-
-    public Treatment(){
-
-    }
     
     // Constructor con todos los campos
     public Treatment(String name, List<Medicine> medicines, String description, Vet vet, Pet pet) {
@@ -83,68 +82,4 @@ public class Treatment {
         this.endDate = LocalDate.of(2024, 12, 10);
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public List<Medicine> getMedicines() {
-        return medicines;
-    }
-
-    public void setMedicines(List<Medicine> medicines) {
-        this.medicines = medicines;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public Vet getVet() {
-        return vet;
-    }
-
-    public void setVet(Vet vet) {
-        this.vet = vet;
-    }
-
-    public Pet getPet() {
-        return pet;
-    }
-
-    public void setPet(Pet pet) {
-        this.pet = pet;
-    }
-
-    public LocalDate getStartDate() {
-        return startDate;
-    }
-
-    public void setStartDate(LocalDate startDate) {
-        this.startDate = startDate;
-    }
-
-    public LocalDate getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(LocalDate endDate) {
-        this.endDate = endDate;
-    }
-    
 }

@@ -13,7 +13,7 @@ public interface ClientService {
 
     public Client SearchByDocument(Long document);
 
-    public void Register(Client client);
+    public Client Register(Client client);
     
     public void DeleteById(Long id);
 

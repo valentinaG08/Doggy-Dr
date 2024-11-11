@@ -43,7 +43,7 @@ public class PetServiceImpl implements PetService{
         Pet pet = optionalPet.get();
 
         // Desasociar la mascota de los tratamientos
-        List<Treatment> treatments = treatmentRepo.findByPetsId(pet.getId());
+        List<Treatment> treatments = treatmentRepo.findByPetId(pet.getId());
         for (Treatment treatment : treatments) {
             treatment.setPet(null); // Desasocia la mascota
             treatmentRepo.save(treatment); // Guarda la modificación

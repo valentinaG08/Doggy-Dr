@@ -52,11 +52,11 @@ public class TreatmentRepositoryTest {
         
 
         // Medicinas
-        medicineRepository.save(new Medicine("Paracetamol", 100, 50, 0.50, 1.00));
-        medicineRepository.save(new Medicine("Ibuprofeno", 200, 120, 0.30, 0.80));
-        medicineRepository.save(new Medicine("Amoxicilina", 150, 80, 0.70, 1.50));
-        medicineRepository.save(new Medicine("Aspirina", 300, 150, 0.25, 0.75));
-
+        medicineRepository.save(new Medicine().builder().name("Paracetamol").availableUnits(100).soldUnits(50).cost(0.50).salesPrice(1.00).build());
+        medicineRepository.save(new Medicine().builder().name("Ibuprofeno").availableUnits(200).soldUnits(120).cost(0.30).salesPrice(0.80).build());
+        medicineRepository.save(new Medicine().builder().name("Amoxicilina").availableUnits(150).soldUnits(80).cost(0.70).salesPrice(1.50).build());
+        medicineRepository.save(new Medicine().builder().name("Aspirina").availableUnits(300).soldUnits(150).cost(0.25).salesPrice(0.75).build());
+    
         // Tratamientos
         List<Medicine> medicine1 = Arrays.asList(
             medicineRepository.findById(1L).orElse(null),
@@ -85,9 +85,9 @@ public class TreatmentRepositoryTest {
         Pet pet3 = petRepository.findById(3L).orElse(null);
 
         treatmentRepository.save(new Treatment("Tratamiento de fiebre", medicine1, "Reduce la fiebre en pacientes", vet1, pet1 ) );
-        treatmentRepository.save(new Treatment("Tratamiento de infección", medicine2, "Antibiótico para infecciones", vet2,  pet2 ) );
-        treatmentRepository.save(new Treatment("Tratamiento de alergias", medicine3, "Alivia los síntomas de alergias", vet3, pet3) );
-        treatmentRepository.save(new Treatment("Tratamiento de diabetes", medicine4, "Control diario para diabetes", vet1,  pet3 ) );
+        treatmentRepository.save(new Treatment("Tratamiento de infección", medicine2, "Antibiótico para infecciones", vet2, pet2 ) );
+        treatmentRepository.save(new Treatment("Tratamiento de alergias", medicine3, "Alivia los síntomas de alergias", vet3, pet3 ) );
+        treatmentRepository.save(new Treatment("Tratamiento de diabetes", medicine4, "Control diario para diabetes", vet1, pet3 ) );
         
         // asignar tratamientos a los pet
         pet1.setTreatments(  Arrays.asList(treatmentRepository.findById(1L).get(), treatmentRepository.findById(2L).get()) );
@@ -101,15 +101,13 @@ public class TreatmentRepositoryTest {
      * List<Pet> findPetsById(@Param("treatmentId") Long treatmentId);
      */
     @Test
-    public void TreatmentRepository_findPetsById_PetsList() {
+    public void TreatmentRepository_findPetById_Pet() {
         Long id = 2l;
 
-        List<Pet> pets = treatmentRepository.findPetsById(id);
+        Pet pet = treatmentRepository.findPetById(id);
 
         // assert
-        Assertions.assertThat(pets).isNotNull();
-        Assertions.assertThat(pets.size()).isEqualTo(2);
-        Assertions.assertThat(pets.size()).isGreaterThan(0);
+        Assertions.assertThat(pet).isNotNull();
     }
 
     /*

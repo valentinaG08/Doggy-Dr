@@ -34,10 +34,10 @@ public class MedicineRepositoryTest {
     void init() {
         
         // Medicinas
-        medicineRepository.save(new Medicine("Paracetamol", 100, 50, 0.50, 1.00));
-        medicineRepository.save(new Medicine("Ibuprofeno", 200, 120, 0.30, 0.80));
-        medicineRepository.save(new Medicine("Amoxicilina", 150, 80, 0.70, 1.50));
-        medicineRepository.save(new Medicine("Aspirina", 300, 150, 0.25, 0.75));
+        medicineRepository.save(new Medicine().builder().name("Paracetamol").availableUnits(100).soldUnits(50).cost(0.50).salesPrice(1.00).build());
+        medicineRepository.save(new Medicine().builder().name("Ibuprofeno").availableUnits(200).soldUnits(120).cost(0.30).salesPrice(0.80).build());
+        medicineRepository.save(new Medicine().builder().name("Amoxicilina").availableUnits(150).soldUnits(80).cost(0.70).salesPrice(1.50).build());
+        medicineRepository.save(new Medicine().builder().name("Aspirina").availableUnits(300).soldUnits(150).cost(0.25).salesPrice(0.75).build());
     }
 
     @Test

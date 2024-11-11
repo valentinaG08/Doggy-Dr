@@ -16,12 +16,12 @@ public interface TreatmentRepository extends JpaRepository<Treatment, Long>{
     Treatment findByName(String name);
     List<Treatment> findByVetId(Long id);
 
-    List<Treatment> findByPetsId(Long id);
+    List<Treatment> findByPetId(Long id);
 
     long count();
     
     @Query("SELECT p FROM Pet p JOIN p.treatments t WHERE t.id = :treatmentId")
-    List<Pet> findPetsById(@Param("treatmentId") Long treatmentId);
+    Pet findPetById(@Param("treatmentId") Long treatmentId);
 
     @Query("SELECT m FROM Medicine m JOIN m.treatments t WHERE t.id = :treatmentId")
     List<Medicine> findMedicinesById(@Param("treatmentId") Long treatmentId);

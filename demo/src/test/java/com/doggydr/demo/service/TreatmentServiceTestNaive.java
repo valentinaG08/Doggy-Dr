@@ -50,10 +50,10 @@ public class TreatmentServiceTestNaive {
         vetRepository.save(new Vet("Daniel Carvajal", "General", "https://universidadeuropea.com/resources/media/images/medicina-veterinaria-800x450.original.jpg", "daniC", 10131415L, 310123123, "daniel@gmail.com", "passDaniel", true));
         
         // Medicinas
-        medicineRepository.save(new Medicine("Paracetamol", 100, 50, 0.50, 1.00));
-        medicineRepository.save(new Medicine("Ibuprofeno", 200, 120, 0.30, 0.80));
-        medicineRepository.save(new Medicine("Amoxicilina", 150, 80, 0.70, 1.50));
-        medicineRepository.save(new Medicine("Aspirina", 300, 150, 0.25, 0.75));
+        medicineRepository.save(new Medicine().builder().name("Paracetamol").availableUnits(100).soldUnits(50).cost(0.50).salesPrice(1.00).build());
+        medicineRepository.save(new Medicine().builder().name("Ibuprofeno").availableUnits(200).soldUnits(120).cost(0.30).salesPrice(0.80).build());
+        medicineRepository.save(new Medicine().builder().name("Amoxicilina").availableUnits(150).soldUnits(80).cost(0.70).salesPrice(1.50).build());
+        medicineRepository.save(new Medicine().builder().name("Aspirina").availableUnits(300).soldUnits(150).cost(0.25).salesPrice(0.75).build());
 
         // Tratamientos
         List<Medicine> medicine1 = medicineRepository.findAllById(Arrays.asList(1L, 2L));
@@ -63,12 +63,13 @@ public class TreatmentServiceTestNaive {
         Vet vet1 = vetRepository.findById(1L).orElse(null);
         
         Pet pet1 = petRepository.findById(1L).orElse(null);
-        Pet pet2 = petRepository.findById(2L).orElse(null);
+        
         
         treatmentService.add(new Treatment("Tratamiento de fiebre", medicine1, "Reduce la fiebre en pacientes", vet1, pet1 ) );
         
 
         /*
+        Pet pet2 = petRepository.findById(2L).orElse(null);
         treatmentService.add(new Treatment("Tratamiento de infección", medicine1, "Antibiótico para infecciones", vet2,  Arrays.asList( pet2, pet3 ) ) );
         treatmentService.add(new Treatment("Tratamiento de alergias", medicine1, "Alivia los síntomas de alergias", vet3, Arrays.asList(pet3, pet1 ) ) );
         treatmentService.add(new Treatment("Tratamiento de diabetes", medicine1, "Control diario para diabetes", vet1,  Arrays.asList(pet3, pet2 ) ) );
@@ -94,7 +95,8 @@ public class TreatmentServiceTestNaive {
         Treatment treatment = new Treatment("Tratamiento de fiebre",
                 Arrays.asList(medicineRepository.findById(1l).get(), medicineRepository.findById(2l).get()),
                 "Reduce la fiebre en pacientes", vetRepository.findById(1l).get(),
-                petRepository.findById(1l).get());
+                petRepository.findById(1l).get() );
+
         System.out.println("\n\n tr med:" + treatment.getMedicines().size());
 
         Treatment newTreatment = treatmentService.add(treatment);

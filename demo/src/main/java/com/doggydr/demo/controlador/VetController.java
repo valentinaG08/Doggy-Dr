@@ -4,6 +4,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -17,10 +18,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
+import com.doggydr.demo.DTOs.VetDTO;
+import com.doggydr.demo.DTOs.VetMapper;
 import com.doggydr.demo.entidad.Client;
 import com.doggydr.demo.entidad.Pet;
 import com.doggydr.demo.entidad.Vet;
+import com.doggydr.demo.repositorio.UserRepository;
+import com.doggydr.demo.security.CustomUserDetailService;
 import com.doggydr.demo.entidad.Treatment;
+import com.doggydr.demo.entidad.UserEntity;
 import com.doggydr.demo.servicio.VetService;
 import com.doggydr.demo.servicio.TreatmentService;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -34,6 +40,12 @@ public class VetController {
     VetService vetService;
     @Autowired
     TreatmentService treatmentService;
+
+    @Autowired
+    UserRepository userRepository;
+
+    @Autowired
+    CustomUserDetailService customUserDetailService;
 
     @GetMapping("/all")
     public List<Vet> showVets(Model model) {
@@ -59,17 +71,56 @@ public class VetController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<Vet> agregarVeterinario(@RequestBody Vet vet) {
-        System.out.println("\n\nVeterinario recibido: " + vet);
+public ResponseEntity agregarVeterinario(@RequestBody Vet vet) {
+    /*
+     System.out.println("\n\nVeterinario recibido: " + vetDTO);
 
-        if (vet == null) {
-            return ResponseEntity.badRequest().build(); // Retorna error si vet es null
+    if (vetDTO == null) {
+        return ResponseEntity.badRequest().build(); // Retorna error si vetDTO es null
+    }
+
+    // Crear entidad Vet usando los datos de VetDTO
+    Vet vet = new Vet();
+    vet.setName(vetDTO.getName());
+    vet.setMail(vetDTO.getMail());
+    
+    // Guardar el veterinario en la base de datos
+    Vet savedVet = vetService.add(vet);
+
+    // Convertir el Vet guardado a VetDTO para la respuesta
+    VetDTO savedVetDTO = VetMapper.INSTANCE.convert(savedVet);
+
+    return ResponseEntity.status(HttpStatus.CREATED).body(savedVetDTO);
+     */
+if(userRepository.existsByUsername(vet.getMail())){
+            return new ResponseEntity<String>("Este usuario ya existe", HttpStatus.BAD_REQUEST);
         }
 
-        // Si llegamos aquí, significa que vet no es null, así que puede proceder a guardarla
-        Vet savedVet = vetService.add(vet); // Guarda el veterinario en la base de datos
-        return ResponseEntity.status(HttpStatus.CREATED).body(savedVet); // Retorna el objeto guardado
+        UserEntity userEntity =  customUserDetailService.VetToUser(vet);
+        vet.setUser(userEntity);
+        Vet VetDB = vetService.add(vet);
+        VetDTO newVetDTO = VetMapper.INSTANCE.convert(VetDB);
+
+        if(newVetDTO == null){
+            return new ResponseEntity<VetDTO>(newVetDTO, HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<VetDTO>(newVetDTO,HttpStatus.CREATED);
+
+    
+}
+
+ @GetMapping("/details")
+    public ResponseEntity<Vet> buscarVeterinario(){
+        Vet vet = vetService.findByUserName(
+            SecurityContextHolder.getContext().getAuthentication().getName()
+        );
+
+        if(vet == null){
+            return new ResponseEntity<Vet>(vet, HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<Vet>(vet, HttpStatus.OK);
     }
+
 
     @DeleteMapping("/delete/{id}")
     public void deleteVet(@PathVariable("id") Long identification){
