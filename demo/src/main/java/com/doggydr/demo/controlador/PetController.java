@@ -25,6 +25,8 @@ import com.doggydr.demo.entidad.Vet;
 import com.doggydr.demo.servicio.ClientService;
 import com.doggydr.demo.servicio.PetService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/pet")
 @CrossOrigin(origins = "http://localhost:4200")
