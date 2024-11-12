@@ -32,9 +32,14 @@ public class SecurityConfig {
                         .requestMatchers("/login/client", "/login/vet", "/login/admin").permitAll()
                         .requestMatchers("/owner/register").permitAll()
                         .requestMatchers("/vet/add").permitAll()
+                        .requestMatchers("/pet/add").permitAll()
                         .requestMatchers("/owner/**").permitAll()
                         .requestMatchers("/pet/**").permitAll() 
                         .requestMatchers("/admin/**").permitAll()
+                        .requestMatchers("/vet/**").permitAll()
+                        .requestMatchers("/medicine/").permitAll()
+                        .requestMatchers("/treatment/").permitAll()
+                        .requestMatchers("/api/email/send").permitAll() // Permitir acceso sin autenticación
                         .requestMatchers("/vet/details").hasAuthority("VETERINARIO")
                         .requestMatchers("/vet/**").permitAll()
                         .requestMatchers("/medicine/**").permitAll()
@@ -45,13 +50,11 @@ public class SecurityConfig {
                 .addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
-
     }
 
     @Bean
     PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
-
     }
 
     @Bean
@@ -64,5 +67,4 @@ public class SecurityConfig {
     public JwtAuthenticationFilter jwtAuthenticationFilter() {
         return new JwtAuthenticationFilter();
     }
-
 }
