@@ -42,6 +42,9 @@ public class SecurityConfig {
                         .requestMatchers("/owner/delete/**").permitAll()
                         .requestMatchers("/api/email/send").permitAll() // Permitir acceso sin autenticación
                         .requestMatchers("/vet/details").hasAuthority("VETERINARIO")
+                        .requestMatchers("/vet/**").permitAll()
+                        .requestMatchers("/medicine/**").permitAll()
+                        .requestMatchers("/treatment/**").permitAll()
                         .requestMatchers("/owner/details").hasAuthority("CLIENTE")
                         .anyRequest().authenticated())
                 .exceptionHandling(exception -> exception.authenticationEntryPoint(jwtAuthEntryPoint))
