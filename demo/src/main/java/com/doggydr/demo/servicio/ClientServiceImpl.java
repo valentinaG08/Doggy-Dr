@@ -9,6 +9,7 @@ import com.doggydr.demo.entidad.Client;
 import com.doggydr.demo.entidad.Pet;
 import com.doggydr.demo.repositorio.ClientRepository;
 import com.doggydr.demo.repositorio.PetRepository;
+import com.doggydr.demo.repositorio.UserRepository;
 
 @Service
 public class ClientServiceImpl implements ClientService {
@@ -17,6 +18,9 @@ public class ClientServiceImpl implements ClientService {
 
     @Autowired
     PetService petService;
+
+    @Autowired
+    UserRepository userRepo;
 
     @Override
     public Client SearchById(Long id) {
@@ -47,6 +51,7 @@ public class ClientServiceImpl implements ClientService {
     public void DeleteById(Long id) {
         // Buscar el owner por su ID
         Optional<Client> optionalOwner = clientRepo.findById(id);
+        userRepo.deleteById(id);
         if (!optionalOwner.isPresent()) {
             throw new ResourceClosedException("Owner not found with id: " + id);
         }

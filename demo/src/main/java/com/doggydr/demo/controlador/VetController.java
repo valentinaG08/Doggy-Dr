@@ -35,7 +35,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping("/vet")
 @CrossOrigin(origins = "http://localhost:4200")
 public class VetController {
-    
+
     @Autowired
     VetService vetService;
     @Autowired
@@ -53,12 +53,12 @@ public class VetController {
     }
 
     @GetMapping("/find")
-    public Vet mostrarInfoVet(@RequestParam("id") Long id){
+    public Vet mostrarInfoVet(@RequestParam("id") Long id) {
         return vetService.SearchById(id);
     }
 
     @GetMapping("/find/{id}")
-    public Vet mostrarInfoVet2(@PathVariable("id") Long id){
+    public Vet mostrarInfoVet2(@PathVariable("id") Long id) {
         Vet vet = vetService.SearchById(id);
         return vet;
     }
@@ -71,78 +71,75 @@ public class VetController {
     }
 
     @PostMapping("/add")
-public ResponseEntity agregarVeterinario(@RequestBody Vet vet) {
-    /*
-     System.out.println("\n\nVeterinario recibido: " + vetDTO);
-
-    if (vetDTO == null) {
-        return ResponseEntity.badRequest().build(); // Retorna error si vetDTO es null
-    }
-
-    // Crear entidad Vet usando los datos de VetDTO
-    Vet vet = new Vet();
-    vet.setName(vetDTO.getName());
-    vet.setMail(vetDTO.getMail());
-    
-    // Guardar el veterinario en la base de datos
-    Vet savedVet = vetService.add(vet);
-
-    // Convertir el Vet guardado a VetDTO para la respuesta
-    VetDTO savedVetDTO = VetMapper.INSTANCE.convert(savedVet);
-
-    return ResponseEntity.status(HttpStatus.CREATED).body(savedVetDTO);
-     */
-if(userRepository.existsByUsername(vet.getMail())){
+    public ResponseEntity agregarVeterinario(@RequestBody Vet vet) {
+        /*
+         * System.out.println("\n\nVeterinario recibido: " + vetDTO);
+         * 
+         * if (vetDTO == null) {
+         * return ResponseEntity.badRequest().build(); // Retorna error si vetDTO es
+         * null
+         * }
+         * 
+         * // Crear entidad Vet usando los datos de VetDTO
+         * Vet vet = new Vet();
+         * vet.setName(vetDTO.getName());
+         * vet.setMail(vetDTO.getMail());
+         * 
+         * // Guardar el veterinario en la base de datos
+         * Vet savedVet = vetService.add(vet);
+         * 
+         * // Convertir el Vet guardado a VetDTO para la respuesta
+         * VetDTO savedVetDTO = VetMapper.INSTANCE.convert(savedVet);
+         * 
+         * return ResponseEntity.status(HttpStatus.CREATED).body(savedVetDTO);
+         */
+        if (userRepository.existsByUsername(vet.getMail())) {
             return new ResponseEntity<String>("Este usuario ya existe", HttpStatus.BAD_REQUEST);
         }
 
-        UserEntity userEntity =  customUserDetailService.VetToUser(vet);
+        UserEntity userEntity = customUserDetailService.VetToUser(vet);
         vet.setUser(userEntity);
         Vet VetDB = vetService.add(vet);
         VetDTO newVetDTO = VetMapper.INSTANCE.convert(VetDB);
 
-        if(newVetDTO == null){
+        if (newVetDTO == null) {
             return new ResponseEntity<VetDTO>(newVetDTO, HttpStatus.BAD_REQUEST);
         }
-        return new ResponseEntity<VetDTO>(newVetDTO,HttpStatus.CREATED);
+        return new ResponseEntity<VetDTO>(newVetDTO, HttpStatus.CREATED);
 
-    
-}
-
-@GetMapping("/details")
-public ResponseEntity<?> buscarVeterinario() {
-    String username = SecurityContextHolder.getContext().getAuthentication().getName();
-
-    if (username == null || username.isEmpty()) {
-        return new ResponseEntity<>("No se pudo obtener el nombre de usuario", HttpStatus.UNAUTHORIZED);
     }
 
-    Vet vet = vetService.findByUserName(username);
+    @GetMapping("/details")
+    public ResponseEntity<?> buscarVeterinario() {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
 
-    if (vet == null) {
-        return new ResponseEntity<>("Veterinario no encontrado", HttpStatus.NOT_FOUND);
+        if (username == null || username.isEmpty()) {
+            return new ResponseEntity<>("No se pudo obtener el nombre de usuario", HttpStatus.UNAUTHORIZED);
+        }
+
+        Vet vet = vetService.findByUserName(username);
+
+        if (vet == null) {
+            return new ResponseEntity<>("Veterinario no encontrado", HttpStatus.NOT_FOUND);
+        }
+
+        return new ResponseEntity<>(vet, HttpStatus.OK);
     }
-
-    return new ResponseEntity<>(vet, HttpStatus.OK);
-}
-
-
 
     @DeleteMapping("/delete/{id}")
-    public void deleteVet(@PathVariable("id") Long identification){
+    public void deleteVet(@PathVariable("id") Long identification) {
         vetService.DeleteById(identification);
     }
 
-
     @PutMapping("/update/{id}")
     public ResponseEntity<Vet> updateVet(@PathVariable("id") Long id, @RequestBody Vet vet) {
-        
+
         if (vet == null || !vet.getId().equals(id)) {
             System.out.println("\n\nVeterinario recibido: " + vet.getId());
             return ResponseEntity.badRequest().build(); // Retorna un error si el ID no coincide
         }
 
-        List<Treatment> treatments  = treatmentService.SearchByVetId(id);
+        List<Treatment> treatments = treatmentService.SearchByVetId(id);
 
         vet.setTreatments(treatments);
 
@@ -155,7 +152,7 @@ public ResponseEntity<?> buscarVeterinario() {
         Vet vet = vetService.SearchById(id);
         System.out.println("\n\n Treatments: " + vet.getTreatments().size());
         return vet.getTreatments();
-    } 
+    }
 
     @GetMapping("/{id}/pets")
     public List<Pet> showPetsbyVet(@PathVariable("id") Long id) {
@@ -163,8 +160,8 @@ public ResponseEntity<?> buscarVeterinario() {
         System.out.println("\n\n Pets: " + pets.size());
 
         return pets;
-    } 
-    
+    }
+
     @GetMapping("/active")
     public ResponseEntity<Long> getActiveVeterinarians() {
         long totalVets = vetService.findAllActives();

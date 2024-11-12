@@ -12,6 +12,8 @@ import com.doggydr.demo.entidad.Client;
 import com.doggydr.demo.entidad.Pet;
 import com.doggydr.demo.entidad.Treatment;
 import com.doggydr.demo.entidad.Vet;
+import com.doggydr.demo.repositorio.RoleRepository;
+import com.doggydr.demo.repositorio.UserRepository;
 import com.doggydr.demo.repositorio.VetRepository;
 
 import io.micrometer.observation.annotation.Observed;
@@ -20,6 +22,12 @@ import io.micrometer.observation.annotation.Observed;
 public class VetServiceImpl implements VetService{
     @Autowired
     VetRepository vetRepo;
+
+    @Autowired
+    UserRepository userRepository;
+
+    @Autowired
+    RoleRepository roleRepository;
 
     @Override
     public Vet SearchById(Long id) {
@@ -34,6 +42,7 @@ public class VetServiceImpl implements VetService{
     @Override
     public void DeleteById(Long id) {
         vetRepo.deleteById(id);
+        userRepository.deleteById(id);
     }
 
     @Override

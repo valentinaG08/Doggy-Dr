@@ -128,7 +128,7 @@ public class LoginController {
 
         // Verificar la contraseña proporcionada con el hash en la base de datos
         if (passwordEncoder.matches(loginRequest.getPassword(), vet.getUser().getPassword())) {
-            Authentication authentication = new UsernamePasswordAuthenticationToken(vet.getMail(), null);
+            Authentication authentication = new UsernamePasswordAuthenticationToken(vet.getUserName(), null);
             SecurityContextHolder.getContext().setAuthentication(authentication);
             String token = jwtGenerator.generateToken(authentication);
             return new ResponseEntity<>(token, HttpStatus.OK);
