@@ -32,6 +32,7 @@ public class SecurityConfig {
                         .requestMatchers("/login/client", "/login/vet", "/login/admin").permitAll()
                         .requestMatchers("/owner/register").permitAll()
                         .requestMatchers("/vet/add").permitAll()
+                        .requestMatchers("/pet/add").permitAll()
                         .requestMatchers("/owner/**").permitAll()
                         .requestMatchers("/pet/**").permitAll() 
                         .requestMatchers("/admin/**").permitAll()
