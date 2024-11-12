@@ -117,26 +117,25 @@ public class LoginController {
          * .body("Veterinario no encontrado o contraseña incorrecta");
          * }
          */
-        
-            if (vet == null) {
-                return new ResponseEntity<>("Veterinario no encontrado", HttpStatus.NOT_FOUND);
-            }
-        
-            // Log para verificación
-            System.out.println("Veterinario: " + vet.getName());
-            System.out.println("Hash en base de datos: " + vet.getUser().getPassword());
-        
-            // Verificar la contraseña proporcionada con el hash en la base de datos
-            if (passwordEncoder.matches(loginRequest.getPassword(), vet.getUser().getPassword())) {
-                Authentication authentication = new UsernamePasswordAuthenticationToken(vet.getMail(), null);
-                SecurityContextHolder.getContext().setAuthentication(authentication);
-                String token = jwtGenerator.generateToken(authentication);
-                return new ResponseEntity<>(token, HttpStatus.OK);
-            } else {
-                return new ResponseEntity<>("Contraseña incorrecta", HttpStatus.UNAUTHORIZED);
-            }
+
+        if (vet == null) {
+            return new ResponseEntity<>("Veterinario no encontrado", HttpStatus.NOT_FOUND);
         }
-        
+
+        // Log para verificación
+        System.out.println("Veterinario: " + vet.getName());
+        System.out.println("Hash en base de datos: " + vet.getUser().getPassword());
+
+        // Verificar la contraseña proporcionada con el hash en la base de datos
+        if (passwordEncoder.matches(loginRequest.getPassword(), vet.getUser().getPassword())) {
+            Authentication authentication = new UsernamePasswordAuthenticationToken(vet.getMail(), null);
+            SecurityContextHolder.getContext().setAuthentication(authentication);
+            String token = jwtGenerator.generateToken(authentication);
+            return new ResponseEntity<>(token, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("Contraseña incorrecta", HttpStatus.UNAUTHORIZED);
+        }
+    }
 
     @GetMapping("/admin")
     public String adminlogin(Model model) {
@@ -144,26 +143,26 @@ public class LoginController {
     }
 
     @PostMapping("/admin")
-public ResponseEntity adminLogin(@RequestBody LoginRequest loginRequest) {
-    Admin admin = adminService.findByUsername(loginRequest.getUsername());
+    public ResponseEntity adminLogin(@RequestBody LoginRequest loginRequest) {
+        Admin admin = adminService.findByUsername(loginRequest.getUsername());
 
-    if (admin == null) {
-        return new ResponseEntity<>("Admin no encontrado", HttpStatus.NOT_FOUND);
-    }
+        if (admin == null) {
+            return new ResponseEntity<>("Admin no encontrado", HttpStatus.NOT_FOUND);
+        }
 
-     // Log para verificación
-     System.out.println("Veterinario: " + admin.getUsername());
-     System.out.println("Hash en base de datos: " + admin.getUser().getPassword());
- 
-    // Verificar la contraseña proporcionada
-    if (passwordEncoder.matches(loginRequest.getPassword(), admin.getUser().getPassword())) {
-        Authentication authentication = new UsernamePasswordAuthenticationToken(admin.getUsername(), null);
-        SecurityContextHolder.getContext().setAuthentication(authentication);
-        String token = jwtGenerator.generateToken(authentication);
-        return new ResponseEntity<>(token, HttpStatus.OK);
-    } else {
-        return new ResponseEntity<>("Contraseña incorrecta", HttpStatus.UNAUTHORIZED);
+        // Log para verificación
+        System.out.println("Admin username: " + admin.getUsername());
+        System.out.println("Hash en base de datos: " + admin.getUser().getPassword());
+
+        // Verificar la contraseña proporcionada
+        if (passwordEncoder.matches(loginRequest.getPassword(), admin.getUser().getPassword())) {
+            Authentication authentication = new UsernamePasswordAuthenticationToken(admin.getUsername(), null);
+            SecurityContextHolder.getContext().setAuthentication(authentication);
+            String token = jwtGenerator.generateToken(authentication);
+            return new ResponseEntity<>(token, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("Contraseña incorrecta", HttpStatus.UNAUTHORIZED);
+        }
     }
-}
 
 }
