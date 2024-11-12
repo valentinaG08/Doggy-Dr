@@ -62,6 +62,7 @@ public class LoginController {
 
     @PostMapping("/client")
     public ResponseEntity login(@RequestBody LoginRequest loginRequest) {
+        System.out.println("Login endpoint reached");
         /*
          * System.out.println("\n\n\nDocumento:"+ document);
          * 
@@ -92,7 +93,7 @@ public class LoginController {
 
         if (passwordEncoder.matches("123", client.getUser().getPassword())) {
             String token = jwtGenerator.generateToken(
-                    new UsernamePasswordAuthenticationToken(client.getMail(), null));
+                    new UsernamePasswordAuthenticationToken(client.getUsername(), null));
             return new ResponseEntity<>(token, HttpStatus.OK);
         } else {
             return new ResponseEntity<>("Credenciales incorrectas", HttpStatus.UNAUTHORIZED);
