@@ -3,8 +3,8 @@ package com.doggydr.demo.entidad;
 import java.util.ArrayList;
 import java.util.List;
 
-
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -17,11 +17,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name="users")
+@Table(name = "users")
 @Data
 @NoArgsConstructor
 public class UserEntity {
-    
+
     @Id
     @GeneratedValue
     Long id;
@@ -30,9 +30,10 @@ public class UserEntity {
 
     private String password;
 
+    private Long document;
+
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
-    inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
-    
+    @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
+
     private List<Role> roles = new ArrayList<>();
 }

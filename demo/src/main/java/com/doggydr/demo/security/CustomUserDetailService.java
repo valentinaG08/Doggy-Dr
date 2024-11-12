@@ -1,4 +1,3 @@
-
 package com.doggydr.demo.security;
 
 import java.util.Collection;
@@ -36,13 +35,17 @@ public class CustomUserDetailService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        UserEntity userDB = userRepository.findByUsername(username).orElseThrow(
-                () -> new UsernameNotFoundException("User not found"));
-        UserDetails userDetails = new User(userDB.getUsername(), userDB.getPassword(),
+        // Busca por username y no por correo
+        UserEntity userDB = userRepository.findByUsername(username)
+            .orElseThrow(() -> new UsernameNotFoundException("User not found with username: " + username));
+        
+        System.out.println("Usuario encontrado: " + userDB.getUsername());
+        System.out.println("Roles: " + userDB.getRoles());
+        
+        return new User(userDB.getUsername(), userDB.getPassword(),
                 mapToGrantedAuthorities(userDB.getRoles()));
-        return userDetails;
     }
-
+    
     private Collection<GrantedAuthority> mapToGrantedAuthorities(List<Role> roles) {
         return roles.stream().map(role -> new SimpleGrantedAuthority(role.getName())).collect(Collectors.toList());
     }
@@ -51,7 +54,8 @@ public class CustomUserDetailService implements UserDetailsService {
         UserEntity user = new UserEntity();
         user.setUsername(client.getUsername());
         user.setPassword(passwordEncoder.encode("123"));
-        Role roles = roleRepository.findByName("CLIENTE").get();
+        Role roles = roleRepository.findByName("CLIENTE").orElseThrow(() -> 
+            new RuntimeException("Role CLIENTE not found"));
         user.setRoles(List.of(roles));
         return user;
     }
@@ -60,7 +64,8 @@ public class CustomUserDetailService implements UserDetailsService {
         UserEntity user = new UserEntity();
         user.setUsername(vet.getUserName());
         user.setPassword(passwordEncoder.encode(vet.getPassword()));
-        Role roles = roleRepository.findByName("VETERINARIO").get();
+        Role roles = roleRepository.findByName("VETERINARIO").orElseThrow(() -> 
+            new RuntimeException("Role VETERINARIO not found"));
         user.setRoles(List.of(roles));
         return user;
     }

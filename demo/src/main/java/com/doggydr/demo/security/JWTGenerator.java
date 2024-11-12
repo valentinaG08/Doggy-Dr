@@ -13,34 +13,42 @@ import io.jsonwebtoken.security.Keys;
 @Component
 public class JWTGenerator {
 
-    public static final Long EXPIRATION_TIME = 70000000L;
     private static final Key key = Keys.secretKeyFor(SignatureAlgorithm.HS512);
+    public static final Long EXPIRATION_TIME = 7000000L;
 
+    /* Crear el JWT */
     public String generateToken(Authentication authentication) {
-
+        // Cambiamos para manejar el principal como String directamente
         String username = authentication.getName();
+        
         Date currentDate = new Date();
         Date expireDate = new Date(currentDate.getTime() + EXPIRATION_TIME);
 
-        String token = Jwts.builder().setSubject(username)
-                .setIssuedAt(currentDate)
-                .setExpiration(expireDate)
-                .signWith(key, SignatureAlgorithm.HS512)
-                .compact();
-
-        return token;
+        /* Crear el JWT */
+        return Jwts.builder()
+            .setSubject(username)
+            .setIssuedAt(currentDate)
+            .setExpiration(expireDate)
+            .signWith(key, SignatureAlgorithm.HS512)
+            .compact();
     }
 
-    public String extractUsername(String token){
-        return Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token).getBody().getSubject();
-        }
+    /* Método para obtener el usuario a partir del JWT */
+    public String getUserFromJwt(String token) {
+        return Jwts.parserBuilder()
+            .setSigningKey(key)
+            .build()
+            .parseClaimsJws(token)
+            .getBody()
+            .getSubject();
+    }
 
-
-    public boolean validateToken(String token){
-        try{
+    /* Método para validar el JWT */
+    public boolean validateToken(String token) {
+        try {
             Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token);
             return true;
-        } catch (Exception e){
+        } catch (Exception e) {
             return false;
         }
     }

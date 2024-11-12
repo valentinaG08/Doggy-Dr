@@ -8,6 +8,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.authorization.method.AuthorizeReturnObject;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -51,13 +52,16 @@ public class LoginController {
     @Autowired
     JWTGenerator jwtGenerator;
 
+    @Autowired
+    PasswordEncoder passwordEncoder;
+
     @GetMapping("/client")
     public String login(Model model) {
         return "clientLogin";
     }
 
     @PostMapping("/client")
-    public ResponseEntity login(@RequestBody Long document) {
+    public ResponseEntity login(@RequestBody LoginRequest loginRequest) {
         /*
          * System.out.println("\n\n\nDocumento:"+ document);
          * 
@@ -74,15 +78,25 @@ public class LoginController {
          * }
          * 
          */
-        System.out.println("\n\n\nDocumento:"+ document);
-        Client client = clientService.SearchByDocument(document);
-         Authentication authentication = authenticationManager.authenticate(
-            new UsernamePasswordAuthenticationToken(client.getMail(), "123")
-         );
+        Long document = loginRequest.getDocument();
+        System.out.println("\n\nDocumento:" + document);
 
-         SecurityContextHolder.getContext().setAuthentication(authentication);
-         String token = jwtGenerator.generateToken(authentication);
-         return new ResponseEntity<String>(token, HttpStatus.OK);
+        Client client = clientService.SearchByDocument(document);
+        if (client == null) {
+            return new ResponseEntity<>("Usuario no encontrado", HttpStatus.NOT_FOUND);
+        }
+
+        // Log para mostrar la contraseña en el cliente y el hash almacenado
+        System.out.println("Contraseña del cliente para comparación: " + client.getUsername());
+        System.out.println("Hash en base de datos: " + client.getUser().getPassword());
+
+        if (passwordEncoder.matches("123", client.getUser().getPassword())) {
+            String token = jwtGenerator.generateToken(
+                    new UsernamePasswordAuthenticationToken(client.getMail(), null));
+            return new ResponseEntity<>(token, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("Credenciales incorrectas", HttpStatus.UNAUTHORIZED);
+        }
     }
 
     @GetMapping("/vet")
@@ -94,23 +108,33 @@ public class LoginController {
     public ResponseEntity vetLogin(@RequestBody LoginRequest loginRequest) {
         Vet vet = vetService.findByUserName(loginRequest.getUsername());
         /*
-         if (vet != null && vet.getPassword().equals(loginRequest.getPassword())) {
-            VetDTO vetDTO = VetMapper.INSTANCE.convert(vet);
-            return ResponseEntity.ok(vetDTO);
-        } else {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
-                    .body("Veterinario no encontrado o contraseña incorrecta");
-        }
+         * if (vet != null && vet.getPassword().equals(loginRequest.getPassword())) {
+         * VetDTO vetDTO = VetMapper.INSTANCE.convert(vet);
+         * return ResponseEntity.ok(vetDTO);
+         * } else {
+         * return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+         * .body("Veterinario no encontrado o contraseña incorrecta");
+         * }
          */
-
-         Authentication authentication = authenticationManager.authenticate(
-            new UsernamePasswordAuthenticationToken(vet.getMail(), vet.getPassword())
-         );
-
-         SecurityContextHolder.getContext().setAuthentication(authentication);
-         String token = jwtGenerator.generateToken(authentication);
-         return new ResponseEntity<String>(token, HttpStatus.OK);
-    }
+        
+            if (vet == null) {
+                return new ResponseEntity<>("Veterinario no encontrado", HttpStatus.NOT_FOUND);
+            }
+        
+            // Log para verificación
+            System.out.println("Veterinario: " + vet.getName());
+            System.out.println("Hash en base de datos: " + vet.getUser().getPassword());
+        
+            // Verificar la contraseña proporcionada con el hash en la base de datos
+            if (passwordEncoder.matches(loginRequest.getPassword(), vet.getUser().getPassword())) {
+                Authentication authentication = new UsernamePasswordAuthenticationToken(vet.getMail(), null);
+                SecurityContextHolder.getContext().setAuthentication(authentication);
+                String token = jwtGenerator.generateToken(authentication);
+                return new ResponseEntity<>(token, HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>("Contraseña incorrecta", HttpStatus.UNAUTHORIZED);
+            }
+        }
         
 
     @GetMapping("/admin")
@@ -119,15 +143,26 @@ public class LoginController {
     }
 
     @PostMapping("/admin")
-    public ResponseEntity<?> adminLogin(@RequestBody LoginRequest loginRequest) {
-        Admin admin = adminService.findByUsername(loginRequest.getUsername());
+public ResponseEntity adminLogin(@RequestBody LoginRequest loginRequest) {
+    Admin admin = adminService.findByUsername(loginRequest.getUsername());
 
-        if (admin != null && admin.getPassword().equals(loginRequest.getPassword())) {
-            AdminDTO adminDTO = AdminMapper.INSTANCE.convert(admin);
-            return ResponseEntity.ok(adminDTO);
-        } else {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Admin no encontrado o contraseña incorrecta");
-        }
+    if (admin == null) {
+        return new ResponseEntity<>("Admin no encontrado", HttpStatus.NOT_FOUND);
+    }
+
+     // Log para verificación
+     System.out.println("Veterinario: " + admin.getUsername());
+     System.out.println("Hash en base de datos: " + admin.getUser().getPassword());
+ 
+    // Verificar la contraseña proporcionada
+    if (passwordEncoder.matches(loginRequest.getPassword(), admin.getUser().getPassword())) {
+        Authentication authentication = new UsernamePasswordAuthenticationToken(admin.getUsername(), null);
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+        String token = jwtGenerator.generateToken(authentication);
+        return new ResponseEntity<>(token, HttpStatus.OK);
+    } else {
+        return new ResponseEntity<>("Contraseña incorrecta", HttpStatus.UNAUTHORIZED);
     }
 }
 
+}
