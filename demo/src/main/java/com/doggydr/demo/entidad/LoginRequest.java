@@ -7,9 +7,10 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-@Builder @AllArgsConstructor
+@Builder
+@AllArgsConstructor
 public class LoginRequest {
     private String username;
     private String password;
-
+    private Long document;
 }

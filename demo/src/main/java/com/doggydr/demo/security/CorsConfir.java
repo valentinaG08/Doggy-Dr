@@ -16,24 +16,23 @@ public class CorsConfir {
     @Bean
     public CorsFilter corsFilter() {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-
+        /* Configuración de CORS */
         CorsConfiguration config = new CorsConfiguration();
-
         config.setAllowCredentials(true);
         config.addAllowedOrigin("http://localhost:4200");
         config.setAllowedHeaders(Arrays.asList(
             HttpHeaders.AUTHORIZATION,
             HttpHeaders.CONTENT_TYPE,
-            HttpHeaders.ACCEPT
+            HttpHeaders.ACCEPT  
         ));
-        
-        config.setAllowedMethods(Arrays.asList(
-            HttpMethod.GET.name(),
-            HttpMethod.DELETE.name(),
-            HttpMethod.POST.name(),
-            HttpMethod.PUT.name()
-        ));
-
+        config.setAllowedMethods(
+            Arrays.asList(
+                HttpMethod.GET.name(),
+                HttpMethod.POST.name(),
+                HttpMethod.PUT.name(),
+                HttpMethod.DELETE.name()
+            )
+        );
         source.registerCorsConfiguration("/**", config);
         return new CorsFilter(source);
     }

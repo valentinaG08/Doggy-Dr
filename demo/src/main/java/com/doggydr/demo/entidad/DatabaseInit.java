@@ -933,17 +933,24 @@ public class DatabaseInit implements ApplicationRunner {
     }
 
     private UserEntity saveUserCliente(Client client) {
-        UserEntity userEntity = new UserEntity();
-        userEntity.setUsername(client.getUsername());
-        userEntity.setPassword(passwordEncoder.encode("123"));
-        Role roles = roleRepository.findByName("CLIENTE").get();
-        userEntity.setRoles(List.of(roles));
-        return userRepository.save(userEntity);
-    }
+    UserEntity userEntity = new UserEntity();
+    userEntity.setUsername(client.getUsername());
+    
+    // Genera una nueva contraseña cifrada y muestra el hash en la consola para verificar
+    String encodedPassword = passwordEncoder.encode("123");
+    System.out.println("Contraseña cifrada (para comparación): " + encodedPassword);
+    userEntity.setDocument(client.getDocument());
+    userEntity.setPassword(encodedPassword);
+    Role roles = roleRepository.findByName("CLIENTE").get();
+    userEntity.setRoles(List.of(roles));
+    return userRepository.save(userEntity);
+}
+
 
     private UserEntity saveUserVeterinario(Vet vet) {
         UserEntity userEntity = new UserEntity();
         userEntity.setUsername(vet.getUserName());
+        userEntity.setDocument(vet.getDocument());
         userEntity.setPassword(passwordEncoder.encode(vet.getPassword()));
         Role roles = roleRepository.findByName("VETERINARIO").get();
         userEntity.setRoles(List.of(roles));

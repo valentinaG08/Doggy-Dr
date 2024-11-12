@@ -99,30 +99,21 @@ public class ClientController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity register(@RequestBody Client client) {
-       
-        /*System.out.println("\n\nCliente recibido: " + newClient.getName());
-
-        Client savedClient = clientService.Register(newClient);
-        ClientDTO clientDTO = ClientMapper.INSTANCE.convert(savedClient);
-
-        return ResponseEntity.ok(clientDTO); */
-
-        if(userRepository.existsByUsername(client.getMail())){
-            return new ResponseEntity<String>("Este usuario ya existe", HttpStatus.BAD_REQUEST);
+    public ResponseEntity<?> register(@RequestBody Client client) {
+        if (userRepository.existsByUsername(client.getUsername())) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Este usuario ya existe por username");
         }
-
-        UserEntity userEntity =  customUserDetailService.ClienteToUser(client);
+        if (userRepository.existsByDocument(client.getDocument())) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Este usuario ya existe por documento");
+        }
+    
+        UserEntity userEntity = customUserDetailService.ClienteToUser(client);
         client.setUser(userEntity);
         Client clientDB = clientService.Register(client);
         ClientDTO newClientDTO = ClientMapper.INSTANCE.convert(clientDB);
-        if(newClientDTO == null){
-            return new ResponseEntity<ClientDTO>(newClientDTO, HttpStatus.BAD_REQUEST);
-        }
-        return new ResponseEntity<ClientDTO>(newClientDTO,HttpStatus.CREATED);
-
-        
+        return ResponseEntity.status(HttpStatus.CREATED).body(newClientDTO);
     }
+    
 
     @GetMapping("/logout")
     public String logout(Model model) {

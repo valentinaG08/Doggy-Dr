@@ -25,24 +25,22 @@ public class SecurityConfig {
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .cors(cors -> {
-                }) // Habilita CORS para que use la configuración de CorsFilter
+                })
                 .headers(headers -> headers.frameOptions(frame -> frame.disable()))
                 .authorizeHttpRequests(requests -> requests
                         .requestMatchers("/h2/**").permitAll()
-                        .requestMatchers("/login/client").permitAll()
-                        .requestMatchers("/login/vet").permitAll()
-                        .requestMatchers("/vet/find/**").hasAuthority("VETERINARIO")
+                        .requestMatchers("/login/client", "/login/vet", "/login/admin").permitAll()
+                        .requestMatchers("/owner/register").permitAll()
+                        .requestMatchers("/vet/add").permitAll()
+                        .requestMatchers("/owner/**").permitAll() 
                         .requestMatchers("/vet/details").hasAuthority("VETERINARIO")
                         .requestMatchers("/owner/details").hasAuthority("CLIENTE")
-                        
-                        .anyRequest().authenticated()
-                        )
-                        .exceptionHandling(exception -> exception.authenticationEntryPoint(jwtAuthEntryPoint));
+                        .anyRequest().authenticated())
+                .exceptionHandling(exception -> exception.authenticationEntryPoint(jwtAuthEntryPoint))
+                .addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
 
-                        http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
         return http.build();
 
-        
     }
 
     @Bean
@@ -58,7 +56,7 @@ public class SecurityConfig {
     }
 
     @Bean
-    public JwtAuthenticationFilter jwtAuthenticationFilter(){
+    public JwtAuthenticationFilter jwtAuthenticationFilter() {
         return new JwtAuthenticationFilter();
     }
 

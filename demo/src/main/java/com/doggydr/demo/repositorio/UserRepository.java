@@ -10,6 +10,8 @@ import com.doggydr.demo.entidad.UserEntity;
 
 public interface UserRepository extends JpaRepository<UserEntity, Long> {
     
-    Optional<UserEntity> findByUsername(String username);
-    Boolean existsByUsername(String username);
+    Optional<UserEntity> findByUsername(String userName);
+    Boolean existsByUsername(String userName);
+    Boolean existsByDocument(Long document);
+
 }

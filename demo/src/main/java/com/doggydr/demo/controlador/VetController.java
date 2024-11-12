@@ -109,17 +109,23 @@ if(userRepository.existsByUsername(vet.getMail())){
     
 }
 
- @GetMapping("/details")
-    public ResponseEntity<Vet> buscarVeterinario(){
-        Vet vet = vetService.findByUserName(
-            SecurityContextHolder.getContext().getAuthentication().getName()
-        );
+@GetMapping("/details")
+public ResponseEntity<?> buscarVeterinario() {
+    String username = SecurityContextHolder.getContext().getAuthentication().getName();
 
-        if(vet == null){
-            return new ResponseEntity<Vet>(vet, HttpStatus.BAD_REQUEST);
-        }
-        return new ResponseEntity<Vet>(vet, HttpStatus.OK);
+    if (username == null || username.isEmpty()) {
+        return new ResponseEntity<>("No se pudo obtener el nombre de usuario", HttpStatus.UNAUTHORIZED);
     }
+
+    Vet vet = vetService.findByUserName(username);
+
+    if (vet == null) {
+        return new ResponseEntity<>("Veterinario no encontrado", HttpStatus.NOT_FOUND);
+    }
+
+    return new ResponseEntity<>(vet, HttpStatus.OK);
+}
+
 
 
     @DeleteMapping("/delete/{id}")
