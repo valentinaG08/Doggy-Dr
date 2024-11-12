@@ -1,0 +1,55 @@
+.form-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 0 auto;
+}
+.form-container h2,
+.form-container h3{
+    margin-bottom: 20px;
+    color: #7044bf;
+}
+.form-group {
+    margin-bottom: 15px;
+}
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #7044bf;
+}
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="number"],
+.form-group input[type="file"],
+.form-group select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    color: #7044bf;
+}
+.form-group input[type="submit"] {
+    background-color: #7044bf;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.form-group input[type="submit"]:hover {
+    background-color: #7044bf;
+}
+
+#button{
+    display: flex;
+    justify-content: center;  
+    transition: 0.3s; /* Transición suave para transformaciones */  
+}
+#button:hover {
+    color: white; /* Color del texto en hover */
+    transform: translateY(-5px); /* Desplaza hacia arriba en hover */
+  }
