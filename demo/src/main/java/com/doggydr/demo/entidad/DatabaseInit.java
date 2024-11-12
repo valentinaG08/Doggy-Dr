@@ -375,7 +375,7 @@ public class DatabaseInit implements ApplicationRunner {
                 "https://www.blogerin.com/wp-content/uploads/2012/10/Fotos-tiernas-de-perritos-wallpapers-2.jpg",
                 clientRepository.findById(6L).get(), true));
         petRepository.save(new Pet("Molly", "Boxer", 3, "Tumores", 23.5,
-                "https://descargarimagenesgratis.org/wp-content/uploads/2014/09/Fotos-de-perros-jugando-7.jpg",
+                "https://content.nationalgeographic.com.es/medio/2023/12/29/ojos-perros-3_433a79bd_231229224215_800x800.jpg",
                 clientRepository.findById(7L).get(), true));
         petRepository.save(new Pet("Buddy", "Rottweiler", 5, "Osteosarcoma", 35.0,
                 "https://www.elmueble.com/medio/2023/03/09/perro-de-raza-rottweiler_9f7a22a7_230309180127_900x900.jpg",
@@ -396,7 +396,7 @@ public class DatabaseInit implements ApplicationRunner {
                 "https://4.bp.blogspot.com/-pesA5apnrsQ/UUMssTjasJI/AAAAAAAABHo/kG_BJ67BW7g/s1600/fotos-imagenes-tiernas%2B(60).jpg",
                 clientRepository.findById(13L).get(), true));
         petRepository.save(new Pet("Rex", "Doberman", 6, "Displasia de cadera", 30.0,
-                "https://animaleshoy.net/wp-content/uploads/2014/04/cachorros_6.jpg",
+                "https://www.ngenespanol.com/wp-content/uploads/2023/12/descubren-que-los-humanos-influimos-en-el-color-de-ojos-de-los-perros-1280x720.jpg",
                 clientRepository.findById(14L).get(), true));
         petRepository.save(new Pet("Lola", "Bulldog Inglés", 2, "Problemas respiratorios", 23.7,
                 "https://i.pinimg.com/originals/5f/35/2c/5f352c6080b6692e617205032083635c.jpg",
@@ -405,7 +405,7 @@ public class DatabaseInit implements ApplicationRunner {
                 "https://www.petdarling.com/wp-content/uploads/2020/11/razas-de-perros.jpg",
                 clientRepository.findById(16L).get(), true));
         petRepository.save(new Pet("Sadie", "Yorkshire Terrier", 4, "Luxación rotuliana", 4.0,
-                "https://www.teorema.com.mx/wp-content/uploads/perros.jpg", clientRepository.findById(17L).get(),
+                "https://fotografias.lasexta.com/clipping/cmsimages01/2022/08/09/3FFA8546-05CE-4608-9B69-6602D02A4C58/cachorro-pomsky_103.jpg?crop=1183,887,x0,y0&width=1200&height=900&optimize=low&format=webply", clientRepository.findById(17L).get(),
                 true));
         petRepository.save(new Pet("Duke", "Pug", 5, "Problemas respiratorios", 9.5,
                 "https://as01.epimg.net/diarioas/imagenes/2022/05/29/actualidad/1653826510_995351_1653826595_noticia_normal.jpg",
@@ -557,10 +557,10 @@ public class DatabaseInit implements ApplicationRunner {
                 "https://www.tiendanimal.es/articulos/wp-content/uploads/2020/07/boxer-cachorro-1200x900.jpg",
                 clientRepository.findById(18L).get(), true));
         petRepository.save(new Pet("Rex", "Dogo Argentino", 5, "Displasia de cadera", 36.0,
-                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUgYX9zTSdHzFWebeKOMvZUke3-j1BydGJ2Q&s",
+                "https://www.ngenespanol.com/wp-content/uploads/2023/12/descubren-que-los-humanos-influimos-en-el-color-de-ojos-de-los-perros-1280x720.jpg",
                 clientRepository.findById(19L).get(), true));
         petRepository.save(new Pet("Sadie", "Maltés", 2, "Hernia discal", 4.0,
-                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZaKMJ9l2NXSjN65j5lQo2iGT57kh9JH7xQA&s",
+                "https://fotografias.lasexta.com/clipping/cmsimages01/2022/08/09/3FFA8546-05CE-4608-9B69-6602D02A4C58/cachorro-pomsky_103.jpg?crop=1183,887,x0,y0&width=1200&height=900&optimize=low&format=webply",
                 clientRepository.findById(20L).get(), true));
         petRepository.save(new Pet("Winston", "Doberman", 6, "Infección de oído", 38.0,
                 "https://www.nutrisslovers.com/Portals/nutrisslovers/Aticulos/Tipos-de-perros-de-terapia/Tipos-de-perros-de-terapia.jpg?ver=2022-09-30-131215-740",
