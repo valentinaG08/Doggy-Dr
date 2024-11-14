@@ -1,5 +1,8 @@
 package com.doggydr.demo.controlador;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -122,19 +125,23 @@ public class LoginController {
             return new ResponseEntity<>("Veterinario no encontrado", HttpStatus.NOT_FOUND);
         }
 
-        // Log para verificación
-        System.out.println("Veterinario: " + vet.getName());
-        System.out.println("Hash en base de datos: " + vet.getUser().getPassword());
-
-        // Verificar la contraseña proporcionada con el hash en la base de datos
         if (passwordEncoder.matches(loginRequest.getPassword(), vet.getUser().getPassword())) {
-            Authentication authentication = new UsernamePasswordAuthenticationToken(vet.getUserName(), null);
+            Authentication authentication = new UsernamePasswordAuthenticationToken(vet.getMail(), null);
             SecurityContextHolder.getContext().setAuthentication(authentication);
             String token = jwtGenerator.generateToken(authentication);
-            return new ResponseEntity<>(token, HttpStatus.OK);
+
+            // Crear un objeto con el token y el nombre del veterinario
+            Map<String, Object> response = new HashMap<>();
+            response.put("token", token);
+            response.put("id", vet.getId());
+            System.out.println("\nid: " + vet.getId());
+            response.put("name", vet.getName());
+
+            return new ResponseEntity<>(response, HttpStatus.OK);
         } else {
             return new ResponseEntity<>("Contraseña incorrecta", HttpStatus.UNAUTHORIZED);
         }
+
     }
 
     @GetMapping("/admin")

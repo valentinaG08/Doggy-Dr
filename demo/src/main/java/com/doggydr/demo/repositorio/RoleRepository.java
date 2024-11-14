@@ -13,8 +13,8 @@ import com.doggydr.demo.entidad.Role;
 public interface RoleRepository extends JpaRepository<Role, Long>{
     Optional<Role> findByName(String name);
 
-    @Modifying
-    @Query("DELETE FROM UserRoles ur WHERE ur.user.id = :userId")
-    void deleteByUserId(@Param("userId") Long userId);
+    //@Modifying
+    //@Query("DELETE FROM UserRoles ur WHERE ur.user.id = :userId")
+    //void deleteByUserId(@Param("userId") Long userId);
     
 }

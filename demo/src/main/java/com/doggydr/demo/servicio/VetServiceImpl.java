@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import org.hibernate.engine.internal.Collections;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.doggydr.demo.entidad.Admin;
 import com.doggydr.demo.entidad.Client;
@@ -39,6 +40,7 @@ public class VetServiceImpl implements VetService{
         return vetRepo.findAll();
     }
 
+    @Transactional
     @Override
     public void DeleteById(Long id) {
         vetRepo.deleteById(id);
