@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
@@ -82,12 +83,11 @@ public class ClientController {
     }
 
     @GetMapping("/details")
-    public ResponseEntity<Client> buscarCliente(){
+    public ResponseEntity<Client> buscarCliente() {
         Client client = clientService.SearchByUsername(
-            SecurityContextHolder.getContext().getAuthentication().getName()
-        );
+                SecurityContextHolder.getContext().getAuthentication().getName());
 
-        if(client == null){
+        if (client == null) {
             return new ResponseEntity<Client>(client, HttpStatus.BAD_REQUEST);
         }
         return new ResponseEntity<Client>(client, HttpStatus.OK);
@@ -106,14 +106,13 @@ public class ClientController {
         if (userRepository.existsByDocument(client.getDocument())) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Este usuario ya existe por documento");
         }
-    
+
         UserEntity userEntity = customUserDetailService.ClienteToUser(client);
-        client.setUser(userEntity);
+        //client.setUser(userEntity);
         Client clientDB = clientService.Register(client);
         ClientDTO newClientDTO = ClientMapper.INSTANCE.convert(clientDB);
         return ResponseEntity.status(HttpStatus.CREATED).body(newClientDTO);
     }
-    
 
     @GetMapping("/logout")
     public String logout(Model model) {
@@ -121,9 +120,28 @@ public class ClientController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public void borrarUsuario(@PathVariable("id") Long identification) {
-        clientService.DeleteById(identification);
-        // return "redirect:/admin/clients";
+    public ResponseEntity<?> borrarUsuario(@PathVariable("id") Long identification) {
+
+        System.out.println( "\nidentification eliminar cliente: " + identification);
+
+        try {
+
+            clientService.DeleteById(identification);
+            return ResponseEntity.ok("Cliente eliminado exitosamente");
+
+        } catch (DataIntegrityViolationException e) {
+
+            System.out.println( "\nError eliminar cliente: No se puede eliminar el cliente porque tiene relaciones asociadas. " + e.getMessage());
+            return ResponseEntity.status(HttpStatus.CONFLICT)
+                    .body("No se puede eliminar el cliente porque tiene relaciones asociadas.");
+        
+        } catch (Exception e) {
+
+            System.out.println( "\nError eliminar cliente: " + e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Error al eliminar el cliente: " + e.getMessage());
+            
+        }
     }
 
     @GetMapping("/update/{id}")

@@ -97,8 +97,6 @@ public class VetController {
             return new ResponseEntity<String>("Este usuario ya existe", HttpStatus.BAD_REQUEST);
         }
 
-        UserEntity userEntity = customUserDetailService.VetToUser(vet);
-        vet.setUser(userEntity);
         Vet VetDB = vetService.add(vet);
         VetDTO newVetDTO = VetMapper.INSTANCE.convert(VetDB);
 
@@ -128,6 +126,8 @@ public class VetController {
 
     @DeleteMapping("/delete/{id}")
     public void deleteVet(@PathVariable("id") Long identification) {
+        System.out.println( "\nidentification eliminar veterinario: " + identification);
+
         vetService.DeleteById(identification);
     }
 

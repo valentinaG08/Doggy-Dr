@@ -101,247 +101,198 @@ public class DatabaseInit implements ApplicationRunner {
 
         clientSave = new Client("Juan Perez", "juanp", 1234567891L, 3001234561L, "juanp@mail.com");
         userEntity = saveUserCliente(clientSave);
-        clientSave.setUser(userEntity);
         clientRepository.save(clientSave);
         clientSave = new Client("Maria Gomez", "mariag", 1234567892L, 3001234562L, "mariag@mail.com");
 
         userEntity = saveUserCliente(clientSave);
-        clientSave.setUser(userEntity);
         clientRepository.save(clientSave);
         clientSave = new Client("Carlos Ruiz", "carlosr", 1234567893L, 3001234563L, "carlosr@mail.com");
 
         userEntity = saveUserCliente(clientSave);
-        clientSave.setUser(userEntity);
         clientRepository.save(clientSave);
         clientSave = new Client("Ana Martinez", "anam", 1234567894L, 3001234564L, "anam@mail.com");
 
         userEntity = saveUserCliente(clientSave);
-        clientSave.setUser(userEntity);
         clientRepository.save(clientSave);
         clientSave = new Client("Luis Sanchez", "luiss", 1234567895L, 3001234565L, "luiss@mail.com");
 
         userEntity = saveUserCliente(clientSave);
-        clientSave.setUser(userEntity);
         clientRepository.save(clientSave);
         clientSave = new Client("Laura Diaz", "laurad", 1234567896L, 3001234566L, "laurad@mail.com");
 
         userEntity = saveUserCliente(clientSave);
-        clientSave.setUser(userEntity);
         clientRepository.save(clientSave);
         clientSave = new Client("Miguel Torres", "miguelt", 1234567897L, 3001234567L, "miguelt@mail.com");
 
         userEntity = saveUserCliente(clientSave);
-        clientSave.setUser(userEntity);
         clientRepository.save(clientSave);
         clientSave = new Client("Carla Ramirez", "carlar", 1234567898L, 3001234568L, "carlar@mail.com");
 
         userEntity = saveUserCliente(clientSave);
-        clientSave.setUser(userEntity);
         clientRepository.save(clientSave);
         clientSave = new Client("Jose Hernandez", "joseh", 1234567899L, 3001234569L, "joseh@mail.com");
 
         userEntity = saveUserCliente(clientSave);
-        clientSave.setUser(userEntity);
         clientRepository.save(clientSave);
         clientSave = new Client("Patricia Flores", "patricf", 1234567900L, 3001234570L, "patricf@mail.com");
 
         userEntity = saveUserCliente(clientSave);
-        clientSave.setUser(userEntity);
         clientRepository.save(clientSave);
         clientSave = new Client("Andres Rios", "andresr", 1234567901L, 3001234571L, "andresr@mail.com");
 
         userEntity = saveUserCliente(clientSave);
-        clientSave.setUser(userEntity);
         clientRepository.save(clientSave);
         clientSave = new Client("Lucia Lopez", "lucial", 1234567902L, 3001234572L, "lucial@mail.com");
 
         userEntity = saveUserCliente(clientSave);
-        clientSave.setUser(userEntity);
         clientRepository.save(clientSave);
         clientSave = new Client("Pedro Morales", "pedrom", 1234567903L, 3001234573L, "pedrom@mail.com");
 
         userEntity = saveUserCliente(clientSave);
-        clientSave.setUser(userEntity);
         clientRepository.save(clientSave);
         clientSave = new Client("Sofia Jimenez", "sofia", 1234567904L, 3001234574L, "sofia@mail.com");
 
         userEntity = saveUserCliente(clientSave);
-        clientSave.setUser(userEntity);
         clientRepository.save(clientSave);
         clientSave = new Client("Manuel Ortiz", "manuel", 1234567905L, 3001234575L, "manuel@mail.com");
 
         userEntity = saveUserCliente(clientSave);
-        clientSave.setUser(userEntity);
         clientRepository.save(clientSave);
         clientSave = new Client("Daniela Vega", "danielv", 1234567906L, 3001234576L, "danielv@mail.com");
 
         userEntity = saveUserCliente(clientSave);
-        clientSave.setUser(userEntity);
         clientRepository.save(clientSave);
         clientSave = new Client("Felipe Cruz", "felip", 1234567907L, 3001234577L, "felip@mail.com");
 
         userEntity = saveUserCliente(clientSave);
-        clientSave.setUser(userEntity);
         clientRepository.save(clientSave);
         clientSave = new Client("Isabella Castro", "isabelc", 1234567908L, 3001234578L, "isabelc@mail.com");
 
         userEntity = saveUserCliente(clientSave);
-        clientSave.setUser(userEntity);
         clientRepository.save(clientSave);
         clientSave = new Client("Gabriel Molina", "gabrielm", 1234567909L, 3001234579L, "gabrielm@mail.com");
 
         userEntity = saveUserCliente(clientSave);
-        clientSave.setUser(userEntity);
         clientRepository.save(clientSave);
         clientSave = new Client("Valentina Reyes", "valentir", 1234567910L, 3001234580L, "valentir@mail.com");
 
         userEntity = saveUserCliente(clientSave);
-        clientSave.setUser(userEntity);
         clientRepository.save(clientSave);
         clientSave = new Client("Javier Aguilar", "javiera", 1234567911L, 3001234581L, "javiera@mail.com");
 
         userEntity = saveUserCliente(clientSave);
-        clientSave.setUser(userEntity);
         clientRepository.save(clientSave);
         clientSave = new Client("Natalia Vargas", "nataliav", 1234567912L, 3001234582L, "nataliav@mail.com");
 
         userEntity = saveUserCliente(clientSave);
-        clientSave.setUser(userEntity);
         clientRepository.save(clientSave);
         clientSave = new Client("Alejandro Paredes", "alepar", 1234567913L, 3001234583L, "alepar@mail.com");
 
         userEntity = saveUserCliente(clientSave);
-        clientSave.setUser(userEntity);
         clientRepository.save(clientSave);
         clientSave = new Client("Camila Montoya", "camilam", 1234567914L, 3001234584L, "camilam@mail.com");
 
         userEntity = saveUserCliente(clientSave);
-        clientSave.setUser(userEntity);
         clientRepository.save(clientSave);
         clientSave = new Client("Esteban Peña", "estep", 1234567915L, 3001234585L, "estep@mail.com");
 
         userEntity = saveUserCliente(clientSave);
-        clientSave.setUser(userEntity);
         clientRepository.save(clientSave);
         clientSave = new Client("Veronica Silva", "veros", 1234567916L, 3001234586L, "veros@mail.com");
 
         userEntity = saveUserCliente(clientSave);
-        clientSave.setUser(userEntity);
         clientRepository.save(clientSave);
         clientSave = new Client("Ricardo Medina", "ricardom", 1234567917L, 3001234587L, "ricardom@mail.com");
 
         userEntity = saveUserCliente(clientSave);
-        clientSave.setUser(userEntity);
         clientRepository.save(clientSave);
         clientSave = new Client("Monica Guerrero", "monicag", 1234567918L, 3001234588L, "monicag@mail.com");
 
         userEntity = saveUserCliente(clientSave);
-        clientSave.setUser(userEntity);
         clientRepository.save(clientSave);
         clientSave = new Client("Oscar Herrera", "oscarh", 1234567919L, 3001234589L, "oscarh@mail.com");
 
         userEntity = saveUserCliente(clientSave);
-        clientSave.setUser(userEntity);
         clientRepository.save(clientSave);
         clientSave = new Client("Paola Ortiz", "paolao", 1234567920L, 3001234590L, "paolao@mail.com");
 
         userEntity = saveUserCliente(clientSave);
-        clientSave.setUser(userEntity);
         clientRepository.save(clientSave);
         clientSave = new Client("Sebastian Lara", "seblara", 1234567921L, 3001234591L, "seblara@mail.com");
 
         userEntity = saveUserCliente(clientSave);
-        clientSave.setUser(userEntity);
         clientRepository.save(clientSave);
         clientSave = new Client("Elena Fuentes", "elenaf", 1234567922L, 3001234592L, "elenaf@mail.com");
 
         userEntity = saveUserCliente(clientSave);
-        clientSave.setUser(userEntity);
         clientRepository.save(clientSave);
         clientSave = new Client("Diego Mendez", "diegom", 1234567923L, 3001234593L, "diegom@mail.com");
 
         userEntity = saveUserCliente(clientSave);
-        clientSave.setUser(userEntity);
         clientRepository.save(clientSave);
         clientSave = new Client("Rosa Castro", "rosac", 1234567924L, 3001234594L, "rosac@mail.com");
 
         userEntity = saveUserCliente(clientSave);
-        clientSave.setUser(userEntity);
         clientRepository.save(clientSave);
         clientSave = new Client("Hector Pardo", "hectorp", 1234567925L, 3001234595L, "hectorp@mail.com");
 
         userEntity = saveUserCliente(clientSave);
-        clientSave.setUser(userEntity);
         clientRepository.save(clientSave);
         clientSave = new Client("Adriana Campos", "adrianac", 1234567926L, 3001234596L, "adrianac@mail.com");
 
         userEntity = saveUserCliente(clientSave);
-        clientSave.setUser(userEntity);
         clientRepository.save(clientSave);
         clientSave = new Client("Rodrigo Luna", "rodrluna", 1234567927L, 3001234597L, "rodrluna@mail.com");
 
         userEntity = saveUserCliente(clientSave);
-        clientSave.setUser(userEntity);
         clientRepository.save(clientSave);
         clientSave = new Client("Sara Valdez", "saraval", 1234567928L, 3001234598L, "saraval@mail.com");
 
         userEntity = saveUserCliente(clientSave);
-        clientSave.setUser(userEntity);
         clientRepository.save(clientSave);
         clientSave = new Client("Fernando Beltran", "fernandob", 1234567929L, 3001234599L, "fernandob@mail.com");
 
         userEntity = saveUserCliente(clientSave);
-        clientSave.setUser(userEntity);
         clientRepository.save(clientSave);
         clientSave = new Client("Irene Alvarez", "irenealv", 1234567930L, 3001234600L, "irenealv@mail.com");
 
         userEntity = saveUserCliente(clientSave);
-        clientSave.setUser(userEntity);
         clientRepository.save(clientSave);
         clientSave = new Client("Mario Espinosa", "marioesp", 1234567931L, 3001234601L, "marioesp@mail.com");
 
         userEntity = saveUserCliente(clientSave);
-        clientSave.setUser(userEntity);
         clientRepository.save(clientSave);
         clientSave = new Client("Alicia Rojas", "aliciar", 1234567932L, 3001234602L, "aliciar@mail.com");
 
         userEntity = saveUserCliente(clientSave);
-        clientSave.setUser(userEntity);
         clientRepository.save(clientSave);
         clientSave = new Client("Victor Pineda", "victorp", 1234567933L, 3001234603L, "victorp@mail.com");
 
         userEntity = saveUserCliente(clientSave);
-        clientSave.setUser(userEntity);
         clientRepository.save(clientSave);
         clientSave = new Client("Angela Mendoza", "angelam", 1234567934L, 3001234604L, "angelam@mail.com");
 
         userEntity = saveUserCliente(clientSave);
-        clientSave.setUser(userEntity);
         clientRepository.save(clientSave);
         clientSave = new Client("Jorge Suarez", "jorges", 1234567935L, 3001234605L, "jorges@mail.com");
 
         userEntity = saveUserCliente(clientSave);
-        clientSave.setUser(userEntity);
         clientRepository.save(clientSave);
         clientSave = new Client("Claudia Ortega", "claudiao", 1234567936L, 3001234606L, "claudiao@mail.com");
 
         userEntity = saveUserCliente(clientSave);
-        clientSave.setUser(userEntity);
         clientRepository.save(clientSave);
         clientSave = new Client("Rafael Zamora", "rafaelz", 1234567937L, 3001234607L, "rafaelz@mail.com");
 
         userEntity = saveUserCliente(clientSave);
-        clientSave.setUser(userEntity);
         clientRepository.save(clientSave);
         clientSave = new Client("Cecilia Navarro", "cecilian", 1234567938L, 3001234608L, "cecilian@mail.com");
 
         userEntity = saveUserCliente(clientSave);
-        clientSave.setUser(userEntity);
         clientRepository.save(clientSave);
         clientSave = new Client("Martin Castillo", "martinc", 1234567939L, 3001234609L, "martinc@mail.com");
 
         userEntity = saveUserCliente(clientSave);
-        clientSave.setUser(userEntity);
         clientRepository.save(clientSave);
         clientSave = new Client("María Castillo", "mcastillo", 1234567940L, 300123610L, "martinc@mail.com");
     }
@@ -660,133 +611,109 @@ public class DatabaseInit implements ApplicationRunner {
                 "https://universidadeuropea.com/resources/media/images/medicina-veterinaria-800x450.original.jpg",
                 "daniC", 10131415L, 310123123, "daniel@gmail.com", "passDaniel", true);
         userEntity = saveUserVeterinario(vetSave);
-        vetSave.setUser(userEntity);
-        vetRepository.save(vetSave);
         vetSave = new Vet("Valentina Garcia", "Cirugía",
                 "https://papelmatic.com/wp-content/uploads/2019/09/papelmatic-higiene-profesional-limpieza-desinfeccion-clinicas-veterinarias.jpg",
                 "valeG", 20212223L, 310321321, "valentina@gmail.com", "passValentina", false);
         userEntity = saveUserVeterinario(vetSave);
-        vetSave.setUser(userEntity);
-        vetRepository.save(vetSave);
         vetSave = new Vet("Santiago Martínez", "Dermatología",
                 "https://universidadeuropea.com/resources/media/images/medicina-veterinaria-800x450.original.jpg",
                 "santiM", 30312234L, 310456789, "santiago@gmail.com", "passSantiago", true);
         userEntity = saveUserVeterinario(vetSave);
-        vetSave.setUser(userEntity);
         vetRepository.save(vetSave);
         vetSave = new Vet("Lucía Hernández", "Neurología",
                 "https://papelmatic.com/wp-content/uploads/2019/09/papelmatic-higiene-profesional-limpieza-desinfeccion-clinicas-veterinarias.jpg",
                 "luciaH", 40423345L, 310987654, "lucia@gmail.com", "passLucia", false);
         userEntity = saveUserVeterinario(vetSave);
-        vetSave.setUser(userEntity);
         vetRepository.save(vetSave);
         vetSave = new Vet("Carlos López", "Cardiología",
                 "https://universidadeuropea.com/resources/media/images/medicina-veterinaria-800x450.original.jpg",
                 "carlosL", 50534456L, 310654321, "carlos@gmail.com", "passCarlos", true);
         userEntity = saveUserVeterinario(vetSave);
-        vetSave.setUser(userEntity);
         vetRepository.save(vetSave);
         vetSave = new Vet("Camila Ruiz", "Oftalmología",
                 "https://papelmatic.com/wp-content/uploads/2019/09/papelmatic-higiene-profesional-limpieza-desinfeccion-clinicas-veterinarias.jpg",
                 "camilaR", 60645567L, 310789456, "camila@gmail.com", "passCamila", false);
         userEntity = saveUserVeterinario(vetSave);
-        vetSave.setUser(userEntity);
         vetRepository.save(vetSave);
         vetSave = new Vet("Sebastián Gutiérrez", "Traumatología",
                 "https://universidadeuropea.com/resources/media/images/medicina-veterinaria-800x450.original.jpg",
                 "sebasG", 70756678L, 310123789, "sebastian@gmail.com", "passSebastian", true);
         userEntity = saveUserVeterinario(vetSave);
-        vetSave.setUser(userEntity);
         vetRepository.save(vetSave);
         vetSave = new Vet("Ana María Ríos", "Odontología",
                 "https://papelmatic.com/wp-content/uploads/2019/09/papelmatic-higiene-profesional-limpieza-desinfeccion-clinicas-veterinarias.jpg",
                 "anaR", 80867789L, 310321654, "ana@gmail.com", "passAna", false);
         userEntity = saveUserVeterinario(vetSave);
-        vetSave.setUser(userEntity);
         vetRepository.save(vetSave);
         vetSave = new Vet("Tomás Ramírez", "Ortopedia",
                 "https://universidadeuropea.com/resources/media/images/medicina-veterinaria-800x450.original.jpg",
                 "tomasR", 90978890L, 310456123, "tomas@gmail.com", "passTomas", true);
         userEntity = saveUserVeterinario(vetSave);
-        vetSave.setUser(userEntity);
         vetRepository.save(vetSave);
         vetSave = new Vet("Paula Sánchez", "Oncología",
                 "https://papelmatic.com/wp-content/uploads/2019/09/papelmatic-higiene-profesional-limpieza-desinfeccion-clinicas-veterinarias.jpg",
                 "paulaS", 10101112L, 310789321, "paula@gmail.com", "passPaula", false);
         userEntity = saveUserVeterinario(vetSave);
-        vetSave.setUser(userEntity);
         vetRepository.save(vetSave);
         vetSave = new Vet("Diego Torres", "Anestesiología",
                 "https://universidadeuropea.com/resources/media/images/medicina-veterinaria-800x450.original.jpg",
                 "diegoT", 11121223L, 310654987, "diego@gmail.com", "passDiego", true);
         userEntity = saveUserVeterinario(vetSave);
-        vetSave.setUser(userEntity);
         vetRepository.save(vetSave);
         vetSave = new Vet("Carolina Moreno", "Urgencias",
                 "https://papelmatic.com/wp-content/uploads/2019/09/papelmatic-higiene-profesional-limpieza-desinfeccion-clinicas-veterinarias.jpg",
                 "carolinaM", 12131334L, 310987123, "carolina@gmail.com", "passCarolina", false);
         userEntity = saveUserVeterinario(vetSave);
-        vetSave.setUser(userEntity);
         vetRepository.save(vetSave);
         vetSave = new Vet("Miguel Fernández", "Rehabilitación",
                 "https://universidadeuropea.com/resources/media/images/medicina-veterinaria-800x450.original.jpg",
                 "miguelF", 13141445L, 310123654, "miguel@gmail.com", "passMiguel", true);
         userEntity = saveUserVeterinario(vetSave);
-        vetSave.setUser(userEntity);
         vetRepository.save(vetSave);
         vetSave = new Vet("Isabella Jiménez", "Pediatría",
                 "https://papelmatic.com/wp-content/uploads/2019/09/papelmatic-higiene-profesional-limpieza-desinfeccion-clinicas-veterinarias.jpg",
                 "isabellaJ", 14151556L, 310321987, "isabella@gmail.com", "passIsabella", false);
         userEntity = saveUserVeterinario(vetSave);
-        vetSave.setUser(userEntity);
         vetRepository.save(vetSave);
         vetSave = new Vet("Andrés Suárez", "Geriatría",
                 "https://universidadeuropea.com/resources/media/images/medicina-veterinaria-800x450.original.jpg",
                 "andresS", 15161667L, 310456789, "andres@gmail.com", "passAndres", true);
         userEntity = saveUserVeterinario(vetSave);
-        vetSave.setUser(userEntity);
         vetRepository.save(vetSave);
         vetSave = new Vet("Daniela Gómez", "Nefrología",
                 "https://papelmatic.com/wp-content/uploads/2019/09/papelmatic-higiene-profesional-limpieza-desinfeccion-clinicas-veterinarias.jpg",
                 "danielaG", 16171778L, 310789654, "daniela@gmail.com", "passDaniela", false);
         userEntity = saveUserVeterinario(vetSave);
-        vetSave.setUser(userEntity);
         vetRepository.save(vetSave);
         vetSave = new Vet("Gabriel Díaz", "Endocrinología",
                 "https://universidadeuropea.com/resources/media/images/medicina-veterinaria-800x450.original.jpg",
                 "gabrielD", 17181889L, 310654123, "gabriel@gmail.com", "passGabriel", true);
         userEntity = saveUserVeterinario(vetSave);
-        vetSave.setUser(userEntity);
         vetRepository.save(vetSave);
         vetSave = new Vet("Sara Molina", "Hematología",
                 "https://papelmatic.com/wp-content/uploads/2019/09/papelmatic-higiene-profesional-limpieza-desinfeccion-clinicas-veterinarias.jpg",
                 "saraM", 18191990L, 310987321, "sara@gmail.com", "passSara", false);
         userEntity = saveUserVeterinario(vetSave);
-        vetSave.setUser(userEntity);
         vetRepository.save(vetSave);
         vetSave = new Vet("Juan Pérez", "Inmunología",
                 "https://universidadeuropea.com/resources/media/images/medicina-veterinaria-800x450.original.jpg",
                 "juanP", 19202001L, 310123987, "juan@gmail.com", "passJuan", true);
         userEntity = saveUserVeterinario(vetSave);
-        vetSave.setUser(userEntity);
         vetRepository.save(vetSave);
         vetSave = new Vet("María Castro", "Patología",
                 "https://papelmatic.com/wp-content/uploads/2019/09/papelmatic-higiene-profesional-limpieza-desinfeccion-clinicas-veterinarias.jpg",
                 "mariaC", 20212112L, 310321654, "maria@gmail.com", "passMaria", false);
         userEntity = saveUserVeterinario(vetSave);
-        vetSave.setUser(userEntity);
         vetRepository.save(vetSave);
         vetSave = new Vet("Felipe Aguilar", "Nutrición",
                 "https://universidadeuropea.com/resources/media/images/medicina-veterinaria-800x450.original.jpg",
                 "felipeA", 21222223L, 310456987, "felipe@gmail.com", "passFelipe", true);
         userEntity = saveUserVeterinario(vetSave);
-        vetSave.setUser(userEntity);
         vetRepository.save(vetSave);
         vetSave = new Vet("Mónica Díaz", "Genética",
                 "https://papelmatic.com/wp-content/uploads/2019/09/papelmatic-higiene-profesional-limpieza-desinfeccion-clinicas-veterinarias.jpg",
                 "monicaD", 22232334L, 310789123, "monica@gmail.com", "passMonica", false);
         userEntity = saveUserVeterinario(vetSave);
-        vetSave.setUser(userEntity);
         vetRepository.save(vetSave);
     }
 

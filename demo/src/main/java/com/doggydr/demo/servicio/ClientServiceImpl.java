@@ -5,11 +5,17 @@ import java.util.Optional;
 import org.hibernate.ResourceClosedException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.doggydr.demo.entidad.Client;
 import com.doggydr.demo.entidad.Pet;
+import com.doggydr.demo.entidad.UserEntity;
 import com.doggydr.demo.repositorio.ClientRepository;
 import com.doggydr.demo.repositorio.PetRepository;
 import com.doggydr.demo.repositorio.UserRepository;
+
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 
 @Service
 public class ClientServiceImpl implements ClientService {
@@ -21,6 +27,9 @@ public class ClientServiceImpl implements ClientService {
 
     @Autowired
     UserRepository userRepo;
+
+    @PersistenceContext
+    private EntityManager entityManager;
 
     @Override
     public Client SearchById(Long id) {
@@ -47,26 +56,75 @@ public class ClientServiceImpl implements ClientService {
         return clientRepo.save(client);
     }
 
-    @Override
+    @Override 
+    @Transactional
     public void DeleteById(Long id) {
         // Buscar el owner por su ID
         Optional<Client> optionalOwner = clientRepo.findById(id);
-        userRepo.deleteById(id);
+
         if (!optionalOwner.isPresent()) {
             throw new ResourceClosedException("Owner not found with id: " + id);
         }
 
         // Obtener el owner
         Client owner = optionalOwner.get();
+        System.out.println("\n\ncliente user:" + owner.getUsername());
 
-        // Obtener y eliminar todas las mascotas asociadas
-        List<Pet> pets = petService.SearchByOwnerId(owner.getId());
-        for (Pet pet : pets) {
-            petService.DeleteById(pet.getId()); // Eliminar cada mascota
+        System.out.println("\nUser ID passed: " + id);
+
+        List<Object[]> user1 = userRepo.getRolesByUserId(id);
+        System.out.println("\nSize of user1: " + user1.size());
+        if(user1!= null){
+            for (Object[] objects : user1) {
+                System.out.println("Role ID: " + objects[0] + ", User ID: " + objects[1]);
+            }
+        }
+        userRepo.removeRolesByUserId(owner.getId()); // Borrar el rol
+        
+        user1 = userRepo.getRolesByUserId(id);
+        System.out.println("\nSize of user2: " + user1.size());
+
+        if(user1!= null){
+            for (Object[] objects : user1) {
+                System.out.println("user 2:" + objects);
+            }
         }
 
-        // Ahora eliminar el owner
+          // Obtener y eliminar todas las mascotas asociadas
+          List<Pet> pets = petService.SearchByOwnerId(owner.getId());
+          for (Pet pet : pets) {
+              petService.DeleteById(pet.getId()); // Eliminar cada mascota
+          }
+  
+        Optional<UserEntity> userEntity = userRepo.findById(id);
+
+        if(userEntity.isPresent()){
+            System.out.println("user entity:" + userEntity.get().getId());
+            System.out.println("user entity user:" + userEntity.get().getUsername());
+        }
+
+        //userRepo.deleteById(owner.getId());   // Borrar el usuario
+        userEntity = userRepo.findById(id);
+
+        if(userEntity.isPresent()){
+            System.out.println("user entity no borro:" + userEntity.get().getId());
+            System.out.println("user entity no borro:" + userEntity.get().getUsername());
+        }else {
+            System.out.println("user entity SI borro:" );
+        }
+
+        // Eliminar el owner
         clientRepo.delete(owner);
+        clientRepo.flush(); // Forzar que Hibernate sincronice la sesión con la base de datos
+        //entityManager.clear(); // Limpiar la sesión de Hibernate
+
+        Optional<Client> cliente = clientRepo.findById(id);
+        if( cliente.isPresent() ){
+            System.out.println("client no borro:" + cliente.get().getId());
+        }else {
+            System.out.println("client SI borro:" );
+        }
+
     }
 
     @Override
