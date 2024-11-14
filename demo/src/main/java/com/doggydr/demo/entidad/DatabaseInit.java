@@ -413,7 +413,7 @@ public class DatabaseInit implements ApplicationRunner {
                 "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Italian_Greyhound_standing_gray.jpg/320px-Italian_Greyhound_standing_gray.jpg",
                 clientRepository.findById(35L).get(), true));
         petRepository.save(new Pet("Rocco", "Lhasa Apso", 6, "Problemas dentales", 7.0,
-                "https://animaleshoy.net/wp-content/uploads/2014/04/cachorros_6.jpg",
+                "https://abrazoanimal.org/wp-content/uploads/2019/02/Roco5_sello.jpg",
                 clientRepository.findById(36L).get(), true));
         petRepository.save(new Pet("Layla", "Husky", 5, "Problemas oculares", 22.0,
                 "https://www.purina.es/sites/default/files/styles/ttt_image_510/public/2024-02/sitesdefaultfilesstylessquare_medium_440x440public2022-08Siberian20Husky2.jpg?itok=d5njFuxB",
@@ -422,7 +422,7 @@ public class DatabaseInit implements ApplicationRunner {
                 "https://i.pinimg.com/736x/46/0a/fb/460afb0cc53180384e1c91cf5dac30c1.jpg",
                 clientRepository.findById(38L).get(), true));
         petRepository.save(new Pet("Nina", "Pinscher", 2, "Problemas dentales", 4.5,
-                "https://upload.wikimedia.org/wikipedia/commons/1/13/Pinscher_Miniatura_l%C3%ADnea_Europea_en_Cuernavaca_M%C3%A9xico_2.jpg",
+                "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Dalmatien.jpg/320px-Dalmatien.jpg",
                 clientRepository.findById(39L).get(), true));
         petRepository.save(new Pet("Ollie", "Shar Pei", 3, "Odontología veterinaria", 23.5,
                 "https://miro.medium.com/v2/resize:fit:800/1*otu_l6kwSn-L-WhRaFcQIQ.jpeg",
@@ -467,9 +467,9 @@ public class DatabaseInit implements ApplicationRunner {
                 "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZZxhReu_lJXwL3wxhikwSr50UahNvG6sdYw&s",
                 clientRepository.findById(4L).get(), true));
         petRepository.save(new Pet("Penny", "Cocker Spaniel", 3, "Otitis", 12.5,
-                "https://www.teorema.com.mx/wp-content/uploads/perros.jpg", clientRepository.findById(5L).get(), true));
+                "https://images.unsplash.com/photo-1478029973231-f42d99fe5c20?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8MjB8fHxlbnwwfHx8fHw%3D", clientRepository.findById(5L).get(), true));
         petRepository.save(new Pet("Rocky", "Rottweiler", 6, "Enfermedad periodontal", 40.0,
-                "https://descargarimagenesgratis.org/wp-content/uploads/2014/09/Fotos-de-perros-jugando-7.jpg",
+                "https://doggiesintown.com/wp-content/uploads/2023/08/El-Fascinante-Mundo-del-Perro-Salchicha-Explorando-su-Historia-Crianza-y-Personalidad-Unica-Doggies-in-Town-1200x676-5.jpg",
                 clientRepository.findById(6L).get(), true));
         petRepository.save(new Pet("Millie", "Golden Retriever", 2, "Displasia de cadera", 25.0,
                 "https://www.aon.es/personales/seguro-perro-gato/wp-content/uploads/sites/2/2021/04/bichon-maltes.jpg",
@@ -574,13 +574,13 @@ public class DatabaseInit implements ApplicationRunner {
                 "https://shorthand-social.imgix.net/prod/story/ng77nuNXYR/media/6dca4600467911e88355bb16983c6639/original.jpg?w=1100&h=1100&fit=clip&fm=jpg&q=70&auto=format",
                 clientRepository.findById(40L).get(), true));
         petRepository.save(new Pet("Moose", "Dálmata", 6, "Problemas cardíacos", 24.5,
-                "https://www.teorema.com.mx/wp-content/uploads/perros.jpg", clientRepository.findById(41L).get(),
+                "https://s1.elespanol.com/2022/03/23/curiosidades/mascotas/659444577_222934316_1024x576.jpg", clientRepository.findById(41L).get(),
                 true));
         petRepository.save(new Pet("Lily", "Galgo Español", 3, "Enfermedad periodontal", 29.0,
                 "https://www.aon.es/personales/seguro-perro-gato/wp-content/uploads/sites/2/2021/04/bichon-maltes.jpg",
                 clientRepository.findById(42L).get(), true));
         petRepository.save(new Pet("Apollo", "Fox Terrier", 4, "Problemas de piel", 7.5,
-                "https://animaleshoy.net/wp-content/uploads/2014/04/cachorros_6.jpg",
+                "https://caracol.com.co/resizer/v2/6LKSFIBFD5FMJJSE56DWWSUJOI.jpg?auth=df2a918a2312a2e0bcad892878b8b51ac9cdef1c6006e2038b4ca355f312fe76&width=650&height=488&quality=70&smart=true",
                 clientRepository.findById(43L).get(), true));
         petRepository.save(new Pet("Chloe", "Galgo Afgano", 5, "Problemas oculares", 26.0,
                 "https://content.nationalgeographic.com.es/medio/2023/11/29/golden-retriever-corriendo_7a50f15e_231129131211_800x800.jpg",
