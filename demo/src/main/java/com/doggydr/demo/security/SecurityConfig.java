@@ -37,13 +37,9 @@ public class SecurityConfig {
                         .requestMatchers("/pet/**").permitAll() 
                         .requestMatchers("/vet/**").permitAll() 
                         .requestMatchers("/admin/**").permitAll()
-                        .requestMatchers("/medicine/").permitAll()
-                        .requestMatchers("/treatment/").permitAll()
-                        .requestMatchers("/api/email/send").permitAll() // Permitir acceso sin autenticación
-                        .requestMatchers("/vet/details").hasAuthority("VETERINARIO")
                         .requestMatchers("/medicine/**").permitAll()
                         .requestMatchers("/treatment/**").permitAll()
-                        .requestMatchers("/owner/details").hasAuthority("CLIENTE")
+                        .requestMatchers("/api/email/send").permitAll() // Permitir acceso sin autenticación
                         .anyRequest().authenticated())
                 .exceptionHandling(exception -> exception.authenticationEntryPoint(jwtAuthEntryPoint))
                 .addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);

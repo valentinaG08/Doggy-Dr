@@ -19,7 +19,7 @@ import lombok.NoArgsConstructor;
 @Data @NoArgsConstructor
 public class Vet {
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.REMOVE)
     private UserEntity user;
     @Id
     @GeneratedValue

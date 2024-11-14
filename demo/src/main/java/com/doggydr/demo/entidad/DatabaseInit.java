@@ -611,20 +611,26 @@ public class DatabaseInit implements ApplicationRunner {
                 "https://universidadeuropea.com/resources/media/images/medicina-veterinaria-800x450.original.jpg",
                 "daniC", 10131415L, 310123123, "daniel@gmail.com", "passDaniel", true);
         userEntity = saveUserVeterinario(vetSave);
+        vetRepository.save(vetSave);
+
         vetSave = new Vet("Valentina Garcia", "Cirugía",
                 "https://papelmatic.com/wp-content/uploads/2019/09/papelmatic-higiene-profesional-limpieza-desinfeccion-clinicas-veterinarias.jpg",
                 "valeG", 20212223L, 310321321, "valentina@gmail.com", "passValentina", false);
         userEntity = saveUserVeterinario(vetSave);
+        vetRepository.save(vetSave);
+
         vetSave = new Vet("Santiago Martínez", "Dermatología",
                 "https://universidadeuropea.com/resources/media/images/medicina-veterinaria-800x450.original.jpg",
                 "santiM", 30312234L, 310456789, "santiago@gmail.com", "passSantiago", true);
         userEntity = saveUserVeterinario(vetSave);
         vetRepository.save(vetSave);
+
         vetSave = new Vet("Lucía Hernández", "Neurología",
                 "https://papelmatic.com/wp-content/uploads/2019/09/papelmatic-higiene-profesional-limpieza-desinfeccion-clinicas-veterinarias.jpg",
                 "luciaH", 40423345L, 310987654, "lucia@gmail.com", "passLucia", false);
         userEntity = saveUserVeterinario(vetSave);
         vetRepository.save(vetSave);
+
         vetSave = new Vet("Carlos López", "Cardiología",
                 "https://universidadeuropea.com/resources/media/images/medicina-veterinaria-800x450.original.jpg",
                 "carlosL", 50534456L, 310654321, "carlos@gmail.com", "passCarlos", true);

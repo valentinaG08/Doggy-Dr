@@ -1,8 +1,10 @@
 package com.doggydr.demo.servicio;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.ArrayList;
 
+import org.hibernate.ResourceClosedException;
 import org.hibernate.engine.internal.Collections;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,12 +22,12 @@ import com.doggydr.demo.repositorio.VetRepository;
 import io.micrometer.observation.annotation.Observed;
 
 @Service
-public class VetServiceImpl implements VetService{
+public class VetServiceImpl implements VetService {
     @Autowired
     VetRepository vetRepo;
 
     @Autowired
-    UserRepository userRepository;
+    UserRepository userRepo;
 
     @Autowired
     RoleRepository roleRepository;
@@ -43,8 +45,39 @@ public class VetServiceImpl implements VetService{
     @Transactional
     @Override
     public void DeleteById(Long id) {
+        // Buscar el vet por su ID
+        Optional<Vet> optionalVet = vetRepo.findById(id);
+
+        if (!optionalVet.isPresent()) {
+            throw new ResourceClosedException("Vet not found with id: " + id);
+        }
+
+        System.out.println("\nUser ID passed: " + id);
+
+        // Obtener el Vet
+        Vet vet = optionalVet.get();
+
+        List<Object[]> user1 = userRepo.getRolesByUserId(vet.getId());
+        System.out.println("\nSize of user1: " + user1.size());
+        if (user1 != null) {
+            for (Object[] objects : user1) {
+                System.out.println("Role ID: " + objects[0] + ", User ID: " + objects[1]);
+            }
+        }
+
+        // Borrar el rol
+        userRepo.removeRolesByUserId(vet.getId());
+
+        user1 = userRepo.getRolesByUserId(id);
+        System.out.println("\nSize of user2: " + user1.size());
+
+        if (user1 != null) {
+            for (Object[] objects : user1) {
+                System.out.println("user 2:" + objects);
+            }
+        }
+
         vetRepo.deleteById(id);
-        userRepository.deleteById(id);
     }
 
     @Override

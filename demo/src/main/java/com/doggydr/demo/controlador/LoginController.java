@@ -2,6 +2,7 @@ package com.doggydr.demo.controlador;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,9 +24,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.doggydr.demo.entidad.Client;
 import com.doggydr.demo.entidad.LoginRequest;
+import com.doggydr.demo.entidad.UserEntity;
 import com.doggydr.demo.servicio.ClientService;
 
 import com.doggydr.demo.entidad.Vet;
+import com.doggydr.demo.repositorio.UserRepository;
 import com.doggydr.demo.security.JWTGenerator;
 import com.doggydr.demo.servicio.VetService;
 import com.doggydr.demo.DTOs.AdminDTO;
@@ -57,6 +60,9 @@ public class LoginController {
 
     @Autowired
     PasswordEncoder passwordEncoder;
+
+    @Autowired
+    UserRepository userRepo;
 
     @GetMapping("/client")
     public String login(Model model) {
@@ -92,9 +98,12 @@ public class LoginController {
 
         // Log para mostrar la contraseña en el cliente y el hash almacenado
         System.out.println("Contraseña del cliente para comparación: " + client.getUsername());
-        System.out.println("Hash en base de datos: " + client.getUser().getPassword());
 
-        if (passwordEncoder.matches("123", client.getUser().getPassword())) {
+        Optional<UserEntity> user = userRepo.findByDocument(document);
+
+        System.out.println("Hash en base de datos: " + user.get().getPassword());
+
+        if (passwordEncoder.matches("123", user.get().getPassword())) {
             String token = jwtGenerator.generateToken(
                     new UsernamePasswordAuthenticationToken(client.getUsername(), null));
             return new ResponseEntity<>(token, HttpStatus.OK);
@@ -111,21 +120,18 @@ public class LoginController {
     @PostMapping("/vet")
     public ResponseEntity vetLogin(@RequestBody LoginRequest loginRequest) {
         Vet vet = vetService.findByUserName(loginRequest.getUsername());
-        /*
-         * if (vet != null && vet.getPassword().equals(loginRequest.getPassword())) {
-         * VetDTO vetDTO = VetMapper.INSTANCE.convert(vet);
-         * return ResponseEntity.ok(vetDTO);
-         * } else {
-         * return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
-         * .body("Veterinario no encontrado o contraseña incorrecta");
-         * }
-         */
 
         if (vet == null) {
+            System.out.println("\n\nVet username no encontrado: " + loginRequest.getUsername());
+
             return new ResponseEntity<>("Veterinario no encontrado", HttpStatus.NOT_FOUND);
         }
+        System.out.println("\n\nVet username: " + vet.getUserName());
 
-        if (passwordEncoder.matches(loginRequest.getPassword(), vet.getUser().getPassword())) {
+        Optional<UserEntity> user = userRepo.findByUsername(vet.getUserName());
+        System.out.println("Vet user: " + user.get().getUsername());
+
+        if (passwordEncoder.matches(loginRequest.getPassword(), user.get().getPassword())) {
             Authentication authentication = new UsernamePasswordAuthenticationToken(vet.getMail(), null);
             SecurityContextHolder.getContext().setAuthentication(authentication);
             String token = jwtGenerator.generateToken(authentication);
